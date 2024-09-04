@@ -2,16 +2,16 @@
 layout: home
 
 hero:
-  name: "plos-clan 组织文档"
+  name: "PlosClan 组织文档"
   text: ""
-  tagline: 欢迎来到plos-clan文档页面
+  tagline: 欢迎来到 PlosClan 文档页面
   actions:
     - theme: brand
       text:  开始
-      link: /zh/index
+      link: /projects
     - theme: alt
       text: 在 GitHub 上查看
-      link: https://github.com/plos-clan/doc
+      link: https://github.com/plos-clan/docs
   image:
     src: /plos.png
     alt: 网页的logo图标
@@ -49,15 +49,3 @@ features:
   }
 }
 </style>
-
-> `OS Devloper` 开发自制操作系统的社区成员 \
-> `Pl Devloper` 开发自制编程语言的社区成员
-
-## :dizzy: Update commit
-
-* 当前版本 `doc_0.0.1_vp`
-
-### doc_0.0.1_vp
-  * 更换了文档渲染器为`vitepress`
-  * 支持明亮切换
-  * 初步支持中英双语
