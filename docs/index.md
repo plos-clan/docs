@@ -28,6 +28,28 @@ features:
     details: 由众多 "OS Devloper" 和 "Pl Devloper" 组成的友好开发交流社区
 ---
 
+<style>
+:root {
+  --vp-home-hero-name-color: transparent;
+  --vp-home-hero-name-background: -webkit-linear-gradient(120deg, #bd34fe 30%, #41d1ff);
+
+  --vp-home-hero-image-background-image: linear-gradient(-45deg, #bd34fe 50%, #47caff 50%);
+  --vp-home-hero-image-filter: blur(44px);
+}
+
+@media (min-width: 640px) {
+  :root {
+    --vp-home-hero-image-filter: blur(56px);
+  }
+}
+
+@media (min-width: 960px) {
+  :root {
+    --vp-home-hero-image-filter: blur(68px);
+  }
+}
+</style>
+
 > `OS Devloper` 开发自制操作系统的社区成员 \
 > `Pl Devloper` 开发自制编程语言的社区成员
 
