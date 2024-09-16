@@ -34,6 +34,14 @@ export default defineConfig({
         ]
       },
       {
+        text: '开发SDK文档',
+        items: [
+          { text: 'PlantOS', link: '/devlop/plant_os' },
+          { text: 'CoolPotOS', link: '/devlop/coolpotos' },
+          { text: 'CPOS DOC', link: '/devlop/cpos_doc' },
+        ]
+      },
+      {
         text: '社区管理',
         items: [
           { text: '规章管理制度', link: '/group' },

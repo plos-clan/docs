@@ -18,7 +18,7 @@
 
 ![Static Badge](https://img.shields.io/badge/hardware-x86-green)
 
-![Static Badge](https://img.shields.io/badge/star-17-8A2BE2)
+![Static Badge](https://img.shields.io/badge/star-23-8A2BE2)
 
 * 最初的系统名叫 `CrashPowerDOS for x86` 后觉得太长改名
 * XIAOYI12对OS的各种模块做了高度解耦, 所以将该系统的源码移植到您的项目非常容易

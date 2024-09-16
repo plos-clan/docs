@@ -12,7 +12,7 @@
 
 ![Static Badge](https://img.shields.io/badge/hardware-x86-green)
 
-![Static Badge](https://img.shields.io/badge/star-11-8A2BE2)
+![Static Badge](https://img.shields.io/badge/star-14-8A2BE2)
 
 - Plant OS 是一个仅用于学习目的的操作系统。
 - 最初，操作系统是 16 位实模式，但现在是 32 位保护模式（386 版本）。
