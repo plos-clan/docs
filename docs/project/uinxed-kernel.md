@@ -3,14 +3,8 @@
 由 `MicroFish` 开发的适用于x86平台的32位类Unix宏内核
 
 <div>
-  <img id="logo" class="shadow" src="/ux_icon.png" width="200" height="200" align="right">
+  <img id="logo" src="/ux_icon.png" width="200" height="200" align="right">
 </div>
-
-<style>
-.shadow{
-    filter: drop-shadow(0px 2px 20px #000000);
-}
-</style>
 
 ![Static Badge](https://img.shields.io/badge/License-GPLv3-blue) 
 
