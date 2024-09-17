@@ -29,3 +29,6 @@
 * `XIAOYI12/xiaoyi1212` OS主要开发者
 * `min0911Y` OS文件系统部分开发
 * `QtLittleXu/Xu Yuxuan` OS文档编写
+* `copi143` 用户堆分配系统开发
+* `VinbeWan` IIC驱动开发
+* `ViudiraTech` Uinxed-Mark 性能测试软件

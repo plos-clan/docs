@@ -51,6 +51,10 @@ export default defineConfig({
 
     socialLinks: [
       { icon: 'github', link: 'https://github.com/plos-clan/docs' }
-    ]
+    ],
+    footer: {
+			message: 'Released under the MIT License.',
+			copyright: 'Copyright © plos-clan 2024-2025',
+		}
   }
 })

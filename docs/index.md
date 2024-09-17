@@ -49,3 +49,104 @@ features:
   }
 }
 </style>
+
+<script setup>
+	import { VPTeamMembers } from 'vitepress/theme'
+
+	const members = [
+    {
+	    avatar: 'https://www.github.com/min0911.png',
+	    name: 'min0911Y',
+	    title: 'Owner',
+	    links: [
+	      { icon: 'github', link: 'https://github.com/min0911' }
+	    ]
+	  },
+    {
+	    avatar: 'https://www.github.com/copi143.png',
+	    name: 'copi143',
+	    title: 'Owner',
+	    links: [
+	      { icon: 'github', link: 'https://github.com/copi143' }
+	    ]
+	  },
+	  {
+	    avatar: 'https://www.github.com/xiaoyi1212.png',
+	    name: 'XIAOYI12',
+	    title: 'Owner',
+	    links: [
+	      { icon: 'github', link: 'https://github.com/xiaoyi1212' }
+	    ]
+	  },
+    {
+	    avatar: 'https://www.github.com/wenxuanjun.png',
+	    name: 'wenxuanjun',
+	    title: 'Member',
+	    links: [
+	      { icon: 'github', link: 'https://github.com/wenxuanjun' }
+	    ]
+	  },
+    {
+	    avatar: 'https://www.github.com/CLimber-Rong.png',
+	    name: 'CLimber-Rong',
+	    title: 'Member',
+	    links: [
+	      { icon: 'github', link: 'https://github.com/CLimber-Rong' }
+	    ]
+	  },
+    {
+	    avatar: 'https://www.github.com/theflysong.png',
+	    name: 'flysong',
+	    title: 'Member',
+	    links: [
+	      { icon: 'github', link: 'https://github.com/theflysong' }
+	    ]
+	  },
+    {
+	    avatar: 'https://www.github.com/yywd123.png',
+	    name: 'yywd123',
+	    title: 'Member',
+	    links: [
+	      { icon: 'github', link: 'https://github.com/yywd123' }
+	    ]
+	  },
+    {
+	    avatar: 'https://www.github.com/zzjrabbit.png',
+	    name: 'Zeng Zhenjia',
+	    title: 'Member',
+	    links: [
+	      { icon: 'github', link: 'https://github.com/zzjrabbit' }
+	    ]
+	  },
+    {
+	    avatar: 'https://www.github.com/duoduo70.png',
+	    name: 'duoduo70',
+	    title: 'Owner',
+	    links: [
+	      { icon: 'github', link: 'https://github.com/duoduo70' }
+	    ]
+	  },
+    {
+	    avatar: 'https://www.github.com/Sdfzngf.png',
+	    name: '神都服主拿高分',
+	    title: 'Member',
+	    links: [
+	      { icon: 'github', link: 'https://github.com/Sdfzngf' }
+	    ]
+	  },
+    {
+	    avatar: 'https://www.github.com/xiguajerry.png',
+	    name: 'SagiriXiguajerry',
+	    title: 'Member',
+	    links: [
+	      { icon: 'github', link: 'https://github.com/xiguajerry' }
+	    ]
+	  },
+	]
+</script>
+
+<hr>
+
+# Plos-Clan 主要的活跃管理员们
+
+<VPTeamMembers size="small" :members="members" />
