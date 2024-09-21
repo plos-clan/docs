@@ -24,6 +24,7 @@ export default defineConfig({
           { text: 'PlantOS', link: '/project/plant_os' },
           { text: 'CoolPotOS', link: '/project/coolpotos' },
           { text: 'Uinxed-Kernel', link: '/project/uinxed-kernel' },
+          { text: 'racaos', link: '/project/racaos' },
           { text: 'pl_readline', link: '/project/pl_readline' },
           { text: 'plac-util', link: '/project/plac_util' },
         ]
