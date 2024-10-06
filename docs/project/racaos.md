@@ -1,6 +1,6 @@
 # racaOS
 
-由 `UEFIer` 基于 `TrashOS` 开发的x64的现代化操作系统
+由 `UEFIer` 基于 `TrashOS` 开发的x64的现代化操作系统(是这一众OS里唯一支持内核模块的（逃)
 
 ![Static Badge](https://img.shields.io/badge/License-GPLv2-blue) 
 
