@@ -155,10 +155,10 @@ CPOS特有的API接口
 
 ```C
 struct sysinfo{
-    char* osname;
-    char* kenlname;
-    char* cpu_vendor;
-    char* cpu_name;
+    char osname[50];
+    char kenlname[50];
+    char cpu_vendor[64];
+    char cpu_name[64];
     unsigned int phy_mem_size;
     unsigned int pci_device;
     unsigned int frame_width;

@@ -47,6 +47,7 @@ export default defineConfig({
         text: '社区管理',
         items: [
           { text: '规章管理制度', link: '/group' },
+          { text: '煞笔联合会', link: '/group/group' },
         ]
       }
     ],
