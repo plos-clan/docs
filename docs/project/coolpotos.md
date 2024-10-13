@@ -50,3 +50,4 @@
 * `copi143` 用户堆分配系统开发
 * `VinbeWan` IIC驱动开发
 * `ViudiraTech` Uinxed-Mark 性能测试软件
+* `wenxuanjun` CPOS_Rust SDK 开发
