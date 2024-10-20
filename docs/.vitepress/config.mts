@@ -27,6 +27,7 @@ export default defineConfig({
           { text: 'racaOS', link: '/project/racaos' },
           { text: 'pl_readline', link: '/project/pl_readline' },
           { text: 'plac-util', link: '/project/plac_util' },
+          { text: 'QuantumNEC', link: '/project/QuantumNEC' },
         ]
       },
       {
@@ -53,7 +54,8 @@ export default defineConfig({
         text: '社区管理',
         items: [
           { text: '规章管理制度', link: '/group' },
-          { text: '煞笔联合会', link: '/group/group' },
+          { text: '管理组织', link: '/group/group' },
+          { text: '群宪法（制定中）', link: '/group/constitution' },
         ]
       }
     ],
