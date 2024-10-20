@@ -44,6 +44,12 @@ export default defineConfig({
         ]
       },
       {
+        text: '相关资料',
+        items: [
+          { text: '内核模块加载', link: '/documents/module_loader' },
+        ]
+      },
+      {
         text: '社区管理',
         items: [
           { text: '规章管理制度', link: '/group' },
