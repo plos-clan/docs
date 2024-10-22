@@ -55,7 +55,7 @@ features:
 
 	const members = [
     {
-	    avatar: 'https://www.github.com/min0911.png',
+	    avatar: '/ydm.jpg',
 	    name: 'min0911Y',
 	    title: 'Owner',
 	    links: [
@@ -63,7 +63,7 @@ features:
 	    ]
 	  },
     {
-	    avatar: 'https://www.github.com/copi143.png',
+	    avatar: '/jm.jpg',
 	    name: 'copi143',
 	    title: 'Owner',
 	    links: [
@@ -71,7 +71,7 @@ features:
 	    ]
 	  },
 	  {
-	    avatar: 'https://www.github.com/xiaoyi1212.png',
+	    avatar: '/obt.jpg',
 	    name: 'XIAOYI12',
 	    title: 'Owner',
 	    links: [
@@ -79,7 +79,7 @@ features:
 	    ]
 	  },
     {
-	    avatar: 'https://www.github.com/wenxuanjun.png',
+	    avatar: '/qhjr.jpg',
 	    name: 'wenxuanjun',
 	    title: 'Member',
 	    links: [
@@ -87,7 +87,7 @@ features:
 	    ]
 	  },
     {
-	    avatar: 'https://www.github.com/CLimber-Rong.png',
+	    avatar: '/red_b.jpg',
 	    name: 'CLimber-Rong',
 	    title: 'Member',
 	    links: [
@@ -95,7 +95,7 @@ features:
 	    ]
 	  },
     {
-	    avatar: 'https://www.github.com/theflysong.png',
+	    avatar: '/my_child.jpg',
 	    name: 'flysong',
 	    title: 'Member',
 	    links: [
@@ -103,7 +103,7 @@ features:
 	    ]
 	  },
     {
-	    avatar: 'https://www.github.com/yywd123.png',
+	    avatar: '/ydm.jpg',
 	    name: 'yywd123',
 	    title: 'Member',
 	    links: [
@@ -111,7 +111,7 @@ features:
 	    ]
 	  },
     {
-	    avatar: 'https://www.github.com/zzjrabbit.png',
+	    avatar: '/pain.jpg',
 	    name: 'Zeng Zhenjia',
 	    title: 'Member',
 	    links: [
@@ -119,7 +119,7 @@ features:
 	    ]
 	  },
     {
-	    avatar: 'https://www.github.com/duoduo70.png',
+	    avatar: '/ygl.jpg',
 	    name: 'duoduo70',
 	    title: 'Owner',
 	    links: [
@@ -127,7 +127,7 @@ features:
 	    ]
 	  },
     {
-	    avatar: 'https://www.github.com/Sdfzngf.png',
+	    avatar: '/cs.jpg',
 	    name: '神都服主拿高分',
 	    title: 'Member',
 	    links: [
@@ -135,7 +135,7 @@ features:
 	    ]
 	  },
     {
-	    avatar: 'https://www.github.com/xiguajerry.png',
+	    avatar: '/codm.jpg',
 	    name: 'SagiriXiguajerry',
 	    title: 'Member',
 	    links: [
@@ -146,6 +146,8 @@ features:
 </script>
 
 <hr>
+
+> PLOS-CLAN 文档特别更新版 : P
 
 # Plos-Clan 主要的活跃管理员们
 
