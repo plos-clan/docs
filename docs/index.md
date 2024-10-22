@@ -103,7 +103,7 @@ features:
 	    ]
 	  },
     {
-	    avatar: '/ydm.jpg',
+	    avatar: '/mc.jpg',
 	    name: 'yywd123',
 	    title: 'Member',
 	    links: [
