@@ -12,7 +12,7 @@
 
 * 非常Linux
 
-> 该项目未迁移至`plos-clan`, GitHub: [zzjrabbit/racaOS](https://github.com/zzjrabbit/racaOS)
+> 该项目未迁移至 `plos-clan` , GitHub: [zzjrabbit/racaOS](https://github.com/zzjrabbit/racaOS)
 
 ## 贡献者
 

@@ -20,6 +20,9 @@
 * 因为Uinxed-Kernel的很多软硬件实现都基于各大开源项目，高度解耦，所以你很容易就可以使用其代码在您的项目上。
 * 您可以访问`https://github.com/ViudiraTech/Uinxed-Kernel`获取最新源代码，或者访问`http://uinxed-kernel.asia/`获取更多信息。
 
+> 该项目未迁移至 `plos-clan` , GitHub: [ViudiraTech/Uinxed-Kernel](https://github.com/ViudiraTech/Uinxed-Kernel)
+
+
 ## 贡献者
 
 * `MicroFish` 内核主要开发者

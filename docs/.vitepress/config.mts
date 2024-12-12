@@ -26,14 +26,7 @@ export default defineConfig({
           { text: 'Uinxed-Kernel', link: '/project/uinxed-kernel' },
           { text: 'racaOS', link: '/project/racaos' },
           { text: 'pl_readline', link: '/project/pl_readline' },
-          { text: 'plac-util', link: '/project/plac_util' },
           { text: 'QuantumNEC', link: '/project/QuantumNEC' },
-        ]
-      },
-      {
-        text: '项目计划',
-        items: [
-          { text: 'PlantOS', link: '/todo/plant_os' },
         ]
       },
       {
@@ -41,7 +34,6 @@ export default defineConfig({
         items: [
           { text: 'PlantOS', link: '/devlop/plant_os' },
           { text: 'CoolPotOS', link: '/devlop/coolpotos' },
-          { text: 'CPOS DOC', link: '/devlop/cpos_doc' },
         ]
       },
       {
@@ -56,6 +48,14 @@ export default defineConfig({
           { text: '规章管理制度', link: '/group' },
           { text: '管理组织', link: '/group/group' },
           { text: '群宪法（制定中）', link: '/group/constitution' },
+        ]
+      },
+      {
+        text: '娱乐-历史',
+        items: [
+          { text: '娱乐', link: '/history' },
+          { text: '历史组织', link: '/history/group' },
+          { text: '群界大战', link: '/history/war' },
         ]
       }
     ],
