@@ -27,6 +27,7 @@ export default defineConfig({
           { text: 'racaOS', link: '/project/racaos' },
           { text: 'pl_readline', link: '/project/pl_readline' },
           { text: 'QuantumNEC', link: '/project/QuantumNEC' },
+          { text: 'stamon', link: '/project/stamon' },
         ]
       },
       {
