@@ -10,3 +10,4 @@
 * :tada: [racaOS](https://github.com/zzjrabbit/racaOS) 一个rust写成的简易的现代化OS
 * :tada: [QuantumNEC](https://github.com/SegmentationFaultCD/QuantumNEC/tree/limine) 一个使用C++23标准编写的现代化OS
 * :tada: [Stamon2](https://github.com/CLimber-Rong/stamon) 一门跨平台的动态编程语言
+* :tada: [DoglinkOS-2nd](https://github.com/plos-clan/DoglinkOS-2nd) 由Ruster使用Rust编写的OS，每个commit都能编译并正常工作
