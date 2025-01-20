@@ -65,8 +65,8 @@ export default defineConfig({
       { icon: 'github', link: 'https://github.com/plos-clan/docs' }
     ],
     footer: {
-			message: 'Released under the MIT License.',
-			copyright: 'Copyright © plos-clan 2024-2025',
+			message: '本文档采用 知识共享 署名-相同方式共享 4.0 协议 进行许可。',
+			copyright: 'Copyright © 2024-2025 plos-clan',
 		}
   }
 })
