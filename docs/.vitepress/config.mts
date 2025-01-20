@@ -25,8 +25,9 @@ export default defineConfig({
           { text: 'CoolPotOS', link: '/project/coolpotos' },
           { text: 'Uinxed-Kernel', link: '/project/uinxed-kernel' },
           { text: 'racaOS', link: '/project/racaos' },
-          { text: 'pl_readline', link: '/project/pl_readline' },
           { text: 'QuantumNEC', link: '/project/QuantumNEC' },
+          { text: 'pl_readline', link: '/project/pl_readline' },
+          { text: 'os_terminal', link: '/project/os_terminal' },
         ]
       },
       {

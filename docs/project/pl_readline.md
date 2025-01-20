@@ -19,7 +19,6 @@
 
 ## 实装平台
 
-* Linux
-* PlantOS
-* CoolPotOS
-* Uinxed-Kernel
+* PlantOS i386/x64
+* CoolPotOS i386
+* Uinxed-Kernel i386
