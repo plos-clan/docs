@@ -8,13 +8,13 @@
 
 * 最初是[DoglinkOS](https://github.com/wuyukai0403/DoglinkOS)，使用C语言和汇编bootloader
 * 后来因为中断不工作，被放弃，于是有了现在使用 `Limine` 和 `Rust` 的二代
-* ~~ 啥也干不了 ~~
+* ~~啥也干不了~~
 
 ## 已知问题
 
 * 键盘中断在多核平台不工作
 * 编译Warning过多
-* ~~ `Ruster` 纯度不够 ~~
+* ~~`Ruster` 纯度不够~~
 
 ## 构建、运行方法
 
@@ -28,5 +28,5 @@
 
 ## 贡献者
 
-* `Ruster/wuyukai0403` OS~~ 唯一 ~~开发者
+* `Ruster/wuyukai0403` OS~~唯一~~开发者
 * `Liminer/Ver/wenxuanjun` 提供builder
