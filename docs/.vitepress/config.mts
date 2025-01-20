@@ -28,6 +28,7 @@ export default defineConfig({
           { text: 'pl_readline', link: '/project/pl_readline' },
           { text: 'QuantumNEC', link: '/project/QuantumNEC' },
           { text: 'Stamon2', link: '/project/stamon' },
+          { text: 'DoglinkOS-2nd', link: '/project/DoglinkOS-2nd'},
         ]
       },
       {
