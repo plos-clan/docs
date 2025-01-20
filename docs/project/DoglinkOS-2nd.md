@@ -3,6 +3,7 @@
 由 `Ruster` 使用 `Rust` 开发的仅用于UEFI平台的64位操作系统
 
 ![Static Badge](https://img.shields.io/badge/License-GPLv3-blue) 
+
 ![Static Badge](https://img.shields.io/badge/star-0-8A2BE2)
 
 * 最初是[DoglinkOS](https://github.com/wuyukai0403/DoglinkOS)，使用C语言和汇编bootloader
