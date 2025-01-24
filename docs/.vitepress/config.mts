@@ -22,17 +22,14 @@ export default defineConfig({
         text: '项目列表',
         items: [
           { text: 'PlantOS', link: '/project/plant_os' },
-          { text: 'CoolPotOS', link: '/project/coolpotos' },
+          { text: 'CoolPorOS', link: '/project/coolpotos' },
           { text: 'Uinxed-Kernel', link: '/project/uinxed-kernel' },
           { text: 'racaOS', link: '/project/racaos' },
           { text: 'QuantumNEC', link: '/project/QuantumNEC' },
-<<<<<<< HEAD
           { text: 'pl_readline', link: '/project/pl_readline' },
           { text: 'os_terminal', link: '/project/os_terminal' },
-=======
           { text: 'Stamon2', link: '/project/stamon' },
           { text: 'DoglinkOS-2nd', link: '/project/DoglinkOS-2nd'},
->>>>>>> 5ee037a1a9f4651a2131b28340cfac5c9f4e0004
         ]
       },
       {
