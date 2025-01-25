@@ -1,4 +1,4 @@
-# CoolPotOS
+# CoolPorOS
 
 由 `XIAOYI12` 基于 `Multiboot1` 引导规范开发的适用于x86平台的32位宏内核操作系统
 
