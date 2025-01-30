@@ -19,10 +19,10 @@ hero:
 features:
   - icon: 🛠️
     title: 技术
-    details: 社区成员不乏有很多高技术的大佬, 如`flysong` `min0911` `copi143`等
+    details: 社区为底层开发者们提供了开发模板与一些静态库模块, 大大简化了开发难度和提升了开发效率
   - icon: ⚡️
-    title: 更新
-    details: 文档全部内容会维持在最新状态, 由众多社区成员协助编写
+    title: 实用
+    details: 除开项目介绍部分, 文档还存在一些社区人员编写的技术性文章
   - icon: 🌞
     title: 社区
     details: 由众多 "OS Devloper" 和 "Pl Devloper" 组成的友好开发交流社区
