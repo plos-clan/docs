@@ -22,9 +22,9 @@
 
 （克隆源码后在源码根目录运行）
 
-仅构建请用 `cargo run` 。（没错是run）
+仅构建请用 `cargo run --release` 。（没错是run）（已知dev版不工作）
 
-构建并运行请用 `cargo run -- --boot` 。
+构建并运行请用 `cargo run --release -- --boot` 。
 
 ## 贡献者
 
