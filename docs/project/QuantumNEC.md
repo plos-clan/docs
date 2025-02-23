@@ -2,7 +2,7 @@
 此操作系统由`SegmentationFaultCD`使用先！进！的 **M ~ O ~ D ~ E ~ R ~ N** C++开发(C++23)
 如果想要编译它你得做好心理准备: 
 gcc version : above GCC13, clang version : above 18
-至于那啥MSVC，__狗都不用__()
+至于那啥MSVC，* __狗都不用__
 
 ## 贡献
 想要给我贡献pr我是非常欢迎啊（赞善）
