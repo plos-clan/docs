@@ -1,10 +1,12 @@
 # CoolPotOS
 
-由众多 `CoolPotOS` 贡献者们开发的适用于x86平台的宏内核操作系统,现已存在三个版本
+由众多 `CoolPotOS` 贡献者们开发的适用于x86平台的混合内核操作系统,现已存在三个版本
 
 * CoolPotOS i386 - CoolPotOS仓库主分支 (32位版本)
 * CoolPotOS x86_64 - CoolPotOS仓库 `x86_64` 分支 (64位版本)
 * CoolPotOS Vlang Edition - CoolPotOS-x64-V仓库 (64位Vlang版本)
+
+> 宏内核已成为 `x86_64-0.1.0` 的历史, 自 `0.1.1` 开始支持内核模块
 
 <div>
   <img id="logo" class="shadow" src="/cpos_icon.png" width="150" height="150" align="right">
@@ -43,4 +45,5 @@
 * `yuemingruoan` 补充注释和优化代码
 * `onion108` 翻译了法语文档
 * `LY-Xiang` 优化了workflow(GitHub Actions)
+* `suhuajun-github` 协助修复AHCI驱动与多进程死锁的BUG
 * `FengHeting` 增加SMBIOS信息获取
