@@ -43,6 +43,7 @@ export default defineConfig({
         text: '相关资料',
         items: [
           { text: '内核模块加载', link: '/documents/module_loader' },
+          { text: '动态链接器', link: '/documents/dynamic_linker' },
         ]
       },
       {
