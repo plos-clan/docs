@@ -1,21 +1,19 @@
 import { defineConfig } from 'vitepress'
-import { chineseSearchOptimize, pagefindPlugin } from 'vitepress-plugin-pagefind'
 
 export default defineConfig({
   title: "PlosClan Docs",
   description: "Documents of projects by PlosClan",
   lang: 'zh-cn',
-  vite: {
-    plugins: [pagefindPlugin({
-      customSearchQuery: chineseSearchOptimize
-    })],
-  },
   themeConfig: {
     logo: '/icon.jpg',
 
     nav: [
       { text: 'Home', link: '/' }
     ],
+
+    search: {
+      provider: 'local'
+    },
 
     sidebar: [
       {
