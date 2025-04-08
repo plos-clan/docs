@@ -21,4 +21,4 @@
 * UinxedKernel i386
 * PlantOS x64
 
-> `GNU/Linux` 可装载至该系统代替原有的虚拟终端
+> 该项目包含一个能在linux上运行的使用例，你可以用它进行功能与性能测试
