@@ -167,6 +167,7 @@ while (dyn_entry->d_tag != DT_NULL) {
         case DT_RELASZ: relsz = dyn_entry->d_un.d_val; break;
         case DT_JMPREL: jmprel = (Elf64_Rela *) dyn_entry->d_un.d_ptr; break;
         case DT_SYMENT: symtabsz = dyn_entry->d_un.d_val; break;
+        case DT_PLTRELSZ: jmprelsz = dyn_entry->d_un.d_val; break;
         case DT_PLTGOT: break;
     }
     dyn_entry++;
@@ -174,6 +175,12 @@ while (dyn_entry->d_tag != DT_NULL) {
 ```
 
 接着我们需要解析一遍重定向表
+
+```c
+void *resolve_symbol(Elf64_Sym *symtab, uint32_t sym_idx) {
+    return (void *)symtab[sym_idx].st_value;
+}
+```
 
 ```c
 for (size_t i = 0; i < relsz / sizeof(Elf64_Rela); i++) {
@@ -195,16 +202,16 @@ for (size_t i = 0; i < relsz / sizeof(Elf64_Rela); i++) {
 无论是动态链接库还是应用程序本身, 都可能存在需要动态链接器需要进行重定向的函数或全局变量等, 我们接下来使用一个名为 `handle_relocations` 的函数负责重定向这些段
 
 ```c
-void handle_relocations(Elf64_Rela *rela_start, Elf64_Sym *symtab, char *strtab) {
-    Elf64_Rela *rela_entry = rela_start;
-    while (rela_entry->r_offset != 0) {
-        Elf64_Sym *sym = &symtab[ELF64_R_SYM(rela_entry->r_info)];
-        char* sym_name = &strtab[sym->st_name];
+void handle_relocations(Elf64_Rela *rela_start, Elf64_Sym *symtab, char *strtab，size_t jmprelsz) {
+    Elf64_Rela *rela_plt   = rela_start;
+    size_t      rela_count = jmprel_sz / sizeof(Elf64_Rela);
+    for (size_t i = 0; i < rela_count; i++) {
+        Elf64_Rela *rela        = &rela_plt[i];
+        Elf64_Sym  *sym         = &symtab[ELF64_R_SYM(rela->r_info)];
+        char       *sym_name    = &strtab[sym->st_name];
 
         // sym_name : 获取到的函数名 or 全局变量名
-        *(void **)rela_entry->r_offset = /*你需要替换成相应的函数指针地址或变量地址 */;
-       
-        rela_entry++;
+        *(void **)rela->r_offset = /*你需要替换成相应的函数指针地址或变量地址 */;
     }
 }
 ```
