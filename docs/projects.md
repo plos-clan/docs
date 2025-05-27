@@ -11,4 +11,4 @@
 * :tada: [QuantumNEC](https://github.com/SegmentationFaultCD/QuantumNEC/tree/limine) 一个使用C++23标准编写的现代化OS
 * :tada: [os_terminal](https://github.com/plos-clan/libos-terminal) 适用于自制操作系统的虚拟终端
 * :tada: [Stamon2](https://github.com/CLimber-Rong/stamon) 一门跨平台的动态编程语言
-* :tada: [DoglinkOS-2nd](https://github.com/plos-clan/DoglinkOS-2nd) 由Ruster使用Rust编写的OS，每个commit都能编译并正常工作
+* :tada: [DoglinkOS-2nd](https://github.com/Doglinkify/DoglinkOS-2nd) 由Ruster使用Rust编写的OS，每个commit都能编译并正常工作
