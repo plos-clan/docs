@@ -1,16 +1,16 @@
-# DoglinkOS-2nd v1.1 系统调用文档
+# DoglinkOS-2nd v1.3 Snapshot 0708 系统调用文档
 
 `DoglinkOS-2nd` 使用传统的 `int $0x80` 方式进行系统调用。系统调用号通过 `rax` 寄存器传递。
 
 ## 系统调用列表
 
-`NUM_SYSCALLS` 目前为 `8`。
+`NUM_SYSCALLS` 目前为 `9`。
 
 ### sys_test (0)
 
 参数：无
 
-返回值：无
+返回值：`none`
 
 由内核输出 `test syscall`。
 
@@ -24,7 +24,7 @@
 
 `rcx` 为内容长度
 
-返回值：无
+返回值：`none`
 
 写入文件。
 
@@ -44,7 +44,7 @@
 
 `rcx` 为路径长度
 
-返回值：`noreturn`
+返回值：`noreturn | none`
 
 （谁都知道 `exec` 是干嘛的）
 
@@ -70,7 +70,7 @@
 
 `rdi` 为要设置的值
 
-返回值：无
+返回值：`none`
 
 设置 `IA32_FS_BASE MSR`。
 
@@ -83,3 +83,13 @@
 返回值（`rsi`）：原来的值
 
 设置及获取 `brk` 值。
+
+### sys_waitpid (8)
+
+参数：1个
+
+`rdi` 为目标 `pid`
+
+返回值：`none`
+
+阻塞当前进程，等待指定进程结束
