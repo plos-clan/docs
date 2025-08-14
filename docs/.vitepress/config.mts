@@ -19,7 +19,6 @@ export default defineConfig({
         items: [
           { text: "PlantOS", link: "/project/plant_os" },
           { text: "CoolPorOS", link: "/project/coolpotos" },
-          { text: "Uinxed-Kernel", link: "/project/uinxed-kernel" },
           { text: "racaOS", link: "/project/racaos" },
           { text: "QuantumNEC", link: "/project/QuantumNEC" },
           { text: "pl_readline", link: "/project/pl_readline" },
