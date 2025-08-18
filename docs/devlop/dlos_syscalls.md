@@ -1,10 +1,10 @@
-# DoglinkOS-2nd v1.3 Snapshot 0708 系统调用文档
+# DoglinkOS-2nd v1.3 Snapshot 0818 系统调用文档
 
 `DoglinkOS-2nd` 使用传统的 `int $0x80` 方式进行系统调用。系统调用号通过 `rax` 寄存器传递。
 
 ## 系统调用列表
 
-`NUM_SYSCALLS` 目前为 `9`。
+`NUM_SYSCALLS` 目前为 `12`。
 
 ### sys_test (0)
 
@@ -93,3 +93,38 @@
 返回值：`none`
 
 阻塞当前进程，等待指定进程结束
+
+### sys_getpid (9)
+
+参数：无
+
+返回值（`rcx`）：进程`pid`
+
+获取当前进程 `pid`。
+
+### sys_getticks (10)
+
+参数：无
+
+返回值（`rcx`）：内核时钟刻数
+
+获取当前内核时钟刻数。
+
+### sys_info (11)
+
+参数：1个
+
+`rdi` 为要查询的信息类型。
+
+```c
+#define INFO_CONSOLE_COLS 0
+#define INFO_CONSOLE_ROWS 1
+#define INFO_PID 2
+#define INFO_TICKS 3
+#define INFO_CONSOLE_ECHO_OFF 4
+#define INFO_CONSOLE_ECHO_ON 5
+```
+
+返回值（`rcx`）：查询结果（`INFO_CONSOLE_ECHO_OFF` 和 `INFO_CONSOLE_ECHO_ON` 为仅设置，返回0）
+
+查询/设置系统状态。
