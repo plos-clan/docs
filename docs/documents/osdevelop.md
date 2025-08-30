@@ -28,6 +28,15 @@ git clone https://github.com/plos-clan/limine-xmake-template.git
 ~~特么仓库readme.md不看么~~<br>
 嗯，你就可以在src/main.c开始你的旅程辣！<br>
 
+编译指令：在工作目录下面输入：
 ```bash
 xmake
 ```
+编译源码即可<br>
+
+是的你没有看错，是[xmake](https://www.xmake.com/)，不是煞笔一般的cmake或者make。<br>
+不需要你写一大坨的CMakelist, 不需要你一个一个文件夹写Makefile, 一个xmake.lua足矣。<br>
+
+
+#自制OS教程#2 : 串口，启动！
+
