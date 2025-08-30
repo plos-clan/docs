@@ -161,7 +161,7 @@ intel官网提供了下载地址[intel](https://www.intel.com/content/www/us/en/
 # 自制OS教程#5 : 页内存管理, limine崭露头角
 # 自制OS教程#6 : 内核堆?你认真的?
 # 自制OS教程#7 : 分页--万恶之源, 萌新杀手
-# 自制OS教程#8 : 拨开云雾,打印输出
+# 自制OS教程#8 : 拨开云雾, 打印输出
 [os-terminal](https://github.com/plos-clan/libos-terminal) -- 优秀的终端库, 你要做的就是把他的release版本下载下来。<br>
 把terminal.h和任意一个编译好的.a文件下载并链接进内核(ld指令怎么用我就不教了,自己查[ld](https://www.ibm.com/docs/en/aix/7.2.0?topic=l-ld-command))<br>
 这就是为什么我要你直接写串口驱动而不是像别的教程一样先自己写printk--我们不需要自己写显存, 我们只用现成的库.<br>
@@ -172,3 +172,14 @@ intel官网提供了下载地址[intel](https://www.intel.com/content/www/us/en/
 C++版本: format可以用我写的: [libformat](https://github.com/plos-clan/libformat), 按照教程操作<br>
 C版本: vsprintf可以看CPOS的实现: [vsprintf]()<br>
 这个, 应该不用教了吧, 封装打印，一条龙服务啊<br>
+# 自制OS教程#9 : 高级中断处理
+# 自制OS教程#10 : SIMD浮点支持
+# 自制OS教程#11 : 多核!
+# 自制OS教程#12 : 任务调度, 难上加难, 噩梦死锁的处理方法
+# 自制OS教程#13 : 系统调用
+# 自制OS教程#14 : 内核架构, 微内核设计与进程间通信
+# 自制OS教程#15 : 初见端倪--文件系统与模块化
+# 自制OS教程#17 : 大彻大悟--VFS
+# 自制OS教程#18 : 设备驱动
+# 自制OS教程#19 : 异常处理再一游--写时复制与页面置换算法
+# 自制OS教程#20 : POSIX接口探秘
