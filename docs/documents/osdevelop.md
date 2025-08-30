@@ -137,7 +137,7 @@ void write_serial(char ch) {
     return;
 }
 void print(const char* str) {
-    for (uint64_t i = 0 ; str[i] != '\0; ++i {
+    for (uint64_t i = 0 ; str[i] != '\0; ++i) {
         write_serial(str[i]);
     }
 }
