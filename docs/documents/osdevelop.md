@@ -54,8 +54,50 @@ __attribute__( ( used, section( ".requests" ) ) ) volatile limine_memmap_request
 # 自制OS教程#2 : 串口，启动！
 为啥要先写串口，你先别急，我后面会慢慢告诉你原因。<br>
 串口的文章可以在osdev上找到：[serial_port](https://wiki.osdev.org/Serial_Port)<br>
-在此之前，我们需要实现这么一些函数：in_8, out_8, in_16, out_16, in_32, out_32 <br>
+在此之前，我们需要实现这么一些函数：io_in8, io_out8, io_in16, io_out16, io_in32, io_out32 <br>
 这些函数是我们进行io操作的一个基础，当然以后学了dma，mmio之类的东西你会更能理解他们的作用了。<br>
+C版本
+```c
+static inline uint8_t io_in8(uint16_t port) {
+    uint8_t data;
+    __asm__ volatile("inb %w1, %b0" : "=a"(data) : "Nd"(port));
+    return data;
+}
+
+static inline uint16_t io_in16(uint16_t port) {
+    uint16_t data;
+    __asm__ volatile("inw %w1, %w0" : "=a"(data) : "Nd"(port));
+    return data;
+}
+
+static inline uint32_t io_in32(uint16_t port) {
+    uint32_t data;
+    __asm__ volatile("inl %1, %0" : "=a"(data) : "Nd"(port));
+    return data;
+}
+
+static inline void insl(uint32_t port, uint32_t *addr, int cnt) {
+    __asm__ volatile("cld\n\t"
+                     "repne\n\t"
+                     "insl\n\t"
+                     : "=D"(addr), "=c"(cnt)
+                     : "d"(port), "0"(addr), "1"(cnt)
+                     : "memory", "cc");
+}
+
+static inline void io_out8(uint16_t port, uint8_t data) {
+    __asm__ volatile("outb %b0, %w1" : : "a"(data), "Nd"(port));
+}
+
+static inline void io_out16(uint16_t port, uint16_t data) {
+    __asm__ volatile("outw %w0, %w1" : : "a"(data), "Nd"(port));
+}
+
+static inline void io_out32(uint16_t port, uint32_t data) {
+    __asm__ volatile("outl %0, %1" : : "a"(data), "Nd"(port));
+}
+```
+C++版本可以看这里：[io.hpp](https://github.com/SegmentationFaultCD/QuantumNEC/blob/limine/include/kernel/driver/cpu/io.hpp)以及[io.cpp](https://github.com/SegmentationFaultCD/QuantumNEC/blob/limine/source/kernel/driver/cpu/io.cpp)<br>
 
 
 
