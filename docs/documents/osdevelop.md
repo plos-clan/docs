@@ -40,6 +40,15 @@ xmake
 没了？<br>
 是的，bootloader就这样结束了，一个limine就搞定，简单，便利，没有繁杂的所谓“把boot.bin写到0号扇区，前512个字节我们要切到保护模式，lba读盘，找到loader.bin，切换长模式，VBE，预备页表···”， “使用UEFI提供的Protocol获取acpi表，得到内核地址并解析elf文件，重定位，获取graphic frame，拿到efi memory map”之类的东西。
 如果我们要用到一些启动时的信息，比如memory map，我们只需要在源文件里面这样做：
+```c
+__attribute__( ( used, section( ".requests" ) ) ) volatile limine_memmap_request memmap_request = {
+    .id = LIMINE_MEMMAP_REQUEST,
+    .revision = 3,
+    .response = nullptr
+};
+```
+其中，revision视情况而定，你使用的limine版本是多少就填多少。<br>
+- 注意：第三代limine不默认映射0~4GB物理地址到HHDM，只映射部分，后期我们会讲到，这里先打个预防针
 
 
 # 自制OS教程#2 : 串口，启动！
