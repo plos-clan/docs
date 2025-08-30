@@ -1,7 +1,7 @@
 # QuantumNEC
-此操作系统由`SegmentationFaultCD`使用先！进！的 ~~ancient~~ **M ~ O ~ D ~ E ~ R ~ N** C++开发(C++23)
+此操作系统由`SegmentationFaultCD`使用先！进！的 ~~ancient~~ **M ~ O ~ D ~ E ~ R ~ N** C++开发(C++26)
 如果想要编译它你得做好心理准备: 
-gcc version : above GCC13, clang version : above 18
+gcc version : above 15, clang version : above 20
 至于那啥MSVC，~~__狗都不用__~~，目前暂时不支持
 
 ## 贡献
