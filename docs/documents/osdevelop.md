@@ -37,6 +37,10 @@ xmake
 是的你没有看错，是[xmake](https://xmake.io/guide/quick-start.html)，不是煞笔一般的cmake或者make。<br>
 不需要你写一大坨的CMakelist, 不需要你一个一个文件夹写Makefile, 一个xmake.lua足矣。<br>
 
+没了？<br>
+是的，bootloader就这样结束了，一个limine就搞定，简单，便利，没有繁杂的所谓“把boot.bin写到0号扇区，前512个字节我们要切到保护模式，lba读盘，找到loader.bin，切换长模式，VBE，预备页表···”， “使用UEFI提供的Protocol获取acpi表，得到内核地址并解析elf文件，重定位，获取graphic frame，拿到efi memory map”之类的东西。
+如果我们要用到一些启动时的信息，比如memory map，我们只需要在源文件里面这样做：
+
 
 # 自制OS教程#2 : 串口，启动！
 为啥要先写串口，你先别急，我后面会慢慢告诉你原因。<br>
