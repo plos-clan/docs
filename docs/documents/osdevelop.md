@@ -53,7 +53,7 @@ __attribute__( ( used, section( ".requests" ) ) ) volatile limine_memmap_request
 
 # 自制OS教程#2 : 串口，启动！
 为啥要先写串口，你先别急，我后面会慢慢告诉你原因。<br>
-串口的文章可以在osdev上找到：[serial_port](https://wiki.osdev.org/Serial_Port)<br>
+串口的文章可以在osdev上找到：[serial_port](https://wiki.osdev.org/Serial_Ports)<br>
 在此之前，我们需要实现这么一些函数：io_in8, io_out8, io_in16, io_out16, io_in32, io_out32 <br>
 这些函数是我们进行io操作的一个基础，当然以后学了dma，mmio之类的东西你会更能理解他们的作用了。<br>
 C版本
@@ -76,15 +76,6 @@ static inline uint32_t io_in32(uint16_t port) {
     return data;
 }
 
-static inline void insl(uint32_t port, uint32_t *addr, int cnt) {
-    __asm__ volatile("cld\n\t"
-                     "repne\n\t"
-                     "insl\n\t"
-                     : "=D"(addr), "=c"(cnt)
-                     : "d"(port), "0"(addr), "1"(cnt)
-                     : "memory", "cc");
-}
-
 static inline void io_out8(uint16_t port, uint8_t data) {
     __asm__ volatile("outb %b0, %w1" : : "a"(data), "Nd"(port));
 }
@@ -98,6 +89,59 @@ static inline void io_out32(uint16_t port, uint32_t data) {
 }
 ```
 C++版本可以看这里：[io.hpp](https://github.com/SegmentationFaultCD/QuantumNEC/blob/limine/include/kernel/driver/cpu/io.hpp)以及[io.cpp](https://github.com/SegmentationFaultCD/QuantumNEC/blob/limine/source/kernel/driver/cpu/io.cpp)<br>
+
+- uint32_t这些都是一些标量的typedef，你include一下stdint.h就行了
+
+接着按照osdev教的办法初始化串口，如下(感觉我都没必要贴代码)
+```c
+#define PORT 0x3f8
+
+static int support_serial_ports;
+
+static int init_serial() {
+   io_out8(PORT + 1, 0x00);    
+   io_out8(PORT + 3, 0x80);   
+   io_out8(PORT + 0, 0x03);   
+   io_out8(PORT + 1, 0x00);    
+   io_out8(PORT + 3, 0x03);  
+   io_out8(PORT + 2, 0xC7);    
+   io_out8(PORT + 4, 0x0B); 
+   io_out8(PORT + 4, 0x1E);    
+   io_out8(PORT + 0, 0xAE);  
+    if ( IO::in8( PORT + 0 ) != 0xAE ) {
+        support_serial_port = 0;
+    }
+    else {
+        io_out8( PORT + 4, 0x0F );
+        support_serial_port = 1;
+    }
+
+
+   return 0;
+}
+
+// 读操作
+char read_serial(void) {
+    if ( support_serial_port ) {
+        while ( io_in8( PORT + 5 ) & 1 );
+        return io_in8( PORT );
+    }
+    return '\0';
+}
+// 写操作
+void write_serial(char ch) {
+    if ( support_serial_port ) {
+        while ( !( io_in8( PORT + 5 ) & 0x20 ) );
+        io_out8( PORT, ch );
+    }
+    return;
+}
+void print(const char* str) {
+    for (uint64_t i = 0 ; str[i] != '\0; ++i {
+        write_serial(str[i]);
+    }
+}
+```
 
 
 
