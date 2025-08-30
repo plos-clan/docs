@@ -34,7 +34,7 @@ xmake
 ```
 编译源码即可<br>
 
-是的你没有看错，是[xmake](https://www.xmake.com/)，不是煞笔一般的cmake或者make。<br>
+是的你没有看错，是[xmake](https://xmake.io/guide/quick-start.html)，不是煞笔一般的cmake或者make。<br>
 不需要你写一大坨的CMakelist, 不需要你一个一个文件夹写Makefile, 一个xmake.lua足矣。<br>
 
 
