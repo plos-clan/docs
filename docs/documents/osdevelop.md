@@ -38,5 +38,12 @@ xmake
 不需要你写一大坨的CMakelist, 不需要你一个一个文件夹写Makefile, 一个xmake.lua足矣。<br>
 
 
-#自制OS教程#2 : 串口，启动！
+# 自制OS教程#2 : 串口，启动！
+为啥要先写串口，你先别急，我后面会慢慢告诉你原因。<br>
+串口的文章可以在osdev上找到：[serial_port](https://wiki.osdev.org/Serial_Port)<br>
+在此之前，我们需要实现这么一些函数：in_8, out_8, in_16, out_16, in_32, out_32 <br>
+这些函数是我们进行io操作的一个基础，当然以后学了dma，mmio之类的东西你会更能理解他们的作用了。<br>
+
+
+
 
