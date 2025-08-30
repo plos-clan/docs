@@ -11,7 +11,7 @@ LIMINE！永远真神！<br>
 放弃困难，选择limine！<br>
 阿门！<br>
 
-这里有limine的介绍，感兴趣的可以看看:(limine explain)[https://github.com/limine-bootloader/limine]<br>
+这里有limine的介绍，感兴趣的可以看看:[limine explain](https://github.com/limine-bootloader/limine)<br>
 
 ~~首先，在你自己的os源码文件夹下面从github拉取limine~~<br>
 你可以用我们社区提供的**[Limine C Xmake Template](https://github.com/plos-clan/limine-xmake-template)**引导模板即可<br>
