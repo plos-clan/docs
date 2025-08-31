@@ -42,7 +42,7 @@ xmake
 不需要你写一大坨的CMakelist, 不需要你一个一个文件夹写Makefile, 一个xmake.lua足矣.<br>
 
 没了?<br>
-是的，bootloader就这样结束了,一个limine就搞定, 简单, 便利, 没有繁杂的所谓"把boot.bin写到0号扇区, 前512个字节我们要切到保护模式, lba读盘, 找到loader.bin, 切换长模式, VBE, 预备页表···","使用UEFI提供的Protocol获取acpi表, 得到内核地址并解析elf文件,重定位,获取graphic frame, 拿到efi memory map"之类的东西.
+是的，bootloader就这样结束了,一个limine就搞定, 简单, 便利, 没有繁杂的所谓"把boot.bin写到0号扇区, 前512个字节我们要切到保护模式, lba读盘, 找到loader.bin, 切换长模式, VBE, 预备页表...","使用UEFI提供的Protocol获取acpi表, 得到内核地址并解析elf文件,重定位,获取graphic frame, 拿到efi memory map..."之类的东西.
 如果我们要用到一些启动时的信息, 比如memory map, 我们只需要在源文件里面这样做:
 ```c
 __attribute__( ( used, section( ".requests" ) ) ) volatile limine_memmap_request memmap_request = {
@@ -235,12 +235,170 @@ SELECTOR_TSS的值为0x28, 也就是前文所提到的开头在GDT中的偏移�
 
 # 自制OS教程#4 : 中断描述符表!中断初步
 在intel白皮书的`CHAPTER 6 INTERRUPT AND EXCEPTION HANDLING`这一节中, 对中断进行了详细的介绍, 有兴趣的可以读一读(强烈建议先读文档再写, 我们写操作系统就是为了了解底层原理, 什么?你问我为什么那么爱调库?孩子你先好好去看看操作系统考级的大纲吧)<br>
-中断描述符表(Interrupt Descriptor Table, IDT), 用于告知CPU中断处理服务程序(ISR)的位置, 一个IDT由256个中断描述符(又叫Gate, 门描述符)组成.<br>
+中断描述符表(Interrupt Descriptor Table, IDT), 用于告知CPU中断服务处理程序(ISR)的位置, 一个IDT由256个门描述符描述符(Gate Descriptor)组成.<br>
 门的类型共有三种, 中断门, 陷阱门, 任务门, 长模式里面任务门不存在, 只有前面两种门<br>
- 
+IDT其实根前面的GDT很像, 所以有关IDT我们就简单带过.<br>
+门描述符结构如下
+| 127 -- 96 | 95 -- 48 | 47 | 46 -- 45 | 44 | 43 -- 40  | 39 -- 35 | 34 -- 32 | 31     --     16 | 15 -- 0 |
+|-----------|----------|----|----------|----|-----------|----------|----------|------------------|---------|
+| reserved  | offset   | P  | DPL      | 0  | gate type | reserved | IST      | segment selector | offset  |
 
+Selector指向GDT中的对应代码段(kernel, user), 这就是为什么我要先写GDT再写IDT<br>
+Gate Type有两种值<br>
+0b1110 or 0xE: 64-bit中断门<br>
+0b1111 or 0xF: 64-bit陷阱门<br>
+Offset指向你的中断处理服务函数的地址<br>
+IST一般为0， 如果设置表示中断堆栈表在TSS中的偏移量<br>
+P位一般都要设置为1<br>
+先来看看我们要中断要保存什么: 段寄存器(ss, cs...), 通用寄存器(rax...), 栈指针(rsp), 程序计数器(RIP),程序状态字(PSW => rflags), 异常中断还有错误码(error code)
+
+```c
+typedef struct {
+    uint64_t ds;
+    uint64_t es;
+    uint64_t fs;
+    uint64_t gs;
+    uint64_t rax;
+    uint64_t rbx;
+    uint64_t rcx;
+    uint64_t rdx;
+    uint64_t rbp;
+    uint64_t rsi;
+    uint64_t rdi;
+    uint64_t r8;
+    uint64_t r9;
+    uint64_t r10;
+    uint64_t r11;
+    uint64_t r12;
+    uint64_t r13;
+    uint64_t r14;
+    uint64_t r15;
+    uint64_t vector;
+    uint64_t error_code;
+    void *rip;
+    uint64_t cs;
+    uint64_t rflags;
+    uint64_t rsp;
+    uint64_t ss;
+} InterruptFrame;
+```
+
+先把中断服务处理函数给写了吧, 但是我们要考虑哪些门是陷阱, 哪些是中断, 陷阱要考虑是否有错误码
+intel手册上面有详尽的介绍, 自己看
+
+```asm
+
+.macro TRAP_ENTRY_ERRORCODE n         
+.GLOBAL interrupt_handler\n
+interrupt_handler\n:
+    CLI
+    NOP
+    PUSH \n
+    JMP save_all_registers
+.endm
+
+.macro TRAP_ENTRY_NOERRORCODE n         
+.GLOBAL interrupt_handler\n
+interrupt_handler\n:
+    CLI
+    PUSH 0
+    PUSH \n
+    JMP save_all_registers
+.endm
+
+.macro INTERRUPT_ENTRY n                
+.GLOBAL interrupt_handler\n
+.section .text
+interrupt_handler\n:
+    CLI
+    PUSH 0
+    PUSH \n
+    JMP save_all_registers
+.endm
+.section .text
+ 
+.GLOBAL save_all_registers
+save_all_registers:
+    PUSH R15
+    PUSH R14
+    PUSH R13
+    PUSH R12
+    PUSH R11
+    PUSH R10
+    PUSH R9
+    PUSH R8
+    PUSH RDI
+    PUSH RSI
+    PUSH RBP
+    PUSH RDX
+    PUSH RCX
+    PUSH RBX
+    PUSH RAX 
+    MOV  RAX, GS
+    PUSH RAX
+    MOV  RAX, FS
+    PUSH RAX
+    MOV  RAX, ES
+    PUSH RAX
+    MOV  RAX, DS
+    PUSH RAX
+    MOV  RDI, RSP
+    CALL do_IRQ
+.GLOBAL return_from_isr
+return_from_isr:
+    MOV RSP, RAX
+    POP RAX
+    MOV DS, RAX
+    POP RAX
+    MOV ES, RAX
+    POP RAX
+    MOV FS, RAX
+    POP RAX
+    MOV GS, RAX 
+    POP RAX
+    POP RBX
+    POP RCX
+    POP RDX
+    POP RBP
+    POP RSI
+    POP RDI
+    POP R8
+    POP R9
+    POP R10
+    POP R11
+    POP R12
+    POP R13
+    POP R14
+    POP R15
+    ADD RSP, 16
+    IRETQ ; 不要忘了Q
+
+
+TRAP_ENTRY_NOERRORCODE 0x00
+TRAP_ENTRY_NOERRORCODE 0x01
+TRAP_ENTRY_NOERRORCODE 0x02
+TRAP_ENTRY_NOERRORCODE 0x03
+TRAP_ENTRY_NOERRORCODE 0x04
+TRAP_ENTRY_NOERRORCODE 0x05
+TRAP_ENTRY_NOERRORCODE 0x06
+; 这些都是处理头, 省略
+
+```
+do_IRQ函数是我们的总处理函数
+```c
+InterruptFrame* do_IRQ(InterruptFrame* frane) {
+// handle可自由发挥, 但是对于exception要阻塞
+}
+
+```
+然后, 注册中断处理函数, 一般来说0x00 - 0x1f都是trap, 其他都是interrupt<br>
+也是宏魔法, 写的很长, 但是没有什么好解决办法<br>
+C++26的反射似乎可以减少工作量, 但是目前没一个支持<br>
+做完这些, 挂载IDT基本与GDT一致.<br>
+只不过只需要一条**lidt**的指令就行了<br>
 # 自制OS教程#5 : 页内存管理, limine崭露头角
-# 自制OS教程#6 : 内核堆?你认真的?
+
+# 自制OS教程#6 : 内核堆?你认真的?--Slab内存池
 # 自制OS教程#7 : 分页--万恶之源, 萌新杀手
 # 自制OS教程#8 : 拨开云雾, 打印输出
 [os-terminal](https://github.com/plos-clan/libos-terminal) -- 优秀的终端库, 你要做的就是把他的release版本下载下来。<br>
