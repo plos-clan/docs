@@ -149,7 +149,7 @@ void print(const char* str) {
 到目前为止, 一切正常的话, 我们就已经写好了串口, 你可以测试一下看看com端口是否有输出.<br>
 在xmake.lua的qemu的flags中添加入`-serial chardev:com1 -chardev stdio,mux=on,id=com1`指令即可<br>
 倘若成功，请查看下一个教程😋
-# 自制OS教程#4 : 没鸟用全局段描述符表
+# 自制OS教程#3 : 没鸟用全局段描述符表
 
 - 作者提示 : 这玩意没啥用我就没详细看, 可能需要勘误
 
@@ -233,7 +233,7 @@ __asm__ __volatile__(
 SELECTOR_TSS的值为0x28, 也就是前文所提到的开头在GDT中的偏移量
 做完这些, 我们GDT就算是初始化完成了.
 
-# 自制OS教程#3 : 中断描述符表!中断初步
+# 自制OS教程#4 : 中断描述符表!中断初步
 在intel白皮书的`CHAPTER 6 INTERRUPT AND EXCEPTION HANDLING`这一节中, 对中断进行了详细的介绍, 有兴趣的可以读一读(强烈建议先读文档再写, 我们写操作系统就是为了了解底层原理, 什么?你问我为什么那么爱调库?孩子你先好好去看看操作系统考级的大纲吧)<br>
 中断描述符表(Interrupt Descriptor Table, IDT), 用于告知CPU中断处理服务程序(ISR)的位置, 一个IDT由256个中断描述符(又叫Gate, 门描述符)组成.<br>
 门的类型共有三种, 中断门, 陷阱门, 任务门, 长模式里面任务门不存在, 只有前面两种门<br>
