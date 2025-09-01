@@ -41,7 +41,6 @@ export default defineConfig({
           { text: "内核模块加载", link: "/documents/module_loader" },
           { text: "动态链接器", link: "/documents/dynamic_linker" },
           { text: "系统调用标准", link: "/documents/plos_syscall" },
-          { text: "OS开发文档", link: "/documents/osdevelop" },
         ],
       },
       {
