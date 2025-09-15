@@ -41,6 +41,7 @@ export default defineConfig({
           { text: "内核模块加载", link: "/documents/module_loader" },
           { text: "动态链接器", link: "/documents/dynamic_linker" },
           { text: "系统调用标准", link: "/documents/plos_syscall" },
+          { text: "NixOS 安装指南", link: "/documents/nixos_install" },
         ],
       },
       {
