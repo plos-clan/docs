@@ -91,6 +91,8 @@ blkid
 vim hosts/nixos/hardware.nix
 ```
 
+> EFI 分区的 `UUID` 长得像 `A1B2-C3D4`，根分区的 `UUID` 长得像 `a1b2c3d4-e5f6-g7h8-1145-1919810abcde`~~（别问为啥写这个因为真有人不会看）~~。
+
 其中 EFI 的 `UUID` 要修改一处，根分区的 `UUID` 要修改三处。
 
 **b. 设置用户密码**
