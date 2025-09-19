@@ -3,7 +3,7 @@
 这是一个一个一个会员制 NixOS 安装教程。
 
 > [!IMPORTANT]  
-> 虚拟机或物理机需要有 4GiB 内存以上或在安装前启用 zram/swap，否则可能安装失败（譬如只给 1GiB 会在 `evaluate` 阶段卡死）！
+> 虚拟机或物理机需要有 16GiB 以上存储以及 4GiB 以上内存或在安装前启用 zram/swap，否则可能安装失败（譬如只给 1GiB 内存会在 `evaluate` 阶段卡死）！
 
 ### 1. 准备工作
 
@@ -131,6 +131,16 @@ vim flake.nix
 ```
 
 譬如，如果没有 NVIDIA 显卡，可以将 `modules` 里的 `./modules/nvidia.nix` 干掉。
+
+**e. 保存配置（可选）**
+
+记得把改好的配置文件保存下来：
+
+```bash
+cp -r /root/nix-config /mnt/persist/
+```
+
+可以在登录新系统后，再剪切到家目录或其他任何你喜欢的地方。
 
 ### 5. 安装并重启
 
