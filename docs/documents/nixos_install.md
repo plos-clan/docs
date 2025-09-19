@@ -67,14 +67,20 @@ mount -t tmpfs none /mnt
 mkdir -p /mnt/{boot,nix,persist}
 
 # 挂载 btrfs 子卷
-mount -o subvol=@root,compress=zstd /dev/nvme0n1p2 /mnt/persist
+mount -o subvol=@root,compress-force=zstd /dev/nvme0n1p2 /mnt/persist
 mkdir -p /mnt/persist/home
-mount -o subvol=@home,compress=zstd /dev/nvme0n1p2 /mnt/persist/home
-mount -o subvol=@nix,compress=zstd,noatime /dev/nvme0n1p2 /mnt/nix
+mount -o subvol=@home,compress-force=zstd /dev/nvme0n1p2 /mnt/persist/home
+mount -o subvol=@nix,compress-force=zstd,noatime /dev/nvme0n1p2 /mnt/nix
 
 # 挂载 EFI 分区
 mount /dev/nvme0n1p1 /mnt/boot
 ```
+
+> [!NOTE]
+> **关于 Btrfs 压缩的说明**
+>
+> *   **`compress-force=zstd`**: 我们使用 `compress-force` 而不是 `compress`。前者会将所有数据都尝试让 Zstd 算法自己判断是否可压缩，这通常比内核的快速启发式检查（`compress`）能获得更高的压缩率。
+> *   **更高压缩等级**: 如果您的磁盘空间非常有限，可以指定一个更高的压缩等级，例如 `compress-force=zstd:7`。可选范围是 -15 (快) 到 15 (慢，高压缩率)，默认是 `3`。
 
 ### 4. 自定义配置
 
@@ -150,7 +156,7 @@ cp -r /root/nix-config /mnt/persist/
 nixos-install --flake .#nixos
 ```
 
-这个命令最后会让你设置 `root` 用户密码。可以随便输，因为 `/etc/shadow` 不会被保存。
+这个命令最后会让你设置 `root` 用户密码。可以随便设置，因为 `/etc/shadow` 不会被保存。
 
 完成后直接重启即可：
 
