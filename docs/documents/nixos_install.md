@@ -77,7 +77,6 @@ mount /dev/nvme0n1p1 /mnt/boot
 ```
 
 > [!NOTE]
->
 > 我们使用 `compress-force` 而不是 `compress`，是因为前者会让 Zstd 算法自己判断是否可压缩，这比内核自带的快速启发式检查（`compress`）压缩率更高。如果您的磁盘空间非常有限，可以指定一个更高的压缩等级，例如 `compress-force=zstd:7`。Zstd 可选的等级范围是 -15 (快) 到 15 (慢，高压缩率)，默认是 `3`。
 
 ### 4. 自定义配置
