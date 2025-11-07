@@ -1,10 +1,12 @@
 # Calico: 一个“能跑”的 C23 编译器玩具
 
-由 `Karesis` 开发的轻量级、零依赖、受 LLVM 启发的编译器工具套件。
+![GitHub stars](https://img.shields.io/github/stars/Karesis/calico?style=flat-square&logo=github)
+
+由 `Karesis` 开发的轻量级、~~零依赖~~(下一个目标)、受 LLVM 启发的编译器工具套件。
 
 **还在被 LLVM 千万行的 C++ 代码淹没吗？** 想找个小巧、纯 C、能拿来学习和“开刀”的玩具？来看看 `Calico` 吧！
 
-这个项目最初是 `Karesis` 在 UCAS 的“编译原理”课程作业（当时它还叫 `calir`），后来不断“缝缝补补”就成了现在的 `Calico`。~~(实际上目前来说还是算作业，作者正在被UCAS堆集如山的作业与任务量打得满地找牙...)~~
+这个项目最初是 `Karesis` 在 UCAS 的“编译原理”课程作业（当时它还叫 `calir`），后来不断“缝缝补补”就成了现在的 `Calico`。~~(实际上目前来说还是算作业，作者正在被UCAS堆集如山的作业与任务打得满地找牙...)~~
 
 * **GitHub 仓库**: [https://github.com/Karesis/calico](https://github.com/Karesis/calico)
 * **完整文档**: [https://github.com/Karesis/calico/blob/main/docs/index.md](https://github.com/Karesis/calico/blob/main/docs/index.md)
