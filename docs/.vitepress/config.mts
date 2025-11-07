@@ -25,7 +25,7 @@ export default defineConfig({
           { text: "os_terminal", link: "/project/os_terminal" },
           { text: "Stamon2", link: "/project/stamon" },
           { text: "DoglinkOS-2nd", link: "/project/DoglinkOS-2nd" },
-          { text: "Calico", link: "/project/calico" },
+          { text: "Ciallo~(∠・ω< )⌒☆", link: "/project/calico" },
         ],
       },
       {

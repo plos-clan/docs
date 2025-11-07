@@ -1,8 +1,10 @@
-# Calico: 一个“能跑”的 C23 编译器玩具
+# Calico: 一个“能跑”的编译器后端
+
+> Ciallo～(∠・ω< )⌒☆
 
 ![GitHub stars](https://img.shields.io/github/stars/Karesis/calico?style=flat-square&logo=github)
 
-由 `Karesis` 开发的轻量级、~~零依赖~~(下一个目标)、受 LLVM 启发的编译器工具套件。
+由 `Karesis` 开发的轻量级、~~零依赖~~(下一个目标)、受 LLVM 启发的编译器后端工具套件。
 
 **还在被 LLVM 千万行的 C++ 代码淹没吗？** 想找个小巧、纯 C、能拿来学习和“开刀”的玩具？来看看 `Calico` 吧！
 
