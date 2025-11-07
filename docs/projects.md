@@ -11,3 +11,4 @@
 * :tada: [os_terminal](https://github.com/plos-clan/libos-terminal) 适用于自制操作系统的虚拟终端
 * :tada: [Stamon2](https://github.com/CLimber-Rong/stamon) 一门跨平台的动态编程语言
 * :tada: [DoglinkOS-2nd](https://github.com/Doglinkify/DoglinkOS-2nd) 由Ruster使用Rust编写的OS，每个commit都能编译并正常工作
+* :tada: [calico](https://github.com/Karesis/calico) 一个使用 C23 编写的、受 LLVM 启发的轻量级编译器工具链
