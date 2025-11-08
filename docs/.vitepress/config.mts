@@ -18,7 +18,7 @@ export default defineConfig({
         text: "项目列表",
         items: [
           { text: "PlantOS", link: "/project/plant_os" },
-          { text: "CoolPorOS", link: "/project/coolpotos" },
+          { text: "CoolPornOS", link: "/project/coolpotos" },
           { text: "racaOS", link: "/project/racaos" },
           { text: "QuantumNEC", link: "/project/QuantumNEC" },
           { text: "pl_readline", link: "/project/pl_readline" },

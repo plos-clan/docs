@@ -27,23 +27,8 @@
 > 基于 `CP_Kernel` 的衍生版本操作系统还有 `MdrOS`, 由梦猫大典团队维护 \
 > [Mdr-C-Tutorial/MdrOS](https://github.com/Mdr-C-Tutorial/MdrOS)
 
+有关于 CoolPotOS 的独立网站, 前往 [cpos.plos-clan.org](https://cpos.plos-clan.org)
+
 ## 贡献者
 
-> 排名按照第一次参与贡献的时间开始, 名称为github用户名
-
-* `xiaoyi1212` OS主要开发者
-* `min0911Y` OS文件系统部分开发
-* `QtLittleXu` OS文档编写
-* `copi143` 用户堆分配系统开发
-* `VinbeWan` IIC驱动开发
-* `ViudiraTech` PCI设备信息优化 <Badge type="warning" text="组织" />
-* `wenxuanjun` Vlang Edition开发
-* `A4-Tacks` CPOS 旧版多线程构建优化
-* `Minsecrus` CP_Kernel 内存统计算法优化
-* `CLimber-Rong` 软件生态贡献
-* `zzjrabbit` 新版RUST SDK贡献以及软件生态贡献
-* `yuemingruoan` 补充注释和优化代码
-* `onion108` 翻译了法语文档
-* `LY-Xiang` 优化了workflow(GitHub Actions)
-* `suhuajun-github` 协助修复AHCI驱动与多进程死锁的BUG
-* `FengHeting` 增加SMBIOS信息获取
+贡献者排名已过时, 前往独立网站查看

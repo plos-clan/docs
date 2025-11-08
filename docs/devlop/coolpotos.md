@@ -1,10 +1,10 @@
 # CoolPotOS 应用程序开发文档
 
-适用于 `CP_Kernel` 衍生操作系统的应用程序API开发文档
+适用于 `CP_Kernel-i386` 衍生操作系统的应用程序API开发文档
 
 > 该文档适用于 `CoolPotOS` `MdrOS` 操作系统的应用程序开发
 
-> 注意: 旧版的CPOS应用程序不适用于该文档, 我们也不建议您开发旧版CP_Kenrel的程序
+> 注意: CoolPotOS x64 riscv64 等其他架构的应用程序拥有 Linux 兼容层, 可以直接运行 LINUX 应用程序, 无需使用开发SDK.
 
 ## 环境搭建
 
