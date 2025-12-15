@@ -21,8 +21,8 @@ cd nix-config
 
 使用 `cfdisk` 对目标磁盘进行分区：
 
-*   **分区1**: `256M`，类型选择 `EFI System`
-*   **分区2**: 剩余全部空间，类型为 `（默认）Linux filesystem`
+*   **分区 1**: `256M`，类型选择 `EFI System`
+*   **分区 2**: 剩余全部空间，类型为 `（默认）Linux filesystem`
 
 记得根据实际情况调整设备名（如 `/dev/nvme0n1`）。
 
@@ -81,7 +81,7 @@ mount /dev/nvme0n1p1 /mnt/boot
 
 ### 4. 自定义配置
 
-配置过程主要包括更新硬件UUID、设置用户密码和用户名。
+配置过程主要包括更新硬件 UUID、设置用户密码和用户名。
 
 **a. 更新硬件配置**
 

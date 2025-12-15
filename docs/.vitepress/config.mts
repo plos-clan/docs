@@ -29,7 +29,7 @@ export default defineConfig({
         ],
       },
       {
-        text: "开发SDK文档",
+        text: "开发 SDK 文档",
         items: [
           { text: "PlantOS", link: "/devlop/plant_os" },
           { text: "CoolPotOS", link: "/devlop/coolpotos" },
@@ -54,7 +54,7 @@ export default defineConfig({
         ],
       },
       {
-        text: "娱乐-历史",
+        text: "娱乐 - 历史",
         items: [
           { text: "娱乐", link: "/history" },
           { text: "历史组织", link: "/history/group" },

@@ -14,15 +14,15 @@ hero:
       link: https://github.com/plos-clan/docs
   image:
     src: /plos.png
-    alt: 网页的logo图标
+    alt: 网页的 logo 图标
 
 features:
   - icon: 🛠️
     title: 技术
-    details: 社区为底层开发者们提供了开发模板与一些静态库模块, 大大简化了开发难度和提升了开发效率
+    details: 社区为底层开发者们提供了开发模板与一些静态库模块，大大简化了开发难度和提升了开发效率
   - icon: ⚡️
     title: 实用
-    details: 除开项目介绍部分, 文档还存在一些社区人员编写的技术性文章
+    details: 除开项目介绍部分，文档还存在一些社区人员编写的技术性文章
   - icon: 🌞
     title: 社区
     details: 由众多 "OS Devloper" 和 "PL Devloper" 组成的友好开发交流社区

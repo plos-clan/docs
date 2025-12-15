@@ -1,6 +1,6 @@
 # Pl readline
 
-是由`min0911Y`开发的一款适用于VT100终端的可移植键盘输入处理库
+是由`min0911Y`开发的一款适用于 VT100 终端的可移植键盘输入处理库
 
 
 ![Static Badge](https://img.shields.io/badge/License-MIT-blue)

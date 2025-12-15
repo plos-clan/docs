@@ -16,9 +16,9 @@
 
 ### sys_write (1)
 
-参数：3个
+参数：3 个
 
-`rdi` 表示目标文件描述符（0表示 `stderr`，1表示 `stdout`）
+`rdi` 表示目标文件描述符（0 表示 `stderr`，1 表示 `stdout`）
 
 `rsi` 为指向要写入的内容的指针
 
@@ -38,7 +38,7 @@
 
 ### sys_exec (3)
 
-参数：2个
+参数：2 个
 
 `rdi` 为指向目标程序路径的指针
 
@@ -66,7 +66,7 @@
 
 ### sys_setfsbase (6)
 
-参数：1个
+参数：1 个
 
 `rdi` 为要设置的值
 
@@ -76,9 +76,9 @@
 
 ### sys_brk (7)
 
-参数：1个
+参数：1 个
 
-`rdi` 为要设置的值（不设置时为0）
+`rdi` 为要设置的值（不设置时为 0）
 
 返回值（`rsi`）：原来的值
 
@@ -86,7 +86,7 @@
 
 ### sys_waitpid (8)
 
-参数：1个
+参数：1 个
 
 `rdi` 为目标 `pid`
 
@@ -112,7 +112,7 @@
 
 ### sys_info (11)
 
-参数：1个
+参数：1 个
 
 `rdi` 为要查询的信息类型。
 
@@ -125,6 +125,6 @@
 #define INFO_CONSOLE_ECHO_ON 5
 ```
 
-返回值（`rcx`）：查询结果（`INFO_CONSOLE_ECHO_OFF` 和 `INFO_CONSOLE_ECHO_ON` 为仅设置，返回0）
+返回值（`rcx`）：查询结果（`INFO_CONSOLE_ECHO_OFF` 和 `INFO_CONSOLE_ECHO_ON` 为仅设置，返回 0）
 
 查询/设置系统状态。

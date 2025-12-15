@@ -1,19 +1,19 @@
 # DoglinkOS-2nd
 
-由 `Ruster` 使用 `Rust` 开发的仅用于UEFI平台的64位操作系统
+由 `Ruster` 使用 `Rust` 开发的仅用于 UEFI 平台的 64 位操作系统
 
 ![Static Badge](https://img.shields.io/badge/License-GPLv3-blue)
 
 ![Static Badge](https://img.shields.io/badge/star-4-8A2BE2)
 
-* 最初是[DoglinkOS](https://github.com/wuyukai0403/DoglinkOS)，使用C语言和汇编bootloader
+* 最初是[DoglinkOS](https://github.com/wuyukai0403/DoglinkOS)，使用 C 语言和汇编 bootloader
 * 后来因为中断不工作，被放弃，于是有了现在使用 `Limine` 和 `Rust` 的二代
 * 现在能运行[`pl_editor`](https://github.com/plos-clan/pl_editor/tree/6286bb2)和 `lua`。
 
 ## 已知问题
 
 * `pl_editor` 版本号显示怪异。
-* `lua` 中浮点数工作不正常（其实是C库里没实现）
+* `lua` 中浮点数工作不正常（其实是 C 库里没实现）
 
 ## 构建、运行方法
 
@@ -23,13 +23,13 @@
 
 （克隆源码后在源码根目录运行）
 
-仅构建请用 `cargo run --release` 。（没错是run）
+仅构建请用 `cargo run --release` 。（没错是 run）
 
 构建并运行请用 `cargo run --release -- --boot` 。
 
 ## 贡献者
 
 * `Ruster/wuyukai0403` OS~~唯一~~开发者
-* `Liminer/Ver/wenxuanjun` 提供builder
-* `XIAOYI12` 真机测试反馈bug
+* `Liminer/Ver/wenxuanjun` 提供 builder
+* `XIAOYI12` 真机测试反馈 bug
 * `shc2012` 在 `apps-ext` 写了一堆还用不了的东西

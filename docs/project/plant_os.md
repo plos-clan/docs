@@ -1,6 +1,6 @@
 # Plant-OS
 
-由 `min0911Y` 与 `ZhouzhiHao` 合作开发的适用于x86平台的宏内核操作系统, 目前主要更新开发由`copi143`负责
+由 `min0911Y` 与 `ZhouzhiHao` 合作开发的适用于 x86 平台的宏内核操作系统，目前主要更新开发由`copi143`负责
 
 <div>
   <img id="logo"src="/plos.png" width="150" height="150" align="right">
@@ -16,9 +16,9 @@
 
 - Plant OS 是一个仅用于学习目的的操作系统。
 - 最初，操作系统是 16 位实模式，但现在是 32 位保护模式（386 版本）。
-- 由于 COVID-19，Zhou Zhihao待在家里，并于 2020 年 12 月启动了该项目。
-- 该项目是关于操作系统的，Zhou Zhihao将其命名为“Powerint”，意思是我们可以使用的强大中断。经过大约一年的编码，操作系统具有与 MS-DOS 类似的正常功能，但它仍处于 16 位实模式。
-- 2021 年 12 月，Simple OS 的作者Qiu Chenjun与Zhou hihao合作。他们帮助 Plant OS 过渡到一个新世界，32 位保护模式，并将其更名为 Plant OS。
+- 由于 COVID-19，Zhou Zhihao 待在家里，并于 2020 年 12 月启动了该项目。
+- 该项目是关于操作系统的，Zhou Zhihao 将其命名为“Powerint”，意思是我们可以使用的强大中断。经过大约一年的编码，操作系统具有与 MS-DOS 类似的正常功能，但它仍处于 16 位实模式。
+- 2021 年 12 月，Simple OS 的作者 Qiu Chenjun 与 Zhou hihao 合作。他们帮助 Plant OS 过渡到一个新世界，32 位保护模式，并将其更名为 Plant OS。
 - 经过一年多的编码，Plant OS 在不断改进。
 - 2024 年 7 月，Plant OS 将开始进行大规模重构。
 - 仍在重构中，请耐心等待。

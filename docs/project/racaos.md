@@ -1,6 +1,6 @@
 # racaOS
 
-由 `UEFIer` 基于 `TrashOS` 开发的x64的现代化操作系统, 是本社区最先支持内核模块的操作系统
+由 `UEFIer` 基于 `TrashOS` 开发的 x64 的现代化操作系统，是本社区最先支持内核模块的操作系统
 
 ![Static Badge](https://img.shields.io/badge/License-GPLv2-blue) 
 
@@ -10,7 +10,7 @@
 
 ![Static Badge](https://img.shields.io/badge/star-3-8A2BE2)
 
-* 非常Linux
+* 非常 Linux
 
 > 该项目未迁移至 `plos-clan` , GitHub: [zzjrabbit/racaOS](https://github.com/zzjrabbit/racaOS)
 
