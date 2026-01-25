@@ -34,6 +34,10 @@ export default defineConfig({
           { text: "PlantOS", link: "/devlop/plant_os" },
           { text: "CoolPotOS", link: "/devlop/coolpotos" },
           { text: "DoglinkOS-2nd 系统调用文档", link: "/devlop/dlos_syscalls" },
+          {
+            text: "DoglinkOS-2nd /dev 文件系统文档",
+            link: "/devlop/dlos_devfs",
+          },
         ],
       },
       {
