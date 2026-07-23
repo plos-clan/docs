@@ -1,0 +1,753 @@
+# 15｜完整速查表
+
+这里是整套课程的完整速查表。平时按场景查找即可，不需要记住每一项。需要重点掌握的按键会在各节前部列出。
+
+## 先认模式和记法
+
+`Space` 是 Leader，`,` 是 Local leader。Leader 组合需要依次输入，无需同时按住。按下 `Space` 后停约半秒，Which-key 会显示可用的后续按键。
+
+| 本文写法 | 模式或界面 | 含义 |
+| --- | --- | --- |
+| 普通 | Normal | 移动、编辑、触发大多数快捷键 |
+| 插入 | Insert | 正在输入文本 |
+| 可视 | Visual | 已经选中字符、行或矩形区域 |
+| 操作符等待 | Operator-pending | 已按 `d`、`c`、`y` 等，正在等待范围 |
+| 终端输入 | Terminal | 按键会交给 shell |
+| 终端普通 | Terminal-normal | 可以移动光标和切换窗口 |
+| Picker | Snacks 搜索列表 | 命令、Buffer、grep 等浮动列表 |
+| Explorer | Snacks 文件树 | 文件与目录操作 |
+| Diffview | Git 对照 Tab | 文件面板、差异窗口或冲突窗口 |
+
+遇到“按键毫无反应”，先按一次 `Esc` 回到普通模式，再重新尝试。Leader 组合中的每个按键要在约 500 毫秒内连续输入，间隔过长会被当作组合已经结束。
+
+## 日常开发主流程
+
+这张表覆盖一轮常见开发。先记住它，后面的表按需翻阅。
+
+| 场景 | 模式 | 按键或命令 | 效果 |
+| --- | --- | --- | --- |
+| 明确打开项目 | 外部终端 | `cd 项目 && nvim .` | 从项目目录启动，避开自动恢复其他项目 |
+| 找文件 | 普通 | `Space` `e` | 切换 Explorer：已有时关闭，未打开时新建 |
+| 搜文字 | 普通 | `Space` `/` | 在当前工作目录全文 grep |
+| 换已打开文件 | 普通 | `Space` `,` | 打开 Buffer Picker |
+| 跳到定义 | 普通，LSP 已附加 | `Space` `l` `g` `d` | 跳到光标下符号的定义 |
+| 找引用 | 普通，LSP 已附加 | `Space` `l` `g` `r` | 列出符号引用 |
+| 重命名 | 普通，LSP 已附加 | `Space` `l` `n` | 请求 LSP 跨文件重命名 |
+| 代码动作 | 普通，LSP 已附加 | `Space` `l` `a` | 打开当前位置可用的修复与重构动作 |
+| 跑测试 | 普通或终端输入 | `Ctrl-\` | 打开、隐藏右侧终端 |
+| 格式化 | 普通 | `Space` `c` `f` | 异步格式化当前 Buffer |
+| 保存 | 普通 | `F1` → `write` → 两次 `Enter` | 写入当前文件 |
+| 看当前 Git 块 | 普通 | `Space` `h` `P` | 预览光标所在 hunk |
+| 暂存当前 Git 块 | 普通 | `Space` `h` `s` | 暂存当前 hunk |
+| 审查全项目 | 普通 | `Space` `g` `s` | 新建 Diffview Tab |
+| 结束工作 | 普通 | `F1` → `wqa` → 两次 `Enter` | 保存全部文件并退出 |
+
+## 生存、保存和撤销
+
+### 模式切换
+
+| 模式 | 按键 | 效果 |
+| --- | --- | --- |
+| 插入、可视 | `Esc` | 回普通模式 |
+| 普通 | `i` | 在光标前进入插入模式 |
+| 普通 | `a` | 在光标后进入插入模式 |
+| 普通 | `I` | 在本行首个非空白字符前插入 |
+| 普通 | `A` | 在行尾插入 |
+| 普通 | `o` | 在下方新建一行并插入 |
+| 普通 | `O` | 在上方新建一行并插入 |
+| 普通 | `v` | 进入字符可视模式 |
+| 普通 | `V` | 进入整行可视模式 |
+| 普通 | `Ctrl-v` | 进入块可视模式 |
+
+### 撤销、重做和重复
+
+| 模式 | 按键 | 效果 |
+| --- | --- | --- |
+| 普通 | `u` | 撤销最近一次修改 |
+| 普通 | `Ctrl-r` | 重做刚撤销的修改 |
+| 普通 | `.` | 重放最近一次可重复修改 |
+| 普通 | `U` | 撤销当前行最近的一组修改；再次按会参与普通撤销历史 |
+
+### 不用输入冒号的命令面板
+
+`F1` 只在普通模式下有映射。输入命令名后，第一次按 `Enter` 会选中命令并填入底部命令行，第二次按 `Enter` 才会执行；命令前的冒号由 Picker 自动补上。
+
+| 模式 | 操作 | 效果 |
+| --- | --- | --- |
+| 普通 | `F1` → `write` → 两次 `Enter` | 保存当前 Buffer |
+| 普通 | `F1` → `wall` → 两次 `Enter` | 保存全部已修改的文件 Buffer |
+| 普通 | `F1` → `wqa` → 两次 `Enter` | 保存全部并退出 Neovim |
+| 普通 | `F1` → `qa` → 两次 `Enter` | 全部退出；存在未保存内容时会拒绝 |
+| 普通 | `F1` → `messages` → 两次 `Enter` | 查看近期通知与错误 |
+| 普通 | `F1` → `DiffviewClose` → 两次 `Enter` | 关闭当前 Diffview |
+| 普通 | `F1` → `ConformInfo` → 两次 `Enter` | 查看当前文件可用格式器及日志 |
+
+文件不会自动保存。配置同时关闭了 swap、backup、writebackup 和持久化 undo 文件。突然断电或进程异常退出时，未保存内容可能无法恢复，因此应频繁保存。
+
+## 移动、搜索和跳转历史
+
+### 文件内移动
+
+| 模式 | 按键 | 效果 |
+| --- | --- | --- |
+| 普通、可视、操作符等待 | `h`/`j`/`k`/`l` | 左、下、上、右移动 |
+| 普通、可视、操作符等待 | `w`/`b`/`e` | 下一个词首、上一个词首、当前或下一个词尾 |
+| 普通、可视、操作符等待 | `0`/`^`/`$` | 物理行首、首个非空白字符、行尾 |
+| 普通、可视、操作符等待 | `gg`/`G` | 文件开头、文件末尾 |
+| 普通、可视 | `Ctrl-d`/`Ctrl-u` | 向下、向上滚半屏 |
+| 普通、可视、操作符等待 | `f``{字符}` | 跳到本行右侧指定字符 |
+| 普通、可视、操作符等待 | `F``{字符}` | 跳到本行左侧指定字符 |
+| 普通、可视、操作符等待 | `;`/`,` | 重复上次行内字符跳转 / 反向重复 |
+| 普通、可视、操作符等待 | `%` | 在配对括号、标签或结构边界间跳转 |
+| 普通 | `zz` | 把当前行滚到屏幕中央 |
+
+### 文件内搜索
+
+| 模式 | 按键 | 效果 |
+| --- | --- | --- |
+| 普通 | `/`` 文字 ` `Enter` | 向下搜索当前文件 |
+| 普通 | `?`` 文字 ` `Enter` | 向上搜索当前文件 |
+| 普通 | `n`/`N` | 沿当前搜索方向继续 / 反向继续 |
+| 普通 | `*`/`#` | 向下 / 向上搜索光标下完整单词 |
+| 普通 | `Ctrl-l` | 重绘屏幕并清掉当前搜索高亮 |
+
+### 回到刚才的位置
+
+| 模式 | 按键 | 效果 |
+| --- | --- | --- |
+| 普通 | `Ctrl-o` | 跳转列表中后退一步，常用于从定义回调用处 |
+| 普通 | `Ctrl-i` | 跳转列表中前进一步；很多终端把它显示成 Tab |
+| 普通 | `g` `;` | 回到上一个修改位置 |
+| 普通 | `g` `,` | 前往下一个修改位置 |
+| 普通 | `g` `i` | 跳到上次插入结束处并进入插入模式 |
+
+## 删除、复制、修改和文本对象
+
+### 高频编辑
+
+| 模式 | 按键 | 效果 |
+| --- | --- | --- |
+| 普通 | `x` | 删除光标下字符 |
+| 普通 | `r``{字符}` | 用一个字符替换光标下字符 |
+| 普通 | `dd`/`yy` | 删除整行 / 复制整行 |
+| 普通 | `cc` | 清空当前行内容并进入插入模式 |
+| 普通 | `D`/`C` | 删除到行尾 / 修改到行尾 |
+| 普通 | `p`/`P` | 在光标后 / 前粘贴；整行内容会落到下方 / 上方 |
+| 普通 | `J` | 把下一行接到当前行末尾 |
+| 可视 | `y`/`d`/`c` | 复制 / 删除 / 修改选区 |
+| 可视 | `&gt;`/`&lt;` | 增加 / 减少选区缩进 |
+
+### “操作 + 范围”语法
+
+| 模式 | 组合 | 效果 |
+| --- | --- | --- |
+| 普通 | `d``{移动或文本对象}` | 删除指定范围 |
+| 普通 | `c``{移动或文本对象}` | 删除指定范围并进入插入模式 |
+| 普通 | `y``{移动或文本对象}` | 复制指定范围 |
+| 普通 | `c` `i` `w` | 修改光标所在单词 |
+| 普通 | `d` `i` `"` | 删除双引号内部内容，保留引号 |
+| 普通 | `c` `a` `(` | 修改整对圆括号及其内容 |
+| 操作符等待、可视 | `i``{对象}` | 选择对象内部 |
+| 操作符等待、可视 | `a``{对象}` | 选择对象及包围符或邻近空白 |
+
+常用对象：
+
+| 模式 | 对象 | 效果 |
+| --- | --- | --- |
+| 操作符等待、可视 | `i`/`a-w` | 单词内部 / 整个单词 |
+| 操作符等待、可视 | `i`/`a-"`、`'` | 引号内部 / 连同引号 |
+| 操作符等待、可视 | `i`/`a-(`、`[`、`{` | 括号内部 / 连同括号 |
+| 操作符等待、可视 | `i`/`a-t` | 标签内部 / 连同标签 |
+| 操作符等待、可视 | `i`/`a-a` | mini.ai 的函数参数对象 |
+
+mini.ai 使用 `cover_or_next` 搜索策略。光标不在对象内部时，它可能继续查找后方约 50 行内的下一个对象。执行删除或修改前，最好先用可视模式确认选区，避免改到较远位置的参数。
+
+## 注释、包围符和自动括号
+
+### 注释
+
+| 模式 | 按键 | 效果 |
+| --- | --- | --- |
+| 普通 | `gcc` | 切换当前行注释 |
+| 普通 | `gc``{移动}` | 切换指定范围注释，例如 `gcip` 处理当前段落 |
+| 可视 | `gc` | 切换选区注释 |
+
+### mini.surround
+
+| 模式 | 按键 | 效果 |
+| --- | --- | --- |
+| 普通 | `sa``{范围}{包围符}` | 给范围添加包围符，例如 `saiw"` |
+| 可视 | `sa``{包围符}` | 给选区添加包围符 |
+| 普通 | `sd``{包围符}` | 删除邻近的指定包围符，例如 `sd"` |
+| 普通 | `sr``{旧包围符}{新包围符}` | 替换包围符，例如 `sr"'` |
+| 普通 | `sh``{包围符}` | 临时高亮插件即将操作的包围区域 |
+| 普通 | `sf`/`sF``{包围符}` | 跳到右侧 / 左侧邻近包围符 |
+
+mini.pairs 会在插入模式下自动补上常见的右括号和右引号。遇到已经存在的右括号时，注意光标是直接越过了它，还是又插入了一个相同字符。
+
+mini.surround 的默认搜索策略是 `cover`：包围符需要覆盖光标位置。使用 `sd`、`sr` 前可先用 `sh` 预览目标；找不到时，把光标移进那对包围符再试。
+
+## Picker：命令、grep 和 Buffer 列表
+
+### 打开不同 Picker
+
+| 模式 | 按键 | 效果 |
+| --- | --- | --- |
+| 普通 | `F1` | 命令 Picker |
+| 普通 | `Space` `/` | 当前工作目录全文 grep |
+| 普通 | `Space` `,` | 已加载 Buffer 列表 |
+
+### Picker 通用操作
+
+| 模式 | 按键 | 效果 |
+| --- | --- | --- |
+| Picker 输入框 | 直接输入 | 缩小结果范围 |
+| Picker | `Ctrl-n`/`Ctrl-p` | 选择下一项 / 上一项 |
+| Picker | `Down`/`Up` | 选择下一项 / 上一项 |
+| Picker | `Enter` | 用当前窗口确认 |
+| Picker | `Ctrl-s` | 在水平分屏确认 |
+| Picker | `Ctrl-v` | 在垂直分屏确认 |
+| Picker | `Ctrl-t` | 在新 Tab 确认 |
+| Picker | `Tab` | 标记或取消标记当前项，可继续选择多项 |
+| Picker | `Ctrl-q` | 把已标记项或当前结果集加入 Quickfix |
+| Picker | `Alt-h` | 显示或隐藏点文件 |
+| Picker | `Alt-i` | 显示或隐藏被 ignore 的结果 |
+| Picker | `Esc` | 取消并关闭 |
+
+### Buffer Picker 的删除
+
+| 模式 | 按键 | 效果 |
+| --- | --- | --- |
+| Buffer Picker 输入框 | `Ctrl-x` | 请求删除当前 Buffer |
+| Buffer Picker 列表普通模式 | `dd` | 请求删除当前 Buffer |
+
+Buffer 中有未保存修改时会出现确认框。选择 `No` 会丢弃修改并继续删除；选择 `Cancel` 则会取消本次操作。
+
+## Explorer：文件与目录
+
+### 导航和查看
+
+| 模式 | 按键 | 效果 |
+| --- | --- | --- |
+| 普通 | `Space` `e` | 切换 Explorer：已有时关闭，未打开时新建 |
+| Explorer | `j`/`k` | 下移 / 上移 |
+| Explorer | `Enter` 或 `l` | 打开文件，或展开 / 收起目录 |
+| Explorer | `h` | 收起当前目录 |
+| Explorer | `Backspace` | 把 Explorer 根目录移到上一级 |
+| Explorer | `Z` | 收起全部目录 |
+| Explorer | `P` | 显示或隐藏预览 |
+| Explorer | `H` | 显示或隐藏点文件 |
+| Explorer | `I` | 显示或隐藏被 Git ignore 的文件 |
+| Explorer | `u` | 刷新文件树 |
+
+Explorer 中按 `/` 会进入递归文件名筛选。选中结果后的第一次 `Enter` 会回到树并定位，第二次 `Enter` 才打开文件。
+
+### 新建、改名、复制和移动
+
+| 模式 | 按键 | 效果 |
+| --- | --- | --- |
+| Explorer | `a` | 新建文件；名字以 `/` 结尾时新建目录 |
+| Explorer | `r` | 重命名当前文件或目录 |
+| Explorer | `c` | 复制当前项；已有多选时复制整组到当前目录 |
+| Explorer | `m` | 把已标记项移到当前目录；没有标记时改为重命名当前项 |
+| Explorer | `Tab` | 标记或取消标记当前项，随后可继续标记其他项 |
+| Explorer 普通、可视 | `y` | 把当前项、已标记项或可视选区的路径写入当前寄存器 |
+| Explorer | `p` | 把寄存器中的文件复制到当前目录 |
+| Explorer | `d` | 确认后删除当前项或全部已标记项 |
+
+标准多选移动流程：在每个来源项上按 `Tab`，把光标移到目标目录上，按 `m`，核对确认框后确认。光标停在文件上时，“当前目录”取该文件的父目录；停在目录上时就取该目录本身。没有任何 `Tab` 标记时，`m` 会打开重命名框，所以它无法单独充当“移动当前项”按钮。
+
+当前系统 PATH 中没有可供 Snacks 使用的 `trash`、`gio` 或 `kioclient`。Explorer 会回退到递归永久删除。按 `d` 前核对名称；使用 `Tab` 多选后，再核对一次整组名单。
+
+### 在所选目录工作
+
+| 模式 | 按键 | 效果 |
+| --- | --- | --- |
+| Explorer | `Space` `/` | 在当前 Explorer 目录 grep |
+| Explorer | `Ctrl-t` | 在当前 Explorer 目录打开终端 |
+| Explorer | `Ctrl-c` | 把当前目录设为本 Tab 的工作目录 |
+
+`Ctrl-c` 会改变后续 grep、终端和会话使用的目录。搜索范围突然缩水时，先回忆自己有没有在 Explorer 里按过这组键。
+
+Diffview 内的 `Space` `e` 会聚焦 Diffview 文件面板，无法切换全局 Explorer。关闭 Diffview 后，全局含义恢复。
+
+## Buffer、Window 和 Tab
+
+| 模式 | 按键 | 效果 |
+| --- | --- | --- |
+| 普通 | `Space` `,` | 从所有已加载 Buffer 中选择 |
+| 普通 | `Ctrl-w` `h`/`j`/`k`/`l` | 跳到左 / 下 / 上 / 右 Window |
+| 普通 | `Ctrl-w` `s` | 水平分屏 |
+| 普通 | `Ctrl-w` `v` | 垂直分屏 |
+| 普通 | `Ctrl-w` `q` | 关闭当前 Window |
+| 普通 | `Ctrl-w` `=` | 让分屏尺寸均衡 |
+| 普通 | `gt`/`gT` | 下一个 / 上一个 Tab |
+
+关闭 Window 只会关闭当前显示区域，Buffer 仍可能留在内存中。需要管理 Buffer 时，可以使用 `Space` `,`。顶部页签显示的是 Tab 布局，不会列出所有 Buffer。
+
+## Blink 补全、签名和 Copilot
+
+### Blink 补全
+
+补全来源包括 LSP、路径、friendly-snippets 和当前 Buffer 文字。没有语言 LSP 的文件仍可能出现路径、片段和文字候选。
+
+| 模式 | 按键 | 效果 |
+| --- | --- | --- |
+| 插入，补全菜单出现 | `Ctrl-n`/`Ctrl-p` | 选择下一项 / 上一项 |
+| 插入，补全菜单出现 | `Down`/`Up` | 选择下一项 / 上一项 |
+| 插入 | `Ctrl-Space` | 主动显示补全菜单 |
+| 插入 | `Ctrl-e` | 隐藏补全菜单 |
+| 插入，文档浮窗出现 | `Ctrl-d`/`Ctrl-f` | 文档向上 / 向下滚动 |
+| 插入，补全菜单出现 | `Ctrl-y` | 接受当前候选 |
+| 插入，补全菜单出现 | `Tab` | 接受当前候选 |
+| 插入 | `Shift-Tab` | 选择上一候选，或跳到上一个 snippet 占位 |
+| 插入 | `Ctrl-k` | 显示或隐藏函数签名帮助 |
+| 插入 | `Enter` | 正常换行，不接受补全候选 |
+
+`Tab` 被配置为直接接受当前项。按下之前应先确认候选内容，避免插入不符合预期的补全结果。
+
+### Copilot 灰字建议
+
+这些按键需要 Copilot 已认证、网络可用，并且当前 Buffer 已加载 Copilot。
+
+| 模式 | 按键 | 效果 |
+| --- | --- | --- |
+| 插入，灰字建议出现 | `Alt-l` | 接受整条建议 |
+| 插入，灰字建议出现 | `Ctrl-]` | 丢弃当前建议 |
+| 插入 | `Alt-]`/`Alt-[` | 下一条 / 上一条建议 |
+| 普通 | `Alt-Enter` | 打开底部 Copilot Panel |
+| Copilot Panel 普通 | `]]`/`[[` | 下一条 / 上一条面板建议 |
+| Copilot Panel 普通 | `Enter` | 接受面板建议 |
+| Copilot Panel 普通 | `gr` | 刷新建议 |
+
+部分终端或桌面环境会拦截 Alt 组合。按键没有送到 Neovim 时，先检查终端快捷键设置。
+
+## LSP：定义、引用、诊断和重构
+
+以下映射只在 LSP 成功附加到当前 Buffer 后出现，模式均为普通模式。按 `Space` `l` 停一下，可以从 Which-key 查看当前可用分支。
+
+### 日常高频
+
+| 模式 | 按键 | 效果 |
+| --- | --- | --- |
+| 普通，LSP Buffer | `Space` `l` `g` `d` | 跳到定义 |
+| 普通，LSP Buffer | `Space` `l` `g` `r` | 列出引用 |
+| 普通，LSP Buffer | `Space` `l` `h` | 显示悬浮信息 |
+| 普通，LSP Buffer | `Space` `l` `s` | 显示函数签名 |
+| 普通，LSP Buffer | `Space` `l` `n` | 重命名符号 |
+| 普通，LSP Buffer | `Space` `l` `a` | 代码动作 |
+| 普通，LSP Buffer | `Space` `l` `e` | 打开光标处诊断浮窗 |
+| 普通，LSP Buffer | `Space` `l` `g` `n` | 下一条诊断，并显示详情 |
+| 普通，LSP Buffer | `Space` `l` `g` `p` | 上一条诊断，并显示详情 |
+
+### 结构导航与较少使用的入口
+
+| 模式 | 按键 | 效果 |
+| --- | --- | --- |
+| 普通，LSP Buffer | `Space` `l` `g` `D` | 跳到声明 |
+| 普通，LSP Buffer | `Space` `l` `g` `t` | 跳到类型定义 |
+| 普通，LSP Buffer | `Space` `l` `g` `i` | 列出实现 |
+| 普通，LSP Buffer | `Space` `l` `S` | 列出当前文档符号 |
+| 普通，LSP Buffer | `Space` `l` `w` `s` | 搜索工作区符号 |
+| 普通，LSP Buffer | `Space` `l` `H` | 高亮当前文档中的同名符号 |
+| 普通，LSP Buffer | `Space` `l` `w` `a` | 添加工作区目录 |
+| 普通，LSP Buffer | `Space` `l` `w` `r` | 移除工作区目录 |
+| 普通，LSP Buffer | `Space` `l` `w` `l` | 通知中列出工作区目录 |
+
+Neovim 0.12 还提供一组原生 LSP 映射。它们同样只在相应能力可用时出现：
+
+| 模式 | 按键 | 效果 |
+| --- | --- | --- |
+| 普通，LSP Buffer | `K` | 显示 hover 文档 |
+| 普通，LSP Buffer | `g` `r` `a` | 代码动作 |
+| 普通，LSP Buffer | `g` `r` `i` | 列出实现 |
+| 普通，LSP Buffer | `g` `r` `n` | 重命名 |
+| 普通，LSP Buffer | `g` `r` `r` | 列出引用 |
+| 普通，LSP Buffer | `g` `r` `t` | 跳到类型定义 |
+| 普通，LSP Buffer | `g` `O` | 列出文档符号 |
+| 普通 | `]` `d`/`[` `d` | 下一条 / 上一条诊断 |
+| 普通 | `Ctrl-w` `d` | 打开光标处诊断浮窗 |
+
+### 两个格式化入口
+
+| 模式 | 按键 | 效果 |
+| --- | --- | --- |
+| 普通 | `Space` `c` `f` | Conform 异步格式化；有显式格式器时优先，随后尝试 LSP fallback |
+| 普通，LSP Buffer | `Space` `l` `f` | 直接请求 LSP 格式化 |
+| 普通，LSP Buffer | `Space` `l` `t` `f` | 切换 Buffer 标记；全局保存格式化已关闭，因此无法真正启用保存时格式化 |
+
+日常优先使用 `Space` `c` `f`。它异步修改当前 Buffer，不会保存文件。等格式变化完成后，再用 `F1` → `write` →两次 `Enter`。
+
+### 语言专属命令
+
+| 当前 Buffer | 模式 | F1 搜索的命令 | 效果 |
+| --- | --- | --- | --- |
+| Python，BasedPyright 已附加 | 普通 | `LspPyrightOrganizeImports` | 请求 BasedPyright 整理导入 |
+| Python，BasedPyright 已附加 | 普通 | `LspPyrightSetPythonPath` | 命令行补充解释器路径后，重配当前 LSP |
+| C/C++，clangd 已附加 | 普通 | `ClangdSwitchSourceHeader` | 在源文件与头文件间切换 |
+| C/C++，clangd 已附加 | 普通 | `ClangdShowSymbolInfo` | 显示 clangd 符号信息 |
+| Rust，rust-analyzer 已附加 | 普通 | `LspCargoReload` | 重新载入当前 Cargo 工作区 |
+
+## 右侧终端和格式化
+
+| 模式 | 按键 | 效果 |
+| --- | --- | --- |
+| 普通、终端输入 | `Ctrl-\` | 打开或隐藏右侧 Snacks 终端，shell 进程会保留 |
+| 终端输入 | 快速按两次 `Esc` | 进入终端普通模式 |
+| 终端普通 | `i` | 回终端输入模式 |
+| 终端普通 | `q` | 隐藏当前 Snacks 终端 |
+| 终端普通 | `Ctrl-w` `h`/`l` | 去左侧代码 / 右侧终端 |
+| Explorer | `Ctrl-t` | 在所选目录开终端 |
+| 普通 | `Space` `c` `f` | 异步格式化当前 Buffer |
+
+测试、构建、Git 提交与 `git rebase --continue` 都在右侧终端执行。
+
+## Gitsigns：逐块处理改动
+
+新文件在首次 `git add` 前没有正常的 Gitsigns gutter hunk 体验，因为 `attach_to_untracked` 为关闭状态。
+
+### 浏览与查看
+
+| 模式 | 按键 | 效果 |
+| --- | --- | --- |
+| 普通 | `]` `c`/`[` `c` | 下一个 / 上一个 Git hunk |
+| 普通 | `Space` `h` `P` | 预览当前 hunk；`P` 要大写 |
+| 普通 | `Space` `h` `b` | 显示当前行完整 blame |
+| 普通 | `Space` `t` `b` | 切换行尾 blame |
+| 普通 | `Space` `t` `d` | 显示或隐藏已删除行 |
+
+在 diff Window 中，`]` `c` 与 `[` `c` 会自动使用 Neovim 原生差异块跳转。
+
+### 暂存与恢复
+
+| 模式 | 按键 | 效果 |
+| --- | --- | --- |
+| 普通 | `Space` `h` `s` | 暂存当前 hunk |
+| 可视 | `Space` `h` `s` | 暂存选定行范围 |
+| 普通 | `Space` `h` `u` | 撤销本次 Neovim 会话最近一次 stage_hunk |
+| 普通 | `Space` `h` `S` | 暂存当前文件全部 hunks |
+| 普通 | `Space` `h` `r` | 重置当前 hunk 的工作区内容 |
+| 可视 | `Space` `h` `r` | 重置选定行范围的工作区内容 |
+| 普通 | `Space` `h` `R` | 重置当前文件全部 hunks |
+
+`Space` `h` `r` 和 `Space` `h` `R` 没有确认框，会立刻改写 Buffer 内容。大写 `R` 影响整个文件，执行前应先确认目标和修改范围。
+
+### 单文件 Git 对照
+
+| 模式 | 按键 | 效果 |
+| --- | --- | --- |
+| 普通 | `Space` `h` `d` | 当前文件与 Git index 对照 |
+| 普通 | `Space` `h` `D` | 当前文件与 `HEAD~` 对照 |
+
+Which-key 把 `Space` `h` `D` 描述成 `Diff project`，实际效果只涉及当前文件和父提交。全项目审查请用 `Space` `g` `s`。
+
+## 三种代码对照怎么选
+
+| 需求 | 模式 | 入口 | 结果 |
+| --- | --- | --- | --- |
+| 比较任意两个已打开文件 | 普通，各 Window | 两边分别用 `F1` → `diffthis` → 两次 `Enter` | 当前 Tab 的两个 Window 进入原生 diff |
+| 看当前文件未暂存内容 | 普通 | `Space` `h` `d` | 当前文件与 index 并排 |
+| 看项目全部 Git 变更 | 普通 | `Space` `g` `s` | 新建完整 Diffview Tab |
+
+原生 diff 中：
+
+| 模式 | 按键 | 效果 |
+| --- | --- | --- |
+| 普通，diff Window | `]` `c`/`[` `c` | 下一 / 上一差异块 |
+| 普通，diff Window | `d` `o` | 从另一侧取得当前差异 |
+| 普通，diff Window | `d` `p` | 把当前差异送到另一侧 |
+| 普通，diff Window | `F1` → `diffoff` → 两次 `Enter` | 关闭当前 Window 的 diff 模式 |
+
+`do` 与 `dp` 会改动文本。方向拿不准时，先保存或提交基线。
+
+## Diffview：全项目审查
+
+进入前先保存全部相关文件。Diffview 读取的是工作树状态，未保存内容可能不会出现在对照结果中。
+
+### 全局导航
+
+| 模式 | 按键 | 效果 |
+| --- | --- | --- |
+| 普通 | `Space` `g` `s` | 打开 Git 变更 Diffview |
+| Diffview | `Tab`/`Shift-Tab` | 下一 / 上一个变更文件 |
+| Diffview diff Window | `]` `c`/`[` `c` | 下一 / 上一个差异块 |
+| Diffview | `Space` `e` | 聚焦文件面板 |
+| Diffview | `Space` `b` | 显示或隐藏文件面板 |
+| Diffview | `g` `Ctrl-x` | 轮换 diff 布局 |
+| Diffview | `g?` | 显示当前面板帮助 |
+| Diffview diff Window | `gf` | 在前一个 Tab 打开真实工作文件 |
+| Diffview diff Window | `Ctrl-w` `Ctrl-f` | 分屏打开真实工作文件 |
+| Diffview diff Window | `Ctrl-w` `g` `f` | 新 Tab 打开真实工作文件 |
+| Diffview | `F1` → `DiffviewClose` → 两次 `Enter` | 关闭整个 Diffview |
+
+`q` 无法关闭整个 Diffview。它在不同子窗口有局部含义；使用 `DiffviewClose` 最稳。
+
+### 文件面板
+
+| 模式 | 按键 | 效果 |
+| --- | --- | --- |
+| Diffview 文件面板 | `j`/`k` | 下移 / 上移 |
+| Diffview 文件面板 | `Enter`、`o` 或 `l` | 查看所选文件 |
+| Diffview 文件面板 | `s` 或 `-` | 暂存 / 取消暂存整份文件 |
+| Diffview 文件面板 | `S` | 暂存全部文件 |
+| Diffview 文件面板 | `U` | 取消暂存全部文件 |
+| Diffview 文件面板 | `R` | 刷新视图 |
+| Diffview 文件面板 | `X` | 把文件恢复到左侧版本 |
+
+`X` 没有确认框，会直接还原文件。插件会把旧内容写入 Git object database，并显示一条可能用于恢复的命令，但通知很容易错过，因此使用前必须确认文件和版本。
+
+“Changes”组的左侧是 Git index，右侧是 working tree；“Staged changes”组的左侧是 HEAD，右侧是 Git index。index 所在一侧可以编辑，保存后会直接改变暂存区。如果只是查看差异，不要在 index 一侧修改内容。
+
+## Merge 与 Rebase 冲突
+
+仓库处在 merge 或 rebase 冲突状态时，打开 Diffview 会进入三方布局。
+
+### 逐个冲突处理
+
+| 模式 | 按键 | 效果 |
+| --- | --- | --- |
+| Diffview 冲突 Window | `]` `x`/`[` `x` | 下一 / 上一个冲突 |
+| Diffview 冲突 Window | `Space` `c` `o` | 当前冲突采用 ours |
+| Diffview 冲突 Window | `Space` `c` `t` | 当前冲突采用 theirs |
+| Diffview 冲突 Window | `Space` `c` `b` | 当前冲突只保留共同祖先 base 内容 |
+| Diffview 冲突 Window | `Space` `c` `a` | 按 ours → base → theirs 拼接当前冲突并删除标记 |
+| Diffview 冲突 Window | `dx` | 删除当前冲突区域 |
+
+### 原生 diff 取块
+
+| 模式 | 按键 | 效果 |
+| --- | --- | --- |
+| 三方结果 Window | `2do` | 取得 ours 窗口的当前 hunk |
+| 三方结果 Window | `3do` | 取得 theirs 窗口的当前 hunk |
+| 四方结果 Window | `1do` | 取得 base 窗口的当前 hunk |
+
+### 整文件操作：高风险区
+
+| 模式 | 按键 | 效果 |
+| --- | --- | --- |
+| Diffview 冲突 Window | `Space` `c` `O` | 全文件采用 ours |
+| Diffview 冲突 Window | `Space` `c` `T` | 全文件采用 theirs |
+| Diffview 冲突 Window | `Space` `c` `B` | 每处冲突都只保留共同祖先 base 内容 |
+| Diffview 冲突 Window | `Space` `c` `A` | 每处冲突都按 ours → base → theirs 拼接并删除标记 |
+| Diffview 冲突 Window | `dX` | 删除全文件所有冲突区域 |
+
+大写命令与 `dX` 作用于整份文件。rebase 期间，Git 的 ours 通常指目标分支状态，theirs 通常指正在应用的提交，这与普通 merge 时的直觉可能相反。
+
+这些选择动作读取结果文件中的冲突标记。缺少 `|||||||` BASE 标记时，`b/B` 会把 BASE 当作空内容，可能清空当前冲突或当前文件中的全部冲突；`a/A` 会拼接现有的 ours 与 theirs。BASE 标记存在但内容为空时，`b/B` 留下的结果也为空。使用这四个键前，应先确认是否存在 BASE 段及其内容。
+
+完成选择后仍需：
+
+1. 保存结果文件。
+2. 暂存已解决文件。
+3. 在终端执行 `git merge --continue` 或 `git rebase --continue`。
+
+## Quickfix 与 Quicker
+
+在项目 grep Picker 中按 `Ctrl-q`，可以把结果加入 Quickfix。
+
+| 模式 | 按键 | 效果 |
+| --- | --- | --- |
+| Picker | `Ctrl-q` | 把标记项或当前结果集加入 Quickfix |
+| Quickfix | `j`/`k` | 下移 / 上移 |
+| Quickfix | `Enter` | 跳到当前结果 |
+| Quickfix | `Ctrl-w` `q` | 关闭 Quickfix Window |
+| 普通 | `F1` → `copen` → 两次 `Enter` | 重新打开当前 Quickfix 列表 |
+| Quickfix | `i` | 进入编辑模式，直接修改结果行中的项目文本 |
+| Quickfix 普通 | `dd` | 删除当前结果列表行；写入后只移除该条目，源文件对应行保持原样 |
+| Quickfix | `F1` → `write` → 两次 `Enter` | 把修改过的结果文本批量应用到目标文件 |
+
+Quicker 默认允许编辑。写入 Quickfix 会跨文件改项目，并自动保存此前处于未修改状态的目标 Buffer。`wqall` 也可能触发这次写回。把 Quickfix 编辑当作批量重构，先提交基线，再动笔。
+
+## 会话：恢复布局
+
+| 模式 | 按键 | 效果 |
+| --- | --- | --- |
+| 普通 | `Space` `s` `c` | 保存当前会话布局 |
+| 普通 | `Space` `s` `l` | 选择并载入一份会话 |
+| 普通 | `Space` `s` `l` `t` | 载入最近会话 |
+| 普通 | `Space` `s` `d` | 选择并删除会话记录 |
+
+`Space` `s` `l` 同时是 `Space` `s` `l` `t` 的前缀，所以前者可能等待约 500 毫秒。
+
+会话保存 cwd、文件 Buffer、Window、Tab 与折叠布局。未写入磁盘的文本内容不会进入会话文件。`Space` `s` `c` 是布局快照，无法代替保存文件。
+
+配置会在退出时尝试保存当前 cwd 的会话，并在无参数启动时自动载入全局最近会话。进入明确项目时使用：
+
+```console
+cd path/to/project
+nvim .
+```
+
+带上目录参数后，不会自动载入最近会话，而是直接打开当前项目的 Explorer。
+
+载入另一份会话会删除当前 Buffer 集。确认框含义如下：
+
+| 选择 | 效果 |
+| --- | --- |
+| `Yes` | 先写入全部修改，再载入 |
+| `No` | 丢弃修改，再载入 |
+| `Cancel` | 取消载入，保留现场 |
+
+保存会话前，配置会关闭全部 Diffview。Session Manager 还会清理无法恢复的工具 Buffer，手动保存会话时 Explorer、Quickfix 或其他插件面板可能消失。
+
+## 语言能力矩阵
+
+“语法”表示 Treesitter 高亮和缩进解析；“LSP”表示语言级补全、诊断、导航与重构入口；具体动作仍取决于服务器对当前语言和项目的支持。
+
+| 文件类型 | Treesitter 语法 | 已配置 LSP | 格式化能力 | 重要边界 |
+| --- | --- | --- | --- | --- |
+| Bash / sh | 有 | bash-language-server | 当前 LSP 不提供可用格式器 | 通常以 `.git` 为项目根 |
+| C / C++ | 有 | clangd | Conform 可回退到 clangd | 准确分析常需要 compile_commands.json 等构建信息 |
+| JSON / JSONC / JSON5 | JSON 有 | vscode-json-language-server | LSP 明确提供格式化 | 通常以 `.git` 为根 |
+| Markdown | 有 | marksman | 当前 LSP 不提供可用格式器 | 根标记为 `.git` 或 .marksman.toml |
+| Nix | 有 | nixd | 显式配置 nixfmt，能力最确定 | 根标记为 flake.nix 或 `.git` |
+| Python | 有 | BasedPyright | BasedPyright 不提供格式化 | 诊断模式为 openFilesOnly；根标记含 pyproject.toml、requirements.txt、`.git` 等 |
+| Rust | 有 | rust-analyzer | 可走 LSP，通常还需要 rustfmt | 以 Cargo.toml、rust-project.json 或 `.git` 判定根 |
+| TOML | 有 | Taplo | 可走 Taplo LSP | 通常以 `.git` 为根 |
+| CSS | 有 | 无 | 无已配置格式器 | 仍有路径、snippet、Buffer 文字补全 |
+| Dockerfile | 有 | 无 | 无已配置格式器 | 没有语言级诊断与重构 |
+| gitignore | 有 | 无 | 无已配置格式器 | 仅语法层能力 |
+| HTML | 有 | 无 | 无已配置格式器 | 没有 HTML LSP |
+| JavaScript / TypeScript / TSX | 有 | 无 | 无已配置格式器 | 没有 tsserver、typescript-language-server 或 Prettier |
+| YAML | 有 | 无 | 无已配置格式器 | 没有 YAML LSP |
+
+全局默认的 `shiftwidth` 和 `tabstop` 都是 8，并启用空格缩进。Python ftplugin 通常设为 4，JSON 与 YAML 通常设为 2。Sleuth 会根据已有文件判断缩进，`.editorconfig` 则可以提供更可靠的项目规则。如果新建空文件时出现 8 空格缩进，说明当前正在使用全局默认值。
+
+大于约 1.5 MB 或平均行很长的文件会进入 Snacks bigfile 模式，LSP、Treesitter 等昂贵功能可能关闭。这属于性能保护。
+
+## 高风险操作总表
+
+> [!CAUTION] 执行前先保存并确认 Git 基线
+> 表中的操作可能删除文件、丢弃未保存修改或批量改写内容。执行前先保存、预览，并确认存在可恢复的 Git 基线。
+
+| 风险级别 | 模式或界面 | 按键或动作 | 可能影响 | 安全习惯 |
+| --- | --- | --- | --- | --- |
+| 高 | Explorer | `d` | 当前项或全部多选项永久删除 | 先提交；核对多选标记 |
+| 高 | 普通 / 可视 | `Space` `h` `r` | 丢弃当前 hunk 或选区工作树修改 | 先预览 hunk |
+| 很高 | 普通 | `Space` `h` `R` | 丢弃当前文件全部 hunks | 先提交或另存 |
+| 高 | Diffview 文件面板 | `X` | 把文件直接恢复到左侧版本 | 记下通知中的恢复命令 |
+| 高 | Diffview 的 index 一侧 | 编辑后保存 | 直接改 Git 暂存区 | Changes 看左侧，Staged changes 看右侧 |
+| 很高 | 冲突 Window | 大写 `O/T/B/A`、`dX` | 处理整文件全部冲突 | 逐块处理优先 |
+| 高 | Quickfix | 编辑后 `write` 或 `wqall` | 跨文件批量修改并可能自动保存 | 先提交基线 |
+| 高 | Buffer Picker | 删除后确认 `No` | 丢弃未保存 Buffer 修改 | 想退出请选择 Cancel |
+| 高 | Session load | 确认 `No` | 丢弃当前 Buffer 修改 | 先 wall 或选 Cancel |
+| 中 | Explorer | `Ctrl-c` | 改变当前 Tab 的 cwd 与搜索范围 | 范围异常时检查 cwd |
+| 中 | mini.ai | 对象查找命令 | 可能命中后方约 50 行内对象 | 先用可视模式确认范围 |
+| 中 | mini.surround | 删除或替换包围符 | 会改动覆盖光标的包围结构 | 先用 `sh` 高亮确认 |
+
+## 按症状排错
+
+::: details Leader 组合没有反应
+
+1. 按 `Esc` 回普通模式。
+2. 依次按键，Leader 无需按住。
+3. 按 `Space` 后停一下，检查 Which-key 是否显示目标。
+4. LSP 映射只在 LSP 已附加的 Buffer 中出现。
+5. `Space` `s` `l` 会因较长前缀等待约半秒。
+
+:::
+
+::: details 启动后打开了另一个项目
+
+无参数 `nvim` 会自动载入全局最近会话。退出后进入目标目录，再运行 `nvim .`。需要确认当前位置时，用 `F1` 搜索 `pwd`，再按两次 `Enter`。
+
+:::
+
+::: details grep 只搜到某个子目录
+
+Explorer 的 `Ctrl-c` 可能改过 Tab-local cwd。用 `F1` → `pwd` → 两次 `Enter` 检查；最省心的复位方法是从项目根重新运行 `nvim .`。
+
+:::
+
+::: details Picker 看不到隐藏文件或 ignored 文件
+
+在 Picker 按 `Alt-h` 切换隐藏文件，按 `Alt-i` 切换 ignored 结果。Explorer 中对应 `H` 与 `I`。
+
+:::
+
+::: details Explorer 搜索后按 Enter 仍没打开
+
+按 `/` 搜索时，第一次 `Enter` 回树定位，第二次才打开目标。
+
+:::
+
+::: details LSP 跳转、重命名或诊断没有出现
+
+1. 查看语言能力矩阵，确认该文件类型配置了 LSP。
+2. 先 `git init`，或创建该语言常用根标记文件。
+3. 保存文件，确认扩展名与 filetype 正确。
+4. 按 `Space` `l` 等待 Which-key；没有子项通常表示 LSP 尚未附加。
+5. 用 `F1` → `checkhealth` → 两次 `Enter` 查看健康检查，用 `F1` → `messages` → 两次 `Enter` 查看启动错误。
+
+Python 的 BasedPyright 只分析已打开文件。某个未打开模块的诊断没有出现，属于当前 `openFilesOnly` 设置的预期表现。
+
+:::
+
+::: details 格式化键没有变化
+
+1. 等一小会儿，`Space` `c` `f` 是异步操作。
+2. 用 `F1` → `ConformInfo` → 两次 `Enter` 查看格式器。
+3. Python、Markdown、Bash 当前没有可用格式器。
+4. JavaScript、TypeScript、YAML 等仅配置语法解析，没有格式器。
+5. 格式化成功后还要手动保存。
+6. `Space` `l` `t` `f` 无法开启保存格式化，因为全局开关处于关闭状态。
+
+:::
+
+::: details 新文件旁边没有 Git 标记
+
+未跟踪文件不会附加完整 Gitsigns。先在终端执行 `git add 文件名 `，再回 Neovim；必要时重新打开 Buffer。
+
+:::
+
+::: details Diffview 内容落后
+
+先保存工作文件，再在 Diffview 文件面板按 `R`。进入 Diffview 前执行一次 `F1` → `wall` → 两次 `Enter`，可以避免未保存修改没有出现在对照结果中。
+
+:::
+
+::: details Diffview 按 q 关不掉
+
+用 `F1` 搜索 `DiffviewClose`，连按两次 `Enter` 执行。保存会话时配置也会自动关闭全部 Diffview。
+
+:::
+
+::: details 终端里回不到代码
+
+最快方式是 `Ctrl-\` 隐藏终端。想保留终端可见时，快速双击 `Esc`，再按 `Ctrl-w` `h`。
+
+:::
+
+::: details 缩进突然变成八格
+
+这是全局默认。给项目添加 `.editorconfig`，或先在已有风格的文件中编辑，让 Sleuth 推断缩进。
+
+:::
+
+::: details 大文件没有 LSP 或 Treesitter
+
+Snacks bigfile 正在保护交互速度。文件超过约 1.5 MB、行平均特别长时，这些能力会被主动关闭。
+
+:::
+
+## 最后的单页速查
+
+| 想做什么 | 模式 | 最短按键 |
+| --- | --- | --- |
+| 回普通模式 | 插入、可视 | `Esc` |
+| 保存当前文件 | 普通 | `F1` → `write` → 两次 `Enter` |
+| 找文件 | 普通 | `Space` `e` |
+| 搜项目文字 | 普通 | `Space` `/` |
+| 换 Buffer | 普通 | `Space` `,` |
+| 跳定义 / 回来 | 普通，LSP | `Space` `l` `g` `d` / `Ctrl-o` |
+| 下一条诊断 | 普通，LSP | `Space` `l` `g` `n` |
+| 重命名 | 普通，LSP | `Space` `l` `n` |
+| 打开终端 | 普通 | `Ctrl-\` |
+| 格式化 | 普通 | `Space` `c` `f` |
+| 下一 Git hunk | 普通 | `]` `c` |
+| 预览 / 暂存 hunk | 普通 | `Space` `h` `P` / `Space` `h` `s` |
+| 全项目审查 | 普通 | `Space` `g` `s` |
+| 关闭 Diffview | Diffview | `F1` → `DiffviewClose` → 两次 `Enter` |
+| 保存全部并退出 | 普通 | `F1` → `wqa` → 两次 `Enter` |
+
+到这里，课程主线已经完成。可以回到 [课程目录](./) 选择章节复练，也可以直接打开真实项目，用实际需求继续练习。后续重点是重复使用这些操作并形成稳定习惯。
