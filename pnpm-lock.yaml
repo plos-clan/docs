@@ -8,6 +8,9 @@ importers:
 
   .:
     devDependencies:
+      '@mdit/plugin-figure':
+        specifier: ^1.0.1
+        version: 1.0.1
       vitepress:
         specifier: 2.0.0-alpha.18
         version: 2.0.0-alpha.18(postcss@8.5.21)
@@ -57,6 +60,15 @@ packages:
 
   '@jridgewell/sourcemap-codec@1.5.5':
     resolution: {integrity: sha512-cYQ9310grqxueWbl+WuIUIaiUaDcj7WOq5fVhEljNVgRfOUhY9fy2zTvfoqWsnebh8Sl70VScFbICvJnLKB0Og==}
+
+  '@mdit/plugin-figure@1.0.1':
+    resolution: {integrity: sha512-HPaa/fijJJ8csHO3/ybCjrlEVLDzeEC90ctYpsyLjgSi6v+ovLmpWO6S3OL/ba7vV2P2ByX4vCNeYrYSc/u5rg==}
+    engines: {node: '>=22'}
+    peerDependencies:
+      markdown-it: ^14.2.0
+    peerDependenciesMeta:
+      markdown-it:
+        optional: true
 
   '@napi-rs/wasm-runtime@1.1.6':
     resolution: {integrity: sha512-ZLv/JdUfkvOy9eCnnBaGfiO+XimbjebAeO+MRQqD/B+FR1tnRN0tpKSJHRbE8sFfS6aqsXZ67TQjfwfsxULVbg==}
@@ -691,6 +703,10 @@ snapshots:
   '@iconify/types@2.0.0': {}
 
   '@jridgewell/sourcemap-codec@1.5.5': {}
+
+  '@mdit/plugin-figure@1.0.1':
+    dependencies:
+      '@types/markdown-it': 14.1.2
 
   '@napi-rs/wasm-runtime@1.1.6(@emnapi/core@1.11.1)(@emnapi/runtime@1.11.1)':
     dependencies:

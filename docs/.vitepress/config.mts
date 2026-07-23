@@ -1,3 +1,4 @@
+import { figure } from "@mdit/plugin-figure";
 import { defineConfig } from "vitepress";
 
 export default defineConfig({
@@ -7,6 +8,9 @@ export default defineConfig({
   markdown: {
     image: {
       lazyLoading: true,
+    },
+    config(md) {
+      md.use(figure, { focusable: false });
     },
   },
   themeConfig: {

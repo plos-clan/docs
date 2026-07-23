@@ -5,6 +5,7 @@
     "docs:preview": "vitepress preview docs"
   },
   "devDependencies": {
+    "@mdit/plugin-figure": "^1.0.1",
     "vitepress": "2.0.0-alpha.18"
   }
 }

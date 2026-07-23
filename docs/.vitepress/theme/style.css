@@ -1,0 +1,15 @@
+.vp-doc figure {
+  margin: 24px 0;
+  text-align: center;
+}
+
+.vp-doc figure img {
+  margin: 0 auto;
+}
+
+.vp-doc figure figcaption {
+  margin-top: 8px;
+  color: var(--vp-c-text-2);
+  font-size: 0.875rem;
+  line-height: 1.5;
+}
