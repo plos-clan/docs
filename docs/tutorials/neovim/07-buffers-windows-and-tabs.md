@@ -1,6 +1,6 @@
 # 07｜Buffer、Window 与 Tab：组织开发布局
 
-这一章会把 `model.py`、`service.py`、测试和 CLI 同时显示在屏幕上。最终布局为：左上编辑服务，左下查看测试，右侧对照数据模型，另一个 Tab 单独编辑 CLI。
+这一章要把 `model.py`、`service.py`、测试和 CLI 同时摆到屏幕上。最后会得到这样的布局：左上写服务，左下看测试，右侧对照数据模型，再用另一个 Tab 单独编辑 CLI。
 
 先复习三个名词：
 
@@ -10,7 +10,7 @@
 | Window | 某个 Buffer 的可见视口 | 显示内容的区域 |
 | Tab | 一整套 Window 布局 | 一组窗口布局 |
 
-同一个 Buffer 可以同时显示在多个 Window 里。关闭 Window 只会关闭一个显示区域，通常不会把 Buffer 从内存中卸载。Tab 也不等同于单个文件，它保存的是一组分屏布局。
+同一个 Buffer 可以同时出现在多个 Window 里。关掉 Window，只是少了一个显示区域，通常不会把 Buffer 从内存里卸载。Tab 也不等于单个文件，它记住的是一整组分屏布局。
 
 ## 1. 开始前：补全可以运行的项目结构
 
@@ -25,7 +25,7 @@ class Task:
     done: bool = False
 ```
 
-我们先把它改成不可变数据类，然后建立服务、测试和 CLI 文件。本节只使用已经学过的按键，为后面的分屏练习准备文件。
+我们先把它改成不可变的数据类，再建好服务、测试和 CLI 文件。这一节只用前面学过的按键，先把分屏练习要用的文件准备好。
 
 ### 更新 `model.py`
 
@@ -46,7 +46,7 @@ class Task:
 
 ![model.py 保存完成](screenshots/07-03-model-frozen-written.webp)
 
-[[c]] [[i]] [[a]] 会修改 `dataclass(...)` 中光标所在的参数。结果应为 `@dataclass(frozen=True)`。
+[[c]] [[i]] [[a]] 会修改 `dataclass(...)` 里光标所在的参数。改完应该是 `@dataclass(frozen=True)`。
 
 ### 用 Explorer 创建三个文件
 
@@ -65,11 +65,11 @@ class Task:
 
 ![创建 tests/test_service.py](screenshots/07-06-test-service-file-created.webp)
 
-至此，服务、CLI 和测试文件都已创建完成。
+到这里，服务、CLI 和测试文件就都建好了。
 
 ![项目骨架文件已经齐全](screenshots/07-07-project-files-ready.webp)
 
-若某个文件已经存在，跳过对应的 [[a]]，直接打开它。Explorer 的 [[a]] 会立即创建磁盘文件，所以输入名字前先看一眼当前高亮项所在目录。
+如果某个文件已经存在，就跳过对应的 [[a]]，直接打开它。Explorer 的 [[a]] 会立刻在磁盘上创建文件，所以输入名字前，先看一眼当前高亮项究竟在哪个目录里。
 
 ### 填写 `service.py`
 
@@ -93,13 +93,13 @@ def visible_titles(tasks: list[Task]) -> list[str]:
 
 按 [[Esc]]，再按 [[F1]]，输入 `write`。
 
-连按两次 [[Enter]] 保存。第一次回车把命令送到底部命令行，第二次才执行。
+连按两次 [[Enter]] 保存。第一下只是把命令送到底部命令行，第二下才会真正运行。
 
 ![service.py 保存完成且无诊断](screenshots/07-08-service-written.webp)
 
 ### 填写 `tests/test_service.py`
 
-打开文件后 Explorer 通常仍留在左侧。按 [[Ctrl]]+[[w]] [[h]] 回到 Explorer；若左侧已经关闭，按 [[Space]] [[e]] 重新打开。导航到 `tests/test_service.py`，按 [[Enter]] 打开，再按 [[i]] 输入：
+文件打开后，Explorer 通常还留在左边。按 [[Ctrl]]+[[w]] [[h]] 回到 Explorer；如果左侧已经关了，就按 [[Space]] [[e]] 重新打开。找到 `tests/test_service.py`，按 [[Enter]] 打开，再按 [[i]] 输入：
 
 ```python
 import unittest
@@ -133,13 +133,13 @@ if __name__ == "__main__":
 
 ![test_service.py 保存完成](screenshots/07-09-tests-written.webp)
 
-再按 [[Ctrl]]+[[w]] [[h]] 回到 Explorer；若 Explorer 已关闭，用 [[Space]] [[e]] 打开。导航到空的 `src/pocket_tasks/cli.py`，按 [[Enter]]。先不输入，只要打开一次，它就进入了 Buffer 列表。
+再按 [[Ctrl]]+[[w]] [[h]] 回到 Explorer；如果 Explorer 已经关了，就用 [[Space]] [[e]] 打开。找到空的 `src/pocket_tasks/cli.py`，按 [[Enter]]。先不用输入，只要打开一次，它就会进入 Buffer 列表。
 
-焦点现在在 `cli.py`。按 [[Space]] [[e]] 关闭仍在左侧的 Explorer，让屏幕只留一个普通编辑 Window。
+焦点现在落在 `cli.py`。按 [[Space]] [[e]] 关掉左侧的 Explorer，让屏幕上只剩一个普通的编辑 Window。
 
 ![关闭 Explorer 后只保留一个 Window](screenshots/07-10-explorer-closed-single-window.webp)
 
-现在内存里至少有 `model.py`、`service.py`、`test_service.py` 和 `cli.py`。接下来开始组织窗口布局。
+现在内存里至少已经载入了 `model.py`、`service.py`、`test_service.py` 和 `cli.py`。接下来开始安排窗口布局。
 
 ## 2. 工作流一：用 Buffer Picker 在已打开文件间切换
 
@@ -149,7 +149,7 @@ if __name__ == "__main__":
 | --- | --- |
 | [[Space]] [[,]] | 打开 Buffer Picker |
 
-Picker 里继续使用上一章的通用操作：直接输入筛选，[[Ctrl]]+[[n]] / [[Ctrl]]+[[p]] 移动，[[Enter]] 确认，[[Esc]] 关闭。
+Picker 里的操作和上一章一样：直接打字筛选，用 [[Ctrl]]+[[n]] / [[Ctrl]]+[[p]] 移动，[[Enter]] 确认，[[Esc]] 关闭。
 
 ### 从 CLI 切回服务文件
 
@@ -162,7 +162,7 @@ Picker 里继续使用上一章的通用操作：直接输入筛选，[[Ctrl]]+[
 
 ![在当前 Window 打开 service.py](screenshots/07-12-service-buffer-opened.webp)
 
-`service.py` 会在当前 Window 显示。`cli.py` 没有被关闭，它仍在 Buffer 列表中。再按 [[Space]] [[,]]，输入 `cli`，就能看到它。按 [[Esc]] 关闭 Picker，继续留在 `service.py`。
+当前 Window 会改为显示 `service.py`。`cli.py` 并没有被关闭，它还在 Buffer 列表里。再按 [[Space]] [[,]]，输入 `cli`，照样能找到它。按 [[Esc]] 关闭 Picker，继续留在 `service.py`。
 
 ### 文件、Buffer 和 Window 在这一刻的关系
 
@@ -174,11 +174,11 @@ Buffer：cli.py 的内存内容
 Window：当前屏幕上的一块编辑区
 ```
 
-在 Buffer Picker 中按 [[Enter]]，会让当前 Window 显示选中的 Buffer。Window 本身不变，只是显示内容发生变化。
+在 Buffer Picker 里按 [[Enter]]，只是让当前 Window 换成选中的 Buffer。Window 本身没变，变的只是里面显示的内容。
 
 ## 3. 从 Buffer Picker 卸载 Buffer
 
-打开的文件多了以后，Buffer Picker 也会越来越长。暂时不用的 Buffer 可以卸载，这不会影响磁盘上的文件。
+打开的文件一多，Buffer Picker 也会越拉越长。暂时用不到的 Buffer 可以卸载掉，不会影响磁盘上的文件。
 
 这一轮新增：
 
@@ -201,33 +201,33 @@ Window：当前屏幕上的一块编辑区
 
 ![用 Ctrl-x 卸载 README Buffer](screenshots/07-14-readme-buffer-unloaded.webp)
 
-README 会从 Picker 中消失，Picker 仍然打开。按 [[Esc]] 收起它。此时 `README.md` 依然存在于项目目录；以后通过 Explorer 或项目搜索打开，它会重新变成 Buffer。
+README 会从 Picker 里消失，但 Picker 还开着。按 [[Esc]] 把它收起来。此时项目目录里的 `README.md` 安然无恙；以后再通过 Explorer 或项目搜索打开，它就会重新变成 Buffer。
 
 ### 在结果列表中使用 [[d]] [[d]]
 
-Buffer Picker 初始焦点在输入区。想使用 [[d]] [[d]] 时：
+Buffer Picker 刚打开时，焦点在输入区。想用 [[d]] [[d]] 的话：
 
 1. 按 [[Space]] [[,]]，输入目标文件名。
 2. 按 [[/]] 把焦点切到结果列表。这个 [[/]] 是 Picker 内的焦点开关。
 3. 用 [[j]] / [[k]] 选择，按 [[d]] [[d]] 删除高亮 Buffer。
 4. 按 [[Esc]] 关闭 Picker。
 
-日常使用优先记 [[Ctrl]]+[[x]]，它在输入区就能直接工作。[[d]] [[d]] 适合已经把焦点切到列表的时候。
+平时优先记 [[Ctrl]]+[[x]]，因为焦点还在输入区时就能直接用。[[d]] [[d]] 更适合焦点已经切到列表里的时候。
 
 ### 删除已修改 Buffer 时的确认框
 
-若目标 Buffer 有未保存内容，Snacks 会询问是否保存：
+如果目标 Buffer 里还有没保存的内容，Snacks 会问你要不要保存：
 
 - `Yes`：先保存，再卸载 Buffer；
 - `No`：关闭 Buffer，丢弃其中尚未写盘的改动；
 - `Cancel`：什么都不做。
 
 > [!CAUTION] 选择 `No` 会丢弃未保存内容
-> 不确定时选择 `Cancel`，回到文件确认内容。卸载 Buffer 与在 Explorer 中按 [[d]] 删除磁盘文件是两种不同操作；后者会影响磁盘文件。
+> 拿不准时就选 `Cancel`，回到文件里确认内容。卸载 Buffer 和在 Explorer 里按 [[d]] 删除文件，完全是两回事；后者真的会动磁盘上的文件。
 
 ## 4. 工作流二：竖分屏对照服务和模型
 
-除了用 [[Enter]] 在当前 Window 中打开结果，Picker 还可以直接把结果放进新的分屏。
+除了用 [[Enter]] 在当前 Window 里打开结果，Picker 还能直接把结果送进新的分屏。
 
 这一轮新增：
 
@@ -238,7 +238,7 @@ Buffer Picker 初始焦点在输入区。想使用 [[d]] [[d]] 时：
 | [[Ctrl]]+[[w]] [[=]] | 让当前 Tab 里的 Window 重新平分可用空间 |
 | [[Ctrl]]+[[w]] [[q]] | 关闭当前 Window |
 
-[[Ctrl]]+[[w]] 系列都是两段按键：先按住 [[Ctrl]] 点一下 [[w]]，松开后再按方向或命令字母。
+[[Ctrl]]+[[w]] 这一系列都要分两段按：先按住 [[Ctrl]] 点一下 [[w]]，松开以后再按方向或命令字母。
 
 ### 创建一组对照窗口
 
@@ -249,7 +249,7 @@ Buffer Picker 初始焦点在输入区。想使用 [[d]] [[d]] 时：
 
 ![用 Ctrl-v 建立 service/model 竖分屏](screenshots/07-15-vertical-split-service-model.webp)
 
-默认会将新竖分屏放在右边，所以预期布局是：
+新开的竖分屏默认会放在右边，所以布局应该是：
 
 ```text
 +----------------------+----------------------+
@@ -268,7 +268,7 @@ Buffer Picker 初始焦点在输入区。想使用 [[d]] [[d]] 时：
 
 ![在两个 Window 间移动并均分宽度](screenshots/07-16-window-focus-and-equalize.webp)
 
-注意光标所在行、状态栏文件名和高亮边框的变化。按键始终作用于当前 Window 中的 Buffer，操作前先看一眼状态栏，可以避免改错文件。
+留意光标所在行、状态栏文件名和高亮边框的变化。按键只会作用在当前 Window 里的 Buffer 上，操作前看一下状态栏，可以避免修改错误的文件。
 
 ### 关窗口，保留 Buffer
 
@@ -288,11 +288,11 @@ Buffer Picker 初始焦点在输入区。想使用 [[d]] [[d]] 时：
 
 ![从 Buffer Picker 恢复 model.py Window](screenshots/07-19-model-window-restored.webp)
 
-这就是关闭 Window 与卸载 Buffer 的区别。[[Ctrl]]+[[w]] [[q]] 关闭当前视口；Buffer Picker 中的 [[Ctrl]]+[[x]] 或 [[d]] [[d]] 会把 Buffer 从内存列表中卸载。
+这就是关闭 Window 和卸载 Buffer 的区别。[[Ctrl]]+[[w]] [[q]] 关掉的是当前视口；Buffer Picker 里的 [[Ctrl]]+[[x]] 或 [[d]] [[d]]，才会把 Buffer 从内存列表里卸载。
 
 ## 5. 工作流三：横分屏把测试放在代码下方
 
-左右两栏适合对照定义和调用位置。测试通常放在实现代码下方，这样可以直接核对输入和预期结果。
+左右两栏适合对照定义和调用位置。测试通常放在实现代码下面，这样输入和预期结果抬眼就能对上。
 
 这一轮新增：
 
@@ -312,7 +312,7 @@ Buffer Picker 初始焦点在输入区。想使用 [[d]] [[d]] 时：
 
 ![用 Ctrl-s 建立下方测试 Window](screenshots/07-20-horizontal-test-split.webp)
 
-配置会把新横分屏放在下方，得到：
+新横分屏会出现在下方，最后得到：
 
 ```text
 +----------------------+----------------------+
@@ -334,7 +334,7 @@ Buffer Picker 初始焦点在输入区。想使用 [[d]] [[d]] 时：
 
 ![在三窗口布局中按方向移动并均分](screenshots/07-21-three-window-navigation.webp)
 
-布局形状不规整时，[[h]] / [[j]] / [[k]] / [[l]] 会选对应方向上最合适的邻居。看一眼状态栏就知道落到了哪份文件。
+布局不太规整时，[[h]] / [[j]] / [[k]] / [[l]] 会挑对应方向上最合适的邻居。看一眼状态栏，就知道自己落到了哪份文件。
 
 ### 在日常编码中使用这组布局
 
@@ -345,11 +345,11 @@ Buffer Picker 初始焦点在输入区。想使用 [[d]] [[d]] 时：
 - 修改时用 [[F1]] → `write` → [[Enter]] → [[Enter]] 保存当前文件；
 - 要一次保存全部，用 [[F1]] → `wall` → [[Enter]] → [[Enter]]。
 
-一个小功能通常会同时涉及模型、实现和测试。让三个 Window 分别显示这几类内容，可以减少频繁切换文件带来的上下文丢失。
+一个小功能往往会同时涉及模型、实现和测试。让三个 Window 分别显示这些内容，可以减少文件切换，并保留当前工作的上下文。
 
 ## 6. 工作流四：把 CLI 放进新 Tab
 
-当前三窗口布局用于服务开发。CLI 暂时不需要与它们同时显示，可以放在单独的 Tab 中。
+眼前这套三窗口布局是拿来写服务的。CLI 暂时不用和它们挤在一起，可以单独放进一个 Tab。
 
 这一轮新增：
 
@@ -367,7 +367,7 @@ Buffer Picker 初始焦点在输入区。想使用 [[d]] [[d]] 时：
 
 ![用 Ctrl-t 在新 Tab 打开 cli.py](screenshots/07-22-cli-new-tab.webp)
 
-新 Tab 会在当前 Tab 后面创建，其中只有一个显示 `cli.py` 的 Window。当 Tab 数量变成两个时，顶部 Tabline 会出现，提示当前位置。
+新 Tab 会建在当前 Tab 后面，里面只有一个显示 `cli.py` 的 Window。Tab 变成两个以后，顶部的 Tabline 就会出现，告诉你自己现在在哪一页。
 
 在空的 `cli.py` 中按 [[i]] 输入：
 
@@ -399,13 +399,13 @@ if __name__ == "__main__":
 
 ![gt 切换到 CLI Tab](screenshots/07-24-next-tab-cli.webp)
 
-Tab 记住的是 Window 布局。Buffer 列表由整个 Neovim 共享，所以你在 CLI Tab 中按 [[Space]] [[,]]，仍然会看到 `service.py`、`model.py` 和测试。
+Tab 记住的是 Window 布局。Buffer 列表则是整个 Neovim 共用的，所以哪怕人在 CLI Tab 里，按 [[Space]] [[,]] 仍然能看到 `service.py`、`model.py` 和测试。
 
-只有一个 Tab 时，[[g]] [[t]] 和 [[g]] [[T]] 的画面不会变。当前有两个，它们会在首尾之间循环。
+只有一个 Tab 时，按 [[g]] [[t]] 或 [[g]] [[T]]，画面当然不会有变化。现在有两个，它们会首尾相接地循环切换。
 
 ## 7. Picker 三种打开方式的决策表
 
-[[Ctrl]]+[[v]]、[[Ctrl]]+[[s]]、[[Ctrl]]+[[t]] 是 Snacks Picker 的通用操作，同样适用于 [[Space]] [[/]] 的项目搜索结果。以后搜到定义或引用时，可以直接选择合适的打开方式。
+[[Ctrl]]+[[v]]、[[Ctrl]]+[[s]]、[[Ctrl]]+[[t]] 是 Snacks Picker 的通用操作，[[Space]] [[/]] 搜出来的项目结果也一样适用。以后找到定义或引用时，可以直接决定要把它开在哪儿。
 
 | 你当时的目标 | Picker 中按什么 | 结果 |
 | --- | --- | --- |
@@ -414,7 +414,7 @@ Tab 记住的是 Window 布局。Buffer 列表由整个 Neovim 共享，所以�
 | 上下对照实现与测试 | [[Ctrl]]+[[s]] | 下方横分屏 |
 | 保留现有布局，另开一组窗口 | [[Ctrl]]+[[t]] | 新 Tab |
 
-这组按键是整套配置里很值得形成肌肉记忆的特色工作流：
+这组按键很方便，所以最好把它练成肌肉记忆，并反复运用，避免变成脂肪记忆：
 
 > 先搜索或筛选，再用 [[Enter]] / [[Ctrl]]+[[v]] / [[Ctrl]]+[[s]] / [[Ctrl]]+[[t]] 选择打开位置。
 
@@ -426,7 +426,7 @@ Tab 记住的是 Window 布局。Buffer 列表由整个 Neovim 共享，所以�
 
 ![第 07 章最终三窗口检查点](screenshots/07-25-final-three-window-checkpoint.webp)
 
-`src/pocket_tasks/` 下的两个核心源码文件应为：
+`src/pocket_tasks/` 下的两个核心源码文件应该是：
 
 ::: code-group
 
@@ -457,15 +457,15 @@ def visible_titles(tasks: list[Task]) -> list[str]:
 
 :::
 
-`tests/test_service.py` 应有三个测试：
+`tests/test_service.py` 应该有三个测试：
 
 - `test_add_task`；
 - `test_complete_task`；
 - `test_visible_titles_hides_completed`。
 
-`cli.py` 应有 `main()`，并在文件末尾调用它。
+`cli.py` 应该有 `main()`，并在文件末尾调用它。
 
-屏幕上的推荐开发布局是：
+屏幕上推荐摆成这样：
 
 ```text
 Tab 1：服务开发
@@ -483,7 +483,7 @@ Tab 2：CLI
 +---------------------------------------------+
 ```
 
-第 08 章会在这些文件中练习补全和 Copilot，第 09 章会使用 LSP 在定义、引用和诊断之间跳转。当前项目和窗口布局已经准备完成。
+第 08 章会拿这些文件练习补全和 Copilot，第 09 章则会用 LSP 在定义、引用和诊断之间来回跳。现在，项目和窗口布局都已经准备好了。
 
 ## 本章肌肉记忆
 

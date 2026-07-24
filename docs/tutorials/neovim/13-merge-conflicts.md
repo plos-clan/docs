@@ -1,9 +1,9 @@
 # 13｜合并冲突——理解 ours 与 theirs
 
-出现冲突并不表示 Git 出了问题，只是两个分支修改了同一处内容，Git 无法自动判断应该保留哪一边。本章会在两条练习分支上制造两处可控冲突，再用 Diffview 的三方界面逐块解决。
+出现冲突，不代表 Git 坏了。只是两个分支都改了同一个地方，Git 猜不出该留哪一边。这一章会在两条练习分支上制造两处可控的冲突，再用 Diffview 的三方界面一块块解决。
 
 > [!IMPORTANT] 开始前先确认工作树干净
-> 全程只碰 `README.md`。开始前务必保存所有文件，并确认 `git status --short` 没有输出。
+> 全程只会动 `README.md`。开始前务必保存所有文件，并确认 `git status --short` 什么也没输出。
 
 ## 本章核心新按键
 
@@ -16,7 +16,7 @@
 | [[Space]] [[c]] [[a]] | 按 ours → base → theirs 拼接当前冲突内容并删除标记 |
 | [[d]] [[x]] | 删除整个当前冲突区 |
 
-主练习只使用前四项中的 ours 与 theirs。其他按键先了解用途，不要求本章全部记住。
+主练习只会用到前四项里的 ours 和 theirs。其他按键先知道是干什么的，不用在这一章全记住。
 
 ## 开始前检查
 
@@ -31,7 +31,7 @@ git config --local --get merge.conflictStyle
 
 ![确认干净的 main 分支并启用 diff3](screenshots/13-01-clean-main-and-diff3.webp)
 
-第一条应没有输出。第二条会告诉你当前基线分支叫什么，可能是 `main`、`master` 或别的名字。本练习会从它分出两条教学分支，原基线不会被改写。最后一条应输出 `diff3`，表示本仓库会把共同祖先内容也写进冲突标记。这项设置只作用于当前练习仓库。
+第一条应该没有输出。第二条会告诉你当前的基线分支叫什么，可能是 `main`、`master`，也可能是别的名字。练习会从这里分出两条教学分支，不会改写原来的基线。最后一条应该输出 `diff3`，表示这个仓库会把共同祖先的内容也写进冲突标记。这项设置只对当前练习仓库生效。
 
 ## 工作流一：制作 ours 版本
 
@@ -78,7 +78,7 @@ git commit -m "describe a focused workflow"
 
 ![提交 tutorial-ours 的文案修改](screenshots/13-06-ours-commit-created.webp)
 
-现在 `tutorial-ours` 比共同基线多了一个提交。
+现在 `tutorial-ours` 比共同基线往前多了一个提交。
 
 ## 工作流二：从共同基线制作 theirs 版本
 
@@ -90,9 +90,9 @@ git switch -c tutorial-theirs HEAD~1
 
 ![从共同基线创建 tutorial-theirs](screenshots/13-07-tutorial-theirs-from-common-base.webp)
 
-这条命令从 ours 提交的父提交创建新分支，因此两边拥有同一个共同祖先。
+这条命令会从 ours 提交的父提交拉出新分支，所以两边拥有同一个共同祖先。
 
-切换分支会改写磁盘文件。回到 README 后，如果屏幕仍显示上一分支的句子：
+切换分支会改写磁盘上的文件。回到 README 后，如果屏幕上还留着上一条分支的句子：
 
 1. 按 [[F1]]。
 2. 输入 `edit`。
@@ -100,7 +100,7 @@ git switch -c tutorial-theirs HEAD~1
 
 ![重新读取 tutorial-theirs 的共同基线 README](screenshots/13-08-theirs-readme-reloaded-from-base.webp)
 
-将同两行改成另一套文案。
+再把同样两行改成另一套文案。
 
 描述行：
 
@@ -127,7 +127,7 @@ git commit -m "describe a friendly workflow"
 
 ![提交 tutorial-theirs 的文案修改](screenshots/13-11-theirs-commit-created.webp)
 
-现在两条分支分别修改了相同的两行，因此合并时会产生冲突。
+现在两条分支各自修改了同样的两行，合并时自然会产生冲突。
 
 ![两条教学分支从共同提交分叉](screenshots/13-12-diverged-branch-history.webp)
 
@@ -142,7 +142,7 @@ git merge tutorial-theirs
 
 ![合并暂停并报告 README 内容冲突](screenshots/13-13-merge-conflict-reported.webp)
 
-Git 应该会报告 `README.md` 存在 content conflict，并暂停合并。这正是本章需要的练习状态。
+Git 应该会报告 `README.md` 存在 content conflict，然后暂停合并。这正是我们想要的练习状态。
 
 隐藏终端。如果 README 仍显示切换前的内容，执行一次 [[F1]] → `edit` → [[Enter]] → [[Enter]]。
 
@@ -162,11 +162,11 @@ A friendly task tracker for terminal-loving humans.
 
 ![Quick start 行的 diff3 冲突标记](screenshots/13-15-second-diff3-conflict-markers.webp)
 
-也可以手工删除冲突标记，但本节使用 Diffview 三方界面，以便直接比较各版本内容。
+当然也能手工删掉冲突标记，不过这一节会用 Diffview 的三方界面，这样三个版本可以直接摆在眼前比较。
 
 ### 为什么练习启用 diff3
 
-中间以 `|||||||` 开头的段落就是 BASE，也就是两个分支修改前的共同祖先。Diffview 的 [[b]] 与 [[a]] 操作会读取 LOCAL 文件中的这段冲突标记：
+中间以 `|||||||` 开头的那段就是 BASE，也就是两个分支动手之前的共同祖先。Diffview 的 [[b]] 和 [[a]] 操作，会读取 LOCAL 文件里的这段冲突标记：
 
 - 有 BASE 时，[[Space]] [[c]] [[b]] 会只留下共同祖先内容；
 - 有 BASE 时，[[Space]] [[c]] [[a]] 会按 ours → base → theirs 的顺序拼接三段内容，再删除标记；
@@ -174,7 +174,7 @@ A friendly task tracker for terminal-loving humans.
 - 缺少 BASE 标记时，[[a]] 会拼接现有的 ours 与 theirs；
 - BASE 标记存在、段落内容恰好为空时，[[b]] 得到的结果同样为空。
 
-大写 [[B]] 与 [[A]] 会把相应操作应用到当前文件的所有冲突，因此影响范围更大。在真实项目中使用 [[b]]/[[B]] 或 [[a]]/[[A]] 前，先确认 LOCAL 中确实存在 `|||||||` BASE 标记。
+大写 [[B]] 和 [[A]] 会把相应操作套到当前文件的所有冲突上，影响范围更大。在真实项目里使用 [[b]]/[[B]] 或 [[a]]/[[A]] 之前，先确认 LOCAL 里确实有 `|||||||` BASE 标记。
 
 ## 工作流四：在三方界面逐块解决
 
@@ -182,7 +182,7 @@ A friendly task tracker for terminal-loving humans.
 
 [[Space]] [[g]] [[s]]
 
-Diffview 发现未合并文件后会启用 merge tool。默认 `diff3_horizontal` 布局把三个版本横向排开：
+Diffview 发现未合并文件后，会自动启用 merge tool。默认的 `diff3_horizontal` 布局，会把三个版本横着排开：
 
 ```text
 ┌──────── OURS ────────┬──────── LOCAL ────────┬─────── THEIRS ───────┐
@@ -198,7 +198,7 @@ Diffview 发现未合并文件后会启用 merge tool。默认 `diff3_horizontal
 - LOCAL 是最终要保存并暂存的工作文件；
 - BASE 是两边共同祖先，默认三窗布局没有单独展示它，但选择键仍可取用。
 
-用 [[Ctrl]]+[[w]] 加 [[h]]/[[l]] 移到标题含 LOCAL 的中间窗口。
+用 [[Ctrl]]+[[w]] 加 [[h]]/[[l]]，移到标题里写着 LOCAL 的中间窗口。
 
 ### 第一处冲突选 ours
 
@@ -237,7 +237,7 @@ Start it with `PYTHONPATH=src python -m pocket_tasks.cli`.
 
 ![第二处冲突在 LOCAL 中采用 theirs](screenshots/13-20-second-conflict-theirs-applied.webp)
 
-最终结果分别采用了两个分支中的一处修改，README 的两处冲突都已经解决。
+最后的结果各取了两个分支的一处修改，README 里的两处冲突都解决了。
 
 ![README 已解决但仍等待暂存](screenshots/13-21-resolved-local-before-staging.webp)
 
@@ -249,7 +249,7 @@ Start it with `PYTHONPATH=src python -m pocket_tasks.cli`.
 | [[Space]] [[c]] [[a]] | 按 ours → base → theirs 拼接后，再手工去重与整理 |
 | [[d]] [[x]] | 整块内容都应删除 |
 
-这三项会直接修改 LOCAL。拿不准时先阅读三窗，再动手。
+这三项都会直接修改 LOCAL。拿不准时先把三个窗口看清楚，再动手。
 
 ## 保存、暂存、完成合并
 
@@ -280,7 +280,7 @@ PYTHONPATH=src python -m unittest -v
 
 ![冲突已解决且合并仍在进行](screenshots/13-25-merge-resolved-status.webp)
 
-Git 应提示冲突已经解决、合并仍在进行。测试通过后完成合并提交：
+Git 应该会提示冲突已经解决，但合并还在进行。等测试通过以后，再完成合并提交：
 
 ![合并提交前完整测试套件通过](screenshots/13-26-merge-test-suite-passes.webp)
 
@@ -291,28 +291,28 @@ git status --short
 
 ![创建合并提交后工作树干净](screenshots/13-27-merge-commit-created-clean.webp)
 
-最后一条应没有输出。当前分支仍是 `tutorial-ours`，并包含一个合并提交。
+最后一条应该没有输出。当前分支仍然是 `tutorial-ours`，只是多了一个合并提交。
 
-真实项目中也可在暂存完成后运行 `git merge --continue`。Git 若打开提交信息编辑器，确认信息后保存退出即可。
+真实项目里，也可以在暂存完成后运行 `git merge --continue`。如果 Git 打开了提交信息编辑器，确认内容以后保存退出即可。
 
 ::: details 重新开始冲突练习
 
-只要合并提交还没创建，就可以关闭 Diffview，在终端运行：
+只要合并提交还没创建，就可以关掉 Diffview，在终端运行：
 
 ```console
 git merge --abort
 ```
 
-工作树会恢复到合并开始前的 `tutorial-ours`。随后再次执行 `git merge tutorial-theirs`，即可重新生成冲突。
+工作树会回到合并开始前的 `tutorial-ours`。随后再运行一次 `git merge tutorial-theirs`，就能重新制造冲突。
 
 :::
 
 ::: details 高风险：单次应用全部
 
-下面这些映射会一次处理当前文件里的全部冲突：
+下面这些映射会一口气处理当前文件里的全部冲突：
 
 > [!CAUTION] 大写映射会处理整份文件
-> 大小写只差一个 Shift，但影响范围会从当前冲突扩大到整个文件。优先使用小写逐块处理；只有确认所有冲突都采用同一策略时，才考虑大写版本。
+> 大小写虽然只差一个 Shift，影响范围却会从当前冲突扩大到整个文件。优先用小写一块块处理；只有确认所有冲突都要采用同一种策略时，才考虑大写版本。
 
 | 按键 | 效果 |
 | --- | --- |
@@ -331,7 +331,7 @@ git merge --abort
 - ours 通常是当前所在的分支；
 - theirs 通常是正在合入的分支。
 
-rebase 会把提交逐个应用到目标分支上。此时 Git 所说的 ours 往往是 rebase 目标分支的状态，theirs 则往往是当前正在应用的提交，这与普通 merge 时的直觉可能相反。
+rebase 会把提交一个个重新应用到目标分支上。这时 Git 口中的 ours 往往是 rebase 目标分支的状态，theirs 则往往是眼前正在应用的提交，和普通 merge 时的直觉可能正好相反。
 
 所以遇到 rebase 冲突时：
 
@@ -340,7 +340,7 @@ rebase 会把提交逐个应用到目标分支上。此时 Git 所说的 ours �
 3. 确认版本身份后才按 [[Space]] [[c]] [[o]] 或 [[Space]] [[c]] [[t]]。
 
 > [!WARNING] rebase 中不要凭 ours/theirs 的名称判断版本
-> 不要只根据 ours/theirs 的名称判断版本身份，应先阅读窗口标题和实际内容。
+> 不要只看 ours/theirs 这两个名字来猜版本身份，先读窗口标题，再看两边实际是什么内容。
 
 ## 冲突处理固定流程
 

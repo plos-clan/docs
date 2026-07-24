@@ -1,6 +1,6 @@
 # 10｜右侧终端、测试循环与手动格式化
 
-本章会把右侧终端纳入编辑流程，并完成一次完整的“测试失败 → 修复 → 测试通过”循环。
+这一章会把右侧终端接进日常编辑流程，并走完一次完整的“测试失败 → 修复 → 测试通过”循环。
 
 ## 本章新按键
 
@@ -14,7 +14,7 @@
 
 ## 开始前的项目检查点
 
-至少应有 `src/pocket_tasks/` 下的两个源码文件，以及 `tests/test_service.py`。
+至少应该有 `src/pocket_tasks/` 下的两个源码文件，以及 `tests/test_service.py`。
 
 ::: code-group
 
@@ -71,7 +71,7 @@ if __name__ == "__main__":
 
 :::
 
-缺少某份文件时，用 [[Space]] [[e]] 打开 Explorer，按 [[a]] 创建，再把对应代码输入进去。保存用 [[F1]] → `write` → [[Enter]] → [[Enter]]。
+少了哪份文件，就用 [[Space]] [[e]] 打开 Explorer，按 [[a]] 创建，再把对应代码填进去。保存时按 [[F1]] → `write` → [[Enter]] → [[Enter]]。
 
 ## 第一次打开终端
 
@@ -85,7 +85,7 @@ if __name__ == "__main__":
 
 ![右侧终端打开](screenshots/10-02-right-terminal-open.webp)
 
-这个终端会继承 Neovim 当前的工作目录。如果你在 `pocket-tasks` 目录中运行 `nvim .`，终端打开后也会位于该目录。
+这个终端会沿用 Neovim 当前的工作目录。如果你是在 `pocket-tasks` 目录里运行 `nvim .`，终端打开后自然也会落在这里。
 
 输入：
 
@@ -95,21 +95,21 @@ PYTHONPATH=src python -m unittest -v
 
 ![输入测试命令](screenshots/10-03-test-command-input.webp)
 
-按 [[Enter]]。三条测试应当通过。
+按 [[Enter]]。三条测试应该都会通过。
 
 ![三条测试通过](screenshots/10-04-initial-tests-passed.webp)
 
 ### 隐藏和再次显示
 
-在终端输入状态直接按 [[Ctrl]]+[[&#92;]]，右侧窗口隐藏，shell 进程继续活着。
+在终端输入状态下直接按 [[Ctrl]]+[[&#92;]]，右侧窗口会隐藏起来，但里面的 shell 进程还活着。
 
 ![隐藏终端后的代码窗口](screenshots/10-05-terminal-hidden.webp)
 
-再按一次同样的组合，它会带着刚才的输出回来。
+再按一次同样的组合，它会连同刚才的输出一起回来。
 
 ![再次显示并保留测试输出](screenshots/10-06-terminal-restored.webp)
 
-日常开发时可以按下面的顺序反复使用：打开终端，跑测试，隐藏终端，修代码，再打开终端并用上箭头重跑。
+平时开发时，可以不断重复这套节奏：打开终端，跑测试，隐藏终端，修代码，再把终端叫回来，用上箭头重跑。
 
 ## 先运行一次失败测试
 
@@ -159,7 +159,7 @@ from pocket_tasks.service import (
 
 3. 按 [[Enter]]。
 
-这次应出现 ImportError，因为服务层还没有 `pending_count`。这个失败结果说明测试覆盖了尚未实现的新需求。
+这次应该会出现 ImportError，因为服务层里还没有 `pending_count`。这个失败恰好说明，新测试确实碰到了那个尚未实现的需求。
 
 ![缺少 pending_count 的 ImportError](screenshots/10-11-missing-pending-count-failure.webp)
 
@@ -182,31 +182,31 @@ def pending_count(tasks: list[Task]) -> int:  # [!code ++]
 
 ![重新显示之前的失败输出](screenshots/10-13-failure-output-restored.webp)
 
-按 [[Up]]、[[Enter]] 重跑。四条测试应全部通过。
+按 [[Up]]、[[Enter]] 重跑。四条测试应该会全部通过。
 
 ![四条测试全部通过](screenshots/10-14-four-tests-passed.webp)
 
-我们不用单独的测试面板或测试按钮，而是直接在右侧终端中运行命令。这样不受项目类型限制，python、cargo、make、pnpm 等命令都可以照常使用。
+这里不用单独的测试面板或测试按钮，直接在右侧终端里跑命令。这样不挑项目类型，python、cargo、make、pnpm 等命令都可以照常用。
 
 ## 终端暂时留在屏幕上
 
-有时你想一边看测试输出，一边改代码，不想隐藏终端。
+有时想一边看测试输出，一边改代码，那就不用把终端藏起来。
 
 1. 在终端输入状态快速按两次 [[Esc]]，两次间隔控制在约 200 毫秒内。
 2. 光标样式变化，终端进入普通模式。
 
 ![终端普通模式](screenshots/10-15-terminal-normal-mode.webp)
 
-3. 按 [[Ctrl]]+[[w]]，再按 [[h]]，焦点移到左侧代码。
+3. 按 [[Ctrl]]+[[w]]，再按 [[h]]，焦点会移到左侧代码。
 
 ![焦点移到左侧代码](screenshots/10-16-focus-moved-to-code.webp)
 
 4. 按 [[Ctrl]]+[[w]]，再按 [[l]]，焦点回到终端。
-5. 本配置回到终端时通常会自动进入输入状态；如果仍处于普通模式，再按 [[i]]。
+5. 回到终端时通常会自动进入输入状态；如果还停在普通模式，再按 [[i]]。
 
 ![焦点回到终端](screenshots/10-17-focus-returned-to-terminal.webp)
 
-终端普通模式中还可以按 [[q]] 隐藏终端。刚开始用 [[Ctrl]]+[[&#92;]] 已经足够稳定。
+在终端普通模式里，也可以按 [[q]] 隐藏终端。不过刚开始时只记 [[Ctrl]]+[[&#92;]] 就够用了。
 
 ## 从 Explorer 的当前目录开终端
 
@@ -224,11 +224,11 @@ Explorer 里还可以从指定目录打开终端：
 
 ![从 tests 目录打开终端](screenshots/10-20-terminal-opened-in-tests.webp)
 
-Snacks 会以所选目录作为工作目录打开终端。临时需要在某个子目录运行命令时，这种方式很方便。本教程后面仍以全局的 [[Ctrl]]+[[&#92;]] 为主。
+Snacks 会把选中的目录当成工作目录，再打开终端。临时要去某个子目录运行命令时，这种方式很方便。不过教程后面还是以全局的 [[Ctrl]]+[[&#92;]] 为主。
 
 ## 格式化练习：格式化 Nix 代码
 
-当前配置明确注册的外部格式器是 Nix 的 `nixfmt`。Python 的 BasedPyright 不提供格式化，所以在 Python 文件按格式化键可能没有变化。
+目前格式化 Nix 用的是 `nixfmt`。而 Python 用的 BasedPyright 不带格式化能力，所以在 Python 文件里按格式化键，画面可能什么也不会变。
 
 ### 创建一份故意拥挤的文件
 
@@ -265,11 +265,11 @@ Snacks 会以所选目录作为工作目录打开终端。临时需要在某个�
 
 3. 按 [[f]]，等一小会儿。格式化是异步执行的。
 
-文件应展开成清晰的多行结构。课程前面创建的 `.editorconfig` 会让 Nix 使用两空格缩进。
+文件应该会展开成清楚的多行结构。前面创建的 `.editorconfig` 会让 Nix 使用两个空格缩进。
 
 ![nixfmt 格式化后的多行结构](screenshots/10-27-nix-formatted.webp)
 
-格式化结束后，Buffer 会处于已修改状态。再用 [[F1]] → `write` → [[Enter]] → [[Enter]] 保存。
+格式化结束后，Buffer 会变成已修改状态。再用 [[F1]] → `write` → [[Enter]] → [[Enter]] 保存。
 
 ![格式化结果已保存](screenshots/10-28-formatted-nix-saved.webp)
 

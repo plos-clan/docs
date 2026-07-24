@@ -1,10 +1,10 @@
 # 14｜会话与最终挑战——完整日常开发流程
 
-前面的章节分别练习了不同操作，本章把它们串成一套完整的日常开发流程：
+前面的章节把各种操作拆开练了一遍，这一章要把它们重新串成一套完整的日常开发流程：
 
 > 明确进入项目 → 恢复布局 → 找需求位置 → 先写失败测试 → 实现 → 看诊断 → 跑测试 → 审查差异 → 暂存提交 → 保存会话 → 明天回来
 
-最后再单独练习会话恢复。完成本章后，你应当能够使用 Neovim 完成主要开发流程，并在忘记按键时查找对应章节或速查表。
+最后再单独练一次会话恢复。做完这一章以后，你应该已经能用 Neovim 走完主要的开发流程；偶尔忘了按键，也知道该去哪个章节或速查表里找。
 
 ## 工作流一的新按键：保存和载入布局
 
@@ -17,7 +17,7 @@
 
 ![Space s 打开的会话快捷键提示](screenshots/14-30-session-keymap-help.webp)
 
-[[Space]] [[s]] [[l]] 同时是更长组合的前缀。只按到 [[l]] 后停住，选择器可能等大约 500 毫秒才出现；想载入最近会话时，把 [[t]] 连着按完。
+[[Space]] [[s]] [[l]] 同时也是更长组合的前缀。只按到 [[l]] 后停止，选择器可能要等待大约 500 毫秒才会出现；要载入最近会话，应在等待超时前继续按 [[t]]。
 
 ## 会话会保存哪些内容
 
@@ -29,7 +29,7 @@
 - 折叠等编辑现场；
 - 项目再次载入时需要恢复的结构信息。
 
-它有几条很重要的边界：
+不过它有几条很重要的边界：
 
 - 未保存的文字不会写进会话文件；
 - Diffview 会在保存会话前自动关闭；
@@ -38,7 +38,7 @@
 - 终端中的 shell 进程和输出不会随会话恢复。
 
 > [!CAUTION] 会话不能恢复未保存的文字
-> 由于默认关闭了 swap、backup、writebackup 和持久 undo。编辑器或系统突然退出时，未写入磁盘的文字很难恢复。应频繁保存，并使用小步 Git 提交。会话只记录布局，不能代替文件保存。
+> 这里默认关掉了 swap、backup、writebackup 和持久 undo。编辑器或系统突然退出时，没写进磁盘的文字很难找回来。所以要经常保存，也要把 Git 提交切小一点。会话只记录布局，代替不了文件保存。
 
 ## 最终挑战的开始状态
 
@@ -52,7 +52,7 @@ def completed_count(tasks: list[Task]) -> int:
     return sum(task.done for task in tasks)
 ```
 
-测试已经全部通过，Git 工作树也应干净：
+测试应该已经全部通过，Git 工作树也应该是干净的：
 
 ```console
 PYTHONPATH=src python -m unittest -v
@@ -78,11 +78,11 @@ cd ~/playground/pocket-tasks
 nvim .
 ```
 
-路径请按实际创建位置调整。带上目录参数，可以避免自动载入另一个项目的最近会话。
+路径按你实际创建的位置调整。带上目录参数，可以避免它自动载入另一个项目的最近会话。
 
 ### 2. 打开测试与实现的双栏布局
 
-刚用 `nvim .` 启动时，目标文件未必已经进入 Buffer 列表。可以按下面这套固定步骤打开布局：
+刚用 `nvim .` 启动时，目标文件不一定已经进了 Buffer 列表。可以照下面这套固定步骤把布局打开：
 
 1. 按 [[Space]] [[e]] 打开 Explorer。
 
@@ -103,7 +103,7 @@ nvim .
 
 6. 用 [[Ctrl]]+[[w]] 加 [[h]]/[[l]] 在两栏间移动。
 
-现在左栏是测试，右栏是实现。分屏方向可能受当前布局影响，应根据窗口中的文件名确认内容，不要只依赖左右位置。
+现在左栏是测试，右栏是实现。不过分屏方向可能会受当前布局影响，还是要看窗口里的文件名确认内容，别只认左右位置。
 
 ### 3. 保存一份布局快照
 
@@ -113,11 +113,11 @@ nvim .
 
 [[Space]] [[s]] [[c]]
 
-你可能看到 Explorer 或其他工具窗口被收起，这是会话保存前清理临时 Buffer 的结果。普通文件与分屏布局会被记录。需要文件树时，再按 [[Space]] [[e]]。
+你可能会看到 Explorer 或其他工具窗口被收起来，这是保存会话前清理临时 Buffer 的结果。普通文件和分屏布局都会记录下来。还想看文件树，再按 [[Space]] [[e]] 就好。
 
 ## 工作流三：完成一轮测试驱动开发
 
-这一轮不再增加快捷键，专心把已经学过的动作串起来。
+这一轮不再加新快捷键，专心把已经学过的动作串起来。
 
 ### 第一步：开功能分支
 
@@ -166,7 +166,7 @@ from pocket_tasks.service import (
 
 按 [[Esc]]，用 [[F1]] → `write` → [[Enter]] → [[Enter]] 保存测试。
 
-左侧符号栏应出现诊断，因为导入目标还不存在。把光标放在 `task_summary` 上，按 [[Space]] [[l]] [[e]]，浮窗会显示当前诊断详情。
+左侧符号栏应该会出现诊断，因为要导入的东西还不存在。把光标放在 `task_summary` 上，按 [[Space]] [[l]] [[e]]，浮窗就会显示当前诊断的详细内容。
 
 ![查看尚未实现的 task_summary 导入诊断](screenshots/14-10-task-summary-diagnostic-popup.webp)
 
@@ -176,7 +176,7 @@ from pocket_tasks.service import (
 PYTHONPATH=src python -m unittest -v
 ```
 
-预期出现 ImportError。这是当前阶段应有的测试失败。
+这里应该会出现 ImportError。这正是当前阶段想看到的失败。
 
 ![运行失败测试得到预期的 ImportError](screenshots/14-11-expected-import-error.webp)
 
@@ -188,7 +188,7 @@ PYTHONPATH=src python -m unittest -v
 
 ![从测试导入跳到 service.py 中的 pending_count 定义](screenshots/14-12-definition-jump-to-service.webp)
 
-LSP 会跳到 `service.py` 的定义。也可以用 [[Space]] [[,]] 直接切到该 Buffer；路线不同，目的地相同。
+LSP 会跳到 `service.py` 里的定义。当然，也可以用 [[Space]] [[,]] 直接切到这个 Buffer；走法不同，目的地是一样的。
 
 在 `completed_count` 后加入：
 
@@ -202,7 +202,7 @@ def task_summary(tasks: list[Task]) -> str:
 
 ![完整实现 task_summary](screenshots/14-14-task-summary-implementation-complete.webp)
 
-输入函数名时，Blink 自动补全菜单通常会出现：
+输入函数名时，Blink 的自动补全菜单通常会弹出来：
 
 ![在 task_summary 中使用 Blink 补全已有函数](screenshots/14-13-task-summary-completion-menu.webp)
 
@@ -214,15 +214,15 @@ def task_summary(tasks: list[Task]) -> str:
 
 ### 第四步：检查诊断并重新运行测试
 
-在当前文件按 [[&#93;]] [[d]]。若没有下一条诊断，Neovim 会提示已到边界或找不到诊断通常说明当前文件没有可报告的问题。
+在当前文件按 [[&#93;]] [[d]]。如果没有下一条诊断，Neovim 会提示已经到边界，或是找不到诊断；这通常说明当前文件没什么可报告的问题。
 
 ![实现完成后当前文件没有可跳转诊断](screenshots/14-15-task-summary-diagnostics-cleared.webp)
 
-打开终端，按 [[Up]]、[[Enter]] 重跑测试。全部测试应通过。
+打开终端，按 [[Up]]、[[Enter]] 重跑测试。所有测试应该都会通过。
 
 ![重跑后七项测试全部通过](screenshots/14-16-seven-tests-pass.webp)
 
-Python 的 BasedPyright 不提供格式化能力，本项目里 [[Space]] [[c]] [[f]] 可能没有可执行的格式器。代码已经按清晰布局输入，直接保存即可。换到 Nix 等已有格式器的文件时，再走“格式化、等待、保存”三步。
+Python 的 BasedPyright 不提供格式化能力，所以在这个项目里按 [[Space]] [[c]] [[f]]，可能找不到能运行的格式器。代码已经按清楚的布局写好了，直接保存即可。换到 Nix 这类已经配好格式器的文件时，再走“格式化、等待、保存”三步。
 
 ### 第五步：全项目搜索验收
 
@@ -230,7 +230,7 @@ Python 的 BasedPyright 不提供格式化能力，本项目里 [[Space]] [[c]] 
 
 [[Space]] [[/]]
 
-输入 `task_summary`。结果应至少包含：
+输入 `task_summary`。结果里至少应该有：
 
 - 服务函数定义；
 - 测试文件导入；
@@ -238,7 +238,7 @@ Python 的 BasedPyright 不提供格式化能力，本项目里 [[Space]] [[c]] 
 
 ![全项目搜索 task_summary 的定义与测试引用](screenshots/14-17-task-summary-project-search.webp)
 
-用 [[Ctrl]]+[[n]] /[[Ctrl]]+[[p]] 浏览三处预览，确认后按 [[Esc]] 关闭。若想打开当前项，按 [[Enter]]；若想把全部结果留在底部逐项查看，按 [[Ctrl]]+[[q]] 加入 Quickfix。
+用 [[Ctrl]]+[[n]] /[[Ctrl]]+[[p]] 把三处预览都看一遍，确认后按 [[Esc]] 关闭。如果想打开当前项，就按 [[Enter]]；想把所有结果留在底部慢慢看，就按 [[Ctrl]]+[[q]] 加入 Quickfix。
 
 ## 工作流四：提交前总审查
 
@@ -252,7 +252,7 @@ git diff --check
 git status --short
 ```
 
-确认测试通过，且只有 `service.py` 与 `test_service.py` 发生变化。
+确认测试通过，而且只有 `service.py` 和 `test_service.py` 发生了变化。
 
 ![测试通过且只有两个目标文件发生变化](screenshots/14-18-final-tests-and-two-modified-files.webp)
 
@@ -293,7 +293,7 @@ git diff --cached
 
 ![在终端 pager 中阅读已暂存的完整补丁](screenshots/14-25-cached-diff-pager.webp)
 
-阅读补丁，按 [[q]] 退出 pager。确认无误后：
+把补丁读完，按 [[q]] 退出 pager。确认没问题以后：
 
 ```console
 git commit -m "add task summary"
@@ -302,7 +302,7 @@ git status --short
 
 ![提交 task summary 功能](screenshots/14-26-task-summary-commit-created.webp)
 
-工作树应该重新变为干净状态。至此，这个功能已经依次完成测试、实现、诊断检查、搜索验证、代码审查和提交。
+工作树应该会重新变干净。到这里，这个功能已经走完了测试、实现、诊断检查、搜索验证、代码审查和提交。
 
 ![提交后 git status short 无输出](screenshots/14-27-clean-worktree-after-commit.webp)
 
@@ -317,7 +317,7 @@ git status --short
 
 ![在 F1 Picker 中选择 wqall 安全退出](screenshots/14-28-wqa-picker-before-exit.webp)
 
-退出时插件也会尝试自动保存当前工作目录的会话。手动保存这一步仍有价值：你明确知道快照发生在所有文件落盘之后。
+退出时，插件也会尝试自动保存当前工作目录的会话。不过手动保存这一步仍然有价值：你可以确定，这份快照是在所有文件都落盘以后留下的。
 
 ### 恢复最近会话
 
@@ -327,7 +327,7 @@ git status --short
 nvim
 ```
 
-无参数启动会自动尝试载入全局最近会话。它适合回到刚才这个项目。载入完成后 Explorer 会自动打开，先前普通文件与分屏布局也应回来。
+不带参数启动时，Neovim 会自动尝试载入全局最近会话，很适合回到刚才这个项目。载入完成后 Explorer 会自动打开，之前的普通文件和分屏布局也应该会回来。
 
 ![无参数启动后恢复 Explorer 与双栏布局](screenshots/14-29-restored-explorer-two-pane-layout.webp)
 
@@ -340,7 +340,7 @@ cd /path/to/other-project
 nvim .
 ```
 
-目录参数会阻止全局最近会话自动载入。若这个项目已有保存的布局，再按 [[Space]] [[s]] [[l]]，等待会话 Picker 出现，选择对应路径并回车。
+目录参数会阻止全局最近会话自动载入。如果这个项目以前保存过布局，再按 [[Space]] [[s]] [[l]]，等会话 Picker 出现，选中对应路径并回车。
 
 ![载入会话 Picker 中列出已保存项目](screenshots/14-31-session-load-picker.webp)
 
@@ -351,7 +351,7 @@ nvim .
 [[Space]] [[s]] [[l]] [[t]]
 
 > [!WARNING] 载入会话前先保存当前内容
-> 这个动作可能删除当前 Buffer 并切换整个布局，执行前先保存。
+> 这个动作可能会删除当前 Buffer，并把整套布局切走，动手前先保存。
 
 若当前有未保存内容，载入过程中可能出现确认：
 
@@ -359,11 +359,11 @@ nvim .
 - No：丢掉修改，继续载入；
 - Cancel：取消本次载入。
 
-不确定是否应继续时，选择 Cancel。返回后使用 [[F1]] → `wall` → 两次 [[Enter]] 保存，再重新载入会话。
+拿不准该不该继续时，就选 Cancel。回来以后用 [[F1]] → `wall` → 两次 [[Enter]] 保存，再重新载入会话。
 
 ### 删除旧会话记录
 
-按 [[Space]] [[s]] [[d]]，在 Picker 中选择旧会话并确认。这只会删除布局记录，不会删除项目文件。路径相似时先查看完整预览，避免误删仍在使用的会话。
+按 [[Space]] [[s]] [[d]]，在 Picker 里选中旧会话并确认。这只会删除布局记录，不会修改项目文件。路径相似时，先确认完整预览，避免删除仍在使用的会话。
 
 ![删除会话 Picker 中核对旧项目路径](screenshots/14-32-session-delete-picker.webp)
 
@@ -400,4 +400,4 @@ nvim .
 9. 怎样解决下一处冲突并选择 theirs？
 10. 会话保存前，为什么仍要先保存文件？
 
-如果有两三题无法完成，可以查看 [15：完整速查表](15-key-reference.md)，然后立即回到项目中重复操作。查表后配合实际练习，比单纯阅读更容易形成记忆。
+如果有两三题做不出来，可以翻一下 [15：完整速查表](15-key-reference.md)，然后立刻回到项目里再做一遍。查完就练，比只看不动手更容易记住。
