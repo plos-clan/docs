@@ -10,14 +10,14 @@
 
 | 按键 | 效果 |
 | --- | --- |
-| `Space` `s` `c` | 保存当前工作目录的会话 |
-| `Space` `s` `l` | 打开会话选择器 |
-| `Space` `s` `l` `t` | 载入最近会话 |
-| `Space` `s` `d` | 选择并删除会话记录 |
+| [[Space]] [[s]] [[c]] | 保存当前工作目录的会话 |
+| [[Space]] [[s]] [[l]] | 打开会话选择器 |
+| [[Space]] [[s]] [[l]] [[t]] | 载入最近会话 |
+| [[Space]] [[s]] [[d]] | 选择并删除会话记录 |
 
 ![Space s 打开的会话快捷键提示](screenshots/14-30-session-keymap-help.webp)
 
-`Space` `s` `l` 同时是更长组合的前缀。只按到 `l` 后停住，选择器可能等大约 500 毫秒才出现；想载入最近会话时，把 `t` 连着按完。
+[[Space]] [[s]] [[l]] 同时是更长组合的前缀。只按到 [[l]] 后停住，选择器可能等大约 500 毫秒才出现；想载入最近会话时，把 [[t]] 连着按完。
 
 ## 会话会保存哪些内容
 
@@ -84,36 +84,36 @@ nvim .
 
 刚用 `nvim .` 启动时，目标文件未必已经进入 Buffer 列表。可以按下面这套固定步骤打开布局：
 
-1. 按 `Space` `e` 打开 Explorer。
+1. 按 [[Space]] [[e]] 打开 Explorer。
 
 ![打开宽度为 30 的项目 Explorer](screenshots/14-02-project-explorer-opened.webp)
 
-2. 展开 `tests/`，高亮 `test_service.py`，按 `Enter` 打开。
+2. 展开 `tests/`，高亮 `test_service.py`，按 [[Enter]] 打开。
 
 ![从 Explorer 打开 test_service.py](screenshots/14-03-test-service-opened-from-explorer.webp)
 
-3. 焦点进入测试代码后按 `Space` `e`，关闭当前 Tab 已有的 Explorer。
-4. 按 `Space` `/`，输入 `def pending_count`。
+3. 焦点进入测试代码后按 [[Space]] [[e]]，关闭当前 Tab 已有的 Explorer。
+4. 按 [[Space]] [[/]]，输入 `def pending_count`。
 
 ![项目搜索定位 pending_count 定义](screenshots/14-04-pending-count-project-search.webp)
 
-5. 高亮服务文件里的结果，按 `Ctrl-v`，把 `service.py` 竖向打开。
+5. 高亮服务文件里的结果，按 [[Ctrl]]+[[v]]，把 `service.py` 竖向打开。
 
 ![测试与服务实现的竖向双栏布局](screenshots/14-05-test-and-service-vertical-layout.webp)
 
-6. 用 `Ctrl-w` 加 `h`/`l` 在两栏间移动。
+6. 用 [[Ctrl]]+[[w]] 加 [[h]]/[[l]] 在两栏间移动。
 
 现在左栏是测试，右栏是实现。分屏方向可能受当前布局影响，应根据窗口中的文件名确认内容，不要只依赖左右位置。
 
 ### 3. 保存一份布局快照
 
-先按 `F1` → `wall` →`Enter` → `Enter`，再按：
+先按 [[F1]] → `wall` →[[Enter]] → [[Enter]]，再按：
 
 ![保存会话前在 F1 Picker 中选择 wall](screenshots/14-06-session-layout-saved.webp)
 
-`Space` `s` `c`
+[[Space]] [[s]] [[c]]
 
-你可能看到 Explorer 或其他工具窗口被收起，这是会话保存前清理临时 Buffer 的结果。普通文件与分屏布局会被记录。需要文件树时，再按 `Space` `e`。
+你可能看到 Explorer 或其他工具窗口被收起，这是会话保存前清理临时 Buffer 的结果。普通文件与分屏布局会被记录。需要文件树时，再按 [[Space]] [[e]]。
 
 ## 工作流三：完成一轮测试驱动开发
 
@@ -121,7 +121,7 @@ nvim .
 
 ### 第一步：开功能分支
 
-按 `Ctrl-\` 打开终端，运行：
+按 [[Ctrl]]+[[&#92;]] 打开终端，运行：
 
 ```console
 git switch -c feature/task-summary
@@ -164,9 +164,9 @@ from pocket_tasks.service import (
 
 ![完整写入 task_summary 的失败测试](screenshots/14-09-failing-task-summary-test-complete.webp)
 
-按 `Esc`，用 `F1` → `write` → `Enter` → `Enter` 保存测试。
+按 [[Esc]]，用 [[F1]] → `write` → [[Enter]] → [[Enter]] 保存测试。
 
-左侧符号栏应出现诊断，因为导入目标还不存在。把光标放在 `task_summary` 上，按 `Space` `l` `e`，浮窗会显示当前诊断详情。
+左侧符号栏应出现诊断，因为导入目标还不存在。把光标放在 `task_summary` 上，按 [[Space]] [[l]] [[e]]，浮窗会显示当前诊断详情。
 
 ![查看尚未实现的 task_summary 导入诊断](screenshots/14-10-task-summary-diagnostic-popup.webp)
 
@@ -184,11 +184,11 @@ PYTHONPATH=src python -m unittest -v
 
 隐藏终端，在测试导入中的 `pending_count` 上按：
 
-`Space` `l` `g` `d`
+[[Space]] [[l]] [[g]] [[d]]
 
 ![从测试导入跳到 service.py 中的 pending_count 定义](screenshots/14-12-definition-jump-to-service.webp)
 
-LSP 会跳到 `service.py` 的定义。也可以用 `Space` `,` 直接切到该 Buffer；路线不同，目的地相同。
+LSP 会跳到 `service.py` 的定义。也可以用 [[Space]] [[,]] 直接切到该 Buffer；路线不同，目的地相同。
 
 在 `completed_count` 后加入：
 
@@ -206,29 +206,29 @@ def task_summary(tasks: list[Task]) -> str:
 
 ![在 task_summary 中使用 Blink 补全已有函数](screenshots/14-13-task-summary-completion-menu.webp)
 
-1. 用 `Ctrl-n` /`Ctrl-p` 选候选；
-2. 按 `Tab` 接受；
-3. `Enter` 继续只负责换行。
+1. 用 [[Ctrl]]+[[n]] /[[Ctrl]]+[[p]] 选候选；
+2. 按 [[Tab]] 接受；
+3. [[Enter]] 继续只负责换行。
 
-按 `Esc`，保存实现文件。
+按 [[Esc]]，保存实现文件。
 
 ### 第四步：检查诊断并重新运行测试
 
-在当前文件按 `]` `d`。若没有下一条诊断，Neovim 会提示已到边界或找不到诊断通常说明当前文件没有可报告的问题。
+在当前文件按 [[&#93;]] [[d]]。若没有下一条诊断，Neovim 会提示已到边界或找不到诊断通常说明当前文件没有可报告的问题。
 
 ![实现完成后当前文件没有可跳转诊断](screenshots/14-15-task-summary-diagnostics-cleared.webp)
 
-打开终端，按 `Up`、`Enter` 重跑测试。全部测试应通过。
+打开终端，按 [[Up]]、[[Enter]] 重跑测试。全部测试应通过。
 
 ![重跑后七项测试全部通过](screenshots/14-16-seven-tests-pass.webp)
 
-Python 的 BasedPyright 不提供格式化能力，本项目里 `Space` `c` `f` 可能没有可执行的格式器。代码已经按清晰布局输入，直接保存即可。换到 Nix 等已有格式器的文件时，再走“格式化、等待、保存”三步。
+Python 的 BasedPyright 不提供格式化能力，本项目里 [[Space]] [[c]] [[f]] 可能没有可执行的格式器。代码已经按清晰布局输入，直接保存即可。换到 Nix 等已有格式器的文件时，再走“格式化、等待、保存”三步。
 
 ### 第五步：全项目搜索验收
 
 隐藏终端，按：
 
-`Space` `/`
+[[Space]] [[/]]
 
 输入 `task_summary`。结果应至少包含：
 
@@ -238,13 +238,13 @@ Python 的 BasedPyright 不提供格式化能力，本项目里 `Space` `c` `f` 
 
 ![全项目搜索 task_summary 的定义与测试引用](screenshots/14-17-task-summary-project-search.webp)
 
-用 `Ctrl-n` /`Ctrl-p` 浏览三处预览，确认后按 `Esc` 关闭。若想打开当前项，按 `Enter`；若想把全部结果留在底部逐项查看，按 `Ctrl-q` 加入 Quickfix。
+用 [[Ctrl]]+[[n]] /[[Ctrl]]+[[p]] 浏览三处预览，确认后按 [[Esc]] 关闭。若想打开当前项，按 [[Enter]]；若想把全部结果留在底部逐项查看，按 [[Ctrl]]+[[q]] 加入 Quickfix。
 
 ## 工作流四：提交前总审查
 
 ### 1. 保存与测试
 
-按 `F1` → `wall` →`Enter` → `Enter`。打开终端运行：
+按 [[F1]] → `wall` →[[Enter]] → [[Enter]]。打开终端运行：
 
 ```console
 PYTHONPATH=src python -m unittest -v
@@ -258,27 +258,27 @@ git status --short
 
 ### 2. 用 Diffview 看完整补丁
 
-隐藏终端，按 `Space` `g` `s`。
+隐藏终端，按 [[Space]] [[g]] [[s]]。
 
 ![Diffview 中列出两个待审查文件](screenshots/14-19-diffview-two-file-overview.webp)
 
-1. 按 `Tab` 在两份文件之间切换。
+1. 按 [[Tab]] 在两份文件之间切换。
 
 ![切换到 test_service.py 审查导入与测试补丁](screenshots/14-21-diffview-test-change.webp)
 
-2. 每份文件用 `]` `c` 逐块阅读。
+2. 每份文件用 [[&#93;]] [[c]] 逐块阅读。
 
 ![在 Diffview 中逐块审查 service.py 新增函数](screenshots/14-20-diffview-service-change.webp)
 
-3. 需要修正时按 `g` `f` 回真实文件，修改并保存。
-4. 回 Diffview 后按 `Space` `e`，再按 `R` 刷新。
-5. 在文件面板对两个 Unstaged 条目分别按小写 `s`。
+3. 需要修正时按 [[g]] [[f]] 回真实文件，修改并保存。
+4. 回 Diffview 后按 [[Space]] [[e]]，再按 [[R]] 刷新。
+5. 在文件面板对两个 Unstaged 条目分别按小写 [[s]]。
 
 ![暂存 service.py 后区分未暂存与已暂存文件](screenshots/14-22-service-file-staged.webp)
 
 ![两个功能文件全部进入 Staged changes](screenshots/14-23-all-feature-files-staged.webp)
 
-6. 用 `F1` → `DiffviewClose` → 两次 `Enter` 退出。
+6. 用 [[F1]] → `DiffviewClose` → 两次 [[Enter]] 退出。
 
 ![在 F1 Picker 中选择 DiffviewClose](screenshots/14-24-diffview-close-picker.webp)
 
@@ -293,7 +293,7 @@ git diff --cached
 
 ![在终端 pager 中阅读已暂存的完整补丁](screenshots/14-25-cached-diff-pager.webp)
 
-阅读补丁，按 `q` 退出 pager。确认无误后：
+阅读补丁，按 [[q]] 退出 pager。确认无误后：
 
 ```console
 git commit -m "add task summary"
@@ -310,10 +310,10 @@ git status --short
 
 ### 安全退出
 
-1. 按 `F1` → `wall` →`Enter` → `Enter`。
+1. 按 [[F1]] → `wall` →[[Enter]] → [[Enter]]。
 2. 确认 Diffview 已关闭。
-3. 按 `Space` `s` `c` 保存当前目录会话。
-4. 按 `F1`，输入 `wqa`，连按两次 `Enter`。
+3. 按 [[Space]] [[s]] [[c]] 保存当前目录会话。
+4. 按 [[F1]]，输入 `wqa`，连按两次 [[Enter]]。
 
 ![在 F1 Picker 中选择 wqall 安全退出](screenshots/14-28-wqa-picker-before-exit.webp)
 
@@ -340,7 +340,7 @@ cd /path/to/other-project
 nvim .
 ```
 
-目录参数会阻止全局最近会话自动载入。若这个项目已有保存的布局，再按 `Space` `s` `l`，等待会话 Picker 出现，选择对应路径并回车。
+目录参数会阻止全局最近会话自动载入。若这个项目已有保存的布局，再按 [[Space]] [[s]] [[l]]，等待会话 Picker 出现，选择对应路径并回车。
 
 ![载入会话 Picker 中列出已保存项目](screenshots/14-31-session-load-picker.webp)
 
@@ -348,7 +348,7 @@ nvim .
 
 在已打开的 Neovim 中连续按：
 
-`Space` `s` `l` `t`
+[[Space]] [[s]] [[l]] [[t]]
 
 > [!WARNING] 载入会话前先保存当前内容
 > 这个动作可能删除当前 Buffer 并切换整个布局，执行前先保存。
@@ -359,11 +359,11 @@ nvim .
 - No：丢掉修改，继续载入；
 - Cancel：取消本次载入。
 
-不确定是否应继续时，选择 Cancel。返回后使用 `F1` → `wall` → 两次 `Enter` 保存，再重新载入会话。
+不确定是否应继续时，选择 Cancel。返回后使用 [[F1]] → `wall` → 两次 [[Enter]] 保存，再重新载入会话。
 
 ### 删除旧会话记录
 
-按 `Space` `s` `d`，在 Picker 中选择旧会话并确认。这只会删除布局记录，不会删除项目文件。路径相似时先查看完整预览，避免误删仍在使用的会话。
+按 [[Space]] [[s]] [[d]]，在 Picker 中选择旧会话并确认。这只会删除布局记录，不会删除项目文件。路径相似时先查看完整预览，避免误删仍在使用的会话。
 
 ![删除会话 Picker 中核对旧项目路径](screenshots/14-32-session-delete-picker.webp)
 
@@ -373,17 +373,17 @@ nvim .
 | --- | --- |
 | 进入明确项目 | `cd 项目 `，然后 `nvim .` |
 | 回最近现场 | 无参数 `nvim` |
-| 找文件 | `Space` `e` 或 `Space` `,` |
-| 找代码 | `Space` `/` |
-| 并排理解 | Picker 中 `Ctrl-v` |
-| 写与重构 | 文本对象、`.`、补全、LSP 定义/引用/重命名 |
-| 看问题 | `]` `d`、诊断浮窗 |
-| 运行与测试 | `Ctrl-\` |
-| 格式化 | 有可用格式器时 `Space` `c` `f`，等待后保存 |
-| 小块审查 | `]` `c`、`Space` `h` `P` |
-| 全项目审查 | `Space` `g` `s` |
+| 找文件 | [[Space]] [[e]] 或 [[Space]] [[,]] |
+| 找代码 | [[Space]] [[/]] |
+| 并排理解 | Picker 中 [[Ctrl]]+[[v]] |
+| 写与重构 | 文本对象、[[.]]、补全、LSP 定义/引用/重命名 |
+| 看问题 | [[&#93;]] [[d]]、诊断浮窗 |
+| 运行与测试 | [[Ctrl]]+[[&#92;]] |
+| 格式化 | 有可用格式器时 [[Space]] [[c]] [[f]]，等待后保存 |
+| 小块审查 | [[&#93;]] [[c]]、[[Space]] [[h]] [[P]] |
+| 全项目审查 | [[Space]] [[g]] [[s]] |
 | 提交 | Diffview/Gitsigns 暂存，终端运行 Git |
-| 结束工作 | `wall`，`Space` `s` `c`，`wqa` |
+| 结束工作 | `wall`，[[Space]] [[s]] [[c]]，`wqa` |
 
 ## 最终自测
 

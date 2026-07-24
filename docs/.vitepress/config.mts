@@ -1,4 +1,5 @@
 import { figure } from "@mdit/plugin-figure";
+import kbd from "markdown-it-kbd";
 import { defineConfig } from "vitepress";
 
 export default defineConfig({
@@ -11,13 +12,15 @@ export default defineConfig({
     },
     config(md) {
       md.use(figure, { focusable: false });
+      md.use(kbd);
     },
   },
   themeConfig: {
     logo: "/icon.jpg",
+    outline: [2, 3],
 
     nav: [
-      { text: "Home", link: "/" },
+      { text: "首页", link: "/" },
       {
         text: "教程",
         items: [
@@ -31,6 +34,9 @@ export default defineConfig({
 
     search: {
       provider: "local",
+      options: {
+        detailedView: true,
+      },
     },
 
     sidebar: {

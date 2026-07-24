@@ -13,3 +13,21 @@
   font-size: 0.875rem;
   line-height: 1.5;
 }
+
+.vp-doc kbd {
+  display: inline-block;
+  min-width: 1.6em;
+  padding: 0.1em 0.42em;
+  color: var(--vp-c-text-1);
+  font-family: var(--vp-font-family-mono);
+  font-size: 0.85em;
+  font-weight: 500;
+  line-height: 1.4;
+  text-align: center;
+  white-space: nowrap;
+  vertical-align: 0.08em;
+  background-color: var(--vp-c-bg-soft);
+  border: 1px solid var(--vp-c-divider);
+  border-bottom-width: 2px;
+  border-radius: 5px;
+}

@@ -6,11 +6,11 @@
 
 | 按键 | 效果 |
 | --- | --- |
-| `Ctrl-\` | 打开或隐藏 Snacks 终端 |
-| 快速按两次 `Esc` | 从终端输入状态进入终端普通模式 |
-| `Ctrl-w`，再按 `h`/`l` | 从终端移到左侧代码 / 回到右侧终端 |
-| 终端普通模式中的 `i` | 回到终端输入状态 |
-| `Space` `c` `f` | 用 Conform 手动格式化当前 Buffer |
+| [[Ctrl]]+[[&#92;]] | 打开或隐藏 Snacks 终端 |
+| 快速按两次 [[Esc]] | 从终端输入状态进入终端普通模式 |
+| [[Ctrl]]+[[w]]，再按 [[h]]/[[l]] | 从终端移到左侧代码 / 回到右侧终端 |
+| 终端普通模式中的 [[i]] | 回到终端输入状态 |
+| [[Space]] [[c]] [[f]] | 用 Conform 手动格式化当前 Buffer |
 
 ## 开始前的项目检查点
 
@@ -71,7 +71,7 @@ if __name__ == "__main__":
 
 :::
 
-缺少某份文件时，用 `Space` `e` 打开 Explorer，按 `a` 创建，再把对应代码输入进去。保存用 `F1` → `write` → `Enter` → `Enter`。
+缺少某份文件时，用 [[Space]] [[e]] 打开 Explorer，按 [[a]] 创建，再把对应代码输入进去。保存用 [[F1]] → `write` → [[Enter]] → [[Enter]]。
 
 ## 第一次打开终端
 
@@ -79,7 +79,7 @@ if __name__ == "__main__":
 
 ![打开终端前的 cli.py](screenshots/10-01-cli-before-terminal.webp)
 
-2. 按 `Ctrl-\`。
+2. 按 [[Ctrl]]+[[&#92;]]。
 3. 屏幕右侧出现一个竖向终端。
 4. 光标进入终端输入状态，可以直接敲 shell 命令。
 
@@ -95,13 +95,13 @@ PYTHONPATH=src python -m unittest -v
 
 ![输入测试命令](screenshots/10-03-test-command-input.webp)
 
-按 `Enter`。三条测试应当通过。
+按 [[Enter]]。三条测试应当通过。
 
 ![三条测试通过](screenshots/10-04-initial-tests-passed.webp)
 
 ### 隐藏和再次显示
 
-在终端输入状态直接按 `Ctrl-\`，右侧窗口隐藏，shell 进程继续活着。
+在终端输入状态直接按 [[Ctrl]]+[[&#92;]]，右侧窗口隐藏，shell 进程继续活着。
 
 ![隐藏终端后的代码窗口](screenshots/10-05-terminal-hidden.webp)
 
@@ -117,11 +117,11 @@ PYTHONPATH=src python -m unittest -v
 
 ### 第一步：先写测试
 
-按 `F1`，输入 `edit`。
+按 [[F1]]，输入 `edit`。
 
 ![用 F1 选择 edit 命令](screenshots/10-07-edit-command-picker.webp)
 
-选中 `edit` 后按 `Enter`，在底部命令后补上 ` tests/test_service.py`，再按 `Enter` 打开文件。把导入改成：
+选中 `edit` 后按 [[Enter]]，在底部命令后补上 ` tests/test_service.py`，再按 [[Enter]] 打开文件。把导入改成：
 
 ```python
 from pocket_tasks.service import (
@@ -152,12 +152,12 @@ from pocket_tasks.service import (
 
 ### 第二步：运行失败测试
 
-1. 按 `Ctrl-\` 显示终端。
-2. 按 `Up` 找回上一条测试命令。
+1. 按 [[Ctrl]]+[[&#92;]] 显示终端。
+2. 按 [[Up]] 找回上一条测试命令。
 
 ![召回测试命令但尚未执行](screenshots/10-10-test-command-recalled.webp)
 
-3. 按 `Enter`。
+3. 按 [[Enter]]。
 
 这次应出现 ImportError，因为服务层还没有 `pending_count`。这个失败结果说明测试覆盖了尚未实现的新需求。
 
@@ -165,7 +165,7 @@ from pocket_tasks.service import (
 
 ### 第三步：回代码实现
 
-按 `Ctrl-\` 隐藏终端，打开 `src/pocket_tasks/service.py`，在文件末尾加入：
+按 [[Ctrl]]+[[&#92;]] 隐藏终端，打开 `src/pocket_tasks/service.py`，在文件末尾加入：
 
 ```python
 def pending_count(tasks: list[Task]) -> int:  # [!code ++]
@@ -182,7 +182,7 @@ def pending_count(tasks: list[Task]) -> int:  # [!code ++]
 
 ![重新显示之前的失败输出](screenshots/10-13-failure-output-restored.webp)
 
-按 `Up`、`Enter` 重跑。四条测试应全部通过。
+按 [[Up]]、[[Enter]] 重跑。四条测试应全部通过。
 
 ![四条测试全部通过](screenshots/10-14-four-tests-passed.webp)
 
@@ -192,27 +192,27 @@ def pending_count(tasks: list[Task]) -> int:  # [!code ++]
 
 有时你想一边看测试输出，一边改代码，不想隐藏终端。
 
-1. 在终端输入状态快速按两次 `Esc`，两次间隔控制在约 200 毫秒内。
+1. 在终端输入状态快速按两次 [[Esc]]，两次间隔控制在约 200 毫秒内。
 2. 光标样式变化，终端进入普通模式。
 
 ![终端普通模式](screenshots/10-15-terminal-normal-mode.webp)
 
-3. 按 `Ctrl-w`，再按 `h`，焦点移到左侧代码。
+3. 按 [[Ctrl]]+[[w]]，再按 [[h]]，焦点移到左侧代码。
 
 ![焦点移到左侧代码](screenshots/10-16-focus-moved-to-code.webp)
 
-4. 按 `Ctrl-w`，再按 `l`，焦点回到终端。
-5. 本配置回到终端时通常会自动进入输入状态；如果仍处于普通模式，再按 `i`。
+4. 按 [[Ctrl]]+[[w]]，再按 [[l]]，焦点回到终端。
+5. 本配置回到终端时通常会自动进入输入状态；如果仍处于普通模式，再按 [[i]]。
 
 ![焦点回到终端](screenshots/10-17-focus-returned-to-terminal.webp)
 
-终端普通模式中还可以按 `q` 隐藏终端。刚开始用 `Ctrl-\` 已经足够稳定。
+终端普通模式中还可以按 [[q]] 隐藏终端。刚开始用 [[Ctrl]]+[[&#92;]] 已经足够稳定。
 
 ## 从 Explorer 的当前目录开终端
 
 Explorer 里还可以从指定目录打开终端：
 
-1. 按 `Space` `e` 打开 Explorer。
+1. 按 [[Space]] [[e]] 打开 Explorer。
 
 ![打开 Explorer](screenshots/10-18-explorer-opened-for-terminal.webp)
 
@@ -220,11 +220,11 @@ Explorer 里还可以从指定目录打开终端：
 
 ![选中 tests 目录](screenshots/10-19-tests-directory-selected.webp)
 
-3. 按 `Ctrl-t`。
+3. 按 [[Ctrl]]+[[t]]。
 
 ![从 tests 目录打开终端](screenshots/10-20-terminal-opened-in-tests.webp)
 
-Snacks 会以所选目录作为工作目录打开终端。临时需要在某个子目录运行命令时，这种方式很方便。本教程后面仍以全局的 `Ctrl-\` 为主。
+Snacks 会以所选目录作为工作目录打开终端。临时需要在某个子目录运行命令时，这种方式很方便。本教程后面仍以全局的 [[Ctrl]]+[[&#92;]] 为主。
 
 ## 格式化练习：格式化 Nix 代码
 
@@ -236,11 +236,11 @@ Snacks 会以所选目录作为工作目录打开终端。临时需要在某个�
 
 ![Explorer 选中项目根目录](screenshots/10-21-project-root-selected.webp)
 
-按 `a`，输入 `scratch.nix`。
+按 [[a]]，输入 `scratch.nix`。
 
 ![输入 scratch.nix 文件名](screenshots/10-22-scratch-nix-name-input.webp)
 
-按 `Enter` 创建文件。
+按 [[Enter]] 创建文件。
 
 ![scratch.nix 创建完成](screenshots/10-23-scratch-nix-created.webp)
 
@@ -258,18 +258,18 @@ Snacks 会以所选目录作为工作目录打开终端。临时需要在某个�
 
 然后执行：
 
-1. 按 `Esc`。
-2. 按 `Space` `c`，停一下查看 Which-key 中的 `Format`。
+1. 按 [[Esc]]。
+2. 按 [[Space]] [[c]]，停一下查看 Which-key 中的 `Format`。
 
 ![Space c 后显示 Format](screenshots/10-26-code-which-key-format.webp)
 
-3. 按 `f`，等一小会儿。格式化是异步执行的。
+3. 按 [[f]]，等一小会儿。格式化是异步执行的。
 
 文件应展开成清晰的多行结构。课程前面创建的 `.editorconfig` 会让 Nix 使用两空格缩进。
 
 ![nixfmt 格式化后的多行结构](screenshots/10-27-nix-formatted.webp)
 
-格式化结束后，Buffer 会处于已修改状态。再用 `F1` → `write` → `Enter` → `Enter` 保存。
+格式化结束后，Buffer 会处于已修改状态。再用 [[F1]] → `write` → [[Enter]] → [[Enter]] 保存。
 
 ![格式化结果已保存](screenshots/10-28-formatted-nix-saved.webp)
 
@@ -284,7 +284,7 @@ Snacks 会以所选目录作为工作目录打开终端。临时需要在某个�
 
 ::: details 格式化按键毫无反应
 
-1. 按 `F1`。
+1. 按 [[F1]]。
 2. 输入 `ConformInfo`。
 
 ![选择 ConformInfo](screenshots/10-29-conform-info-picker.webp)
@@ -301,20 +301,20 @@ Snacks 会以所选目录作为工作目录打开终端。临时需要在某个�
 
 1. 写一个失败测试。
 2. 保存。
-3. `Ctrl-\` 打开终端。
-4. `Up`、`Enter` 重跑。
-5. `Ctrl-\` 隐藏终端。
+3. [[Ctrl]]+[[&#92;]] 打开终端。
+4. [[Up]]、[[Enter]] 重跑。
+5. [[Ctrl]]+[[&#92;]] 隐藏终端。
 6. 修最少的代码。
 7. 再跑测试。
-8. 测试通过后按 `Space` `c` `f`。
+8. 测试通过后按 [[Space]] [[c]] [[f]]。
 9. 等格式化完成，再保存。
 
 ## 隋唐小测
 
-- 打开和隐藏右侧终端：`Ctrl-\`
-- 保留终端可见并跳到左侧代码：双 `Esc`，然后 `Ctrl-w` `h`
-- 回终端并继续输入：`Ctrl-w` `l`；若没有自动进入输入状态，再按 `i`
-- 手动格式化当前 Buffer：`Space` `c` `f`
+- 打开和隐藏右侧终端：[[Ctrl]]+[[&#92;]]
+- 保留终端可见并跳到左侧代码：双 [[Esc]]，然后 [[Ctrl]]+[[w]] [[h]]
+- 回终端并继续输入：[[Ctrl]]+[[w]] [[l]]；若没有自动进入输入状态，再按 [[i]]
+- 手动格式化当前 Buffer：[[Space]] [[c]] [[f]]
 - 格式化后还要做什么：等待完成并保存
 
 下一章进入 [11：Git 变更块](11-git-hunks.md)。测试通过以后，接着检查并整理本次修改。
